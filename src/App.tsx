@@ -1,9 +1,9 @@
-import './App.css';
+import Signup from './screens/Signup';
 
 const App = () => {
   return (
     <div className='App'>
-      <p>Hello world, Stardust Login!</p>
+      <Signup />
     </div>
   );
 };
