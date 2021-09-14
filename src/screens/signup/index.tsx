@@ -14,8 +14,10 @@ const Signup: FC = () => {
 
   const handleSignUp: NodeCallback<Error, ISignUpResult> = (err, data) => {
     if (err) {
+      // eslint-disable-next-line no-console
       console.error(err);
     }
+    // eslint-disable-next-line no-console
     console.log(data);
   };
 
