@@ -1,47 +1,53 @@
 // libs
-import React, { FormEvent, useState, memo, FC } from 'react'
-import { NodeCallback, ISignUpResult } from 'amazon-cognito-identity-js'
+import React, { FormEvent, useState, memo, FC } from 'react';
+import { NodeCallback, ISignUpResult } from 'amazon-cognito-identity-js';
 // Config
-import UserPool from '../../userPool'
+import UserPool from '../../userPool';
 // Interfaces
-import { Error } from './interfaces'
+import { Error } from './interfaces';
 // Styles
-import { Container, Form } from './styles'
+import { Container, Form } from './styles';
 
 const Signup: FC = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSignUp: NodeCallback<Error, ISignUpResult> = (err, data) => {
     if (err) {
-      console.error(err)
+      console.error(err);
     }
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault()
+    event.preventDefault();
 
-    UserPool.signUp(email, password, [], [], handleSignUp)
-  }
+    UserPool.signUp(email, password, [], [], handleSignUp);
+  };
 
   return (
     <Container>
       <Form onSubmit={onSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          value={email}
-          onChange={event => setEmail(event.target.value)}
-         />
-        <label htmlFor="password">Password</label>
-        <input
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-         />
+        <label htmlFor="email">
+          Email
+          <input
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+        <label htmlFor="password">
+          Password
+          <input
+            id="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
         <button type="submit">Signup</button>
       </Form>
     </Container>
-  )
-}
+  );
+};
 
-export default memo(Signup)
+export default memo(Signup);
