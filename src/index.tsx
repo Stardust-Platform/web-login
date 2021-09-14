@@ -1,11 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React, { FC } from 'react'
+import Signup from './screens/signup'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App: FC = () => (
+  <div className="App">
+    <Signup />
+  </div>
+)
+
+export default App

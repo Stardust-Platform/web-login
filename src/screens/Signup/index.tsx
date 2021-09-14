@@ -1,43 +1,47 @@
 // libs
-import { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, memo, FC } from 'react'
+import { NodeCallback, ISignUpResult } from 'amazon-cognito-identity-js'
 // Config
-import UserPool from '../../UserPool';
+import UserPool from '../../userPool'
+// Interfaces
+import { Error } from './interfaces'
 // Styles
-import { Container, Form } from './styles';
+import { Container, Form } from './styles'
 
-const Signup = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    
-    UserPool.signUp(email, password, [], [], (err, data) => {
-      if (err) {
-        console.error(err);
-      }
-      console.log(data);
-    });
-  };
-  
+const Signup: FC = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSignUp: NodeCallback<Error, ISignUpResult> = (err, data) => {
+    if (err) {
+      console.error(err)
+    }
+    console.log(data)
+  }
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
+
+    UserPool.signUp(email, password, [], [], handleSignUp)
+  }
+
   return (
     <Container>
       <Form onSubmit={onSubmit}>
-        <label htmlFor='email'>Email</label>
+        <label htmlFor="email">Email</label>
         <input
           value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        ></input>
-        <label htmlFor='password'>Password</label>
+          onChange={event => setEmail(event.target.value)}
+         />
+        <label htmlFor="password">Password</label>
         <input
           value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        ></input>
-
-        <button type='submit'>Signup</button>
+          onChange={event => setPassword(event.target.value)}
+         />
+        <button type="submit">Signup</button>
       </Form>
     </Container>
-  );
-};
+  )
+}
 
-export default Signup;
+export default memo(Signup)

@@ -1,0 +1,122 @@
+{
+  "extends": [
+    "plugin:jest/recommended",
+    "airbnb",
+    "standard"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "jest"
+  ],
+  "rules": {
+    "no-throw-literal": 0,
+    "react/jsx-curly-newline": 0,
+    "react/jsx-wrap-multilines": 0,
+    "react/jsx-closing-bracket-location": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "quotes": [
+      2,
+      "single",
+      "avoid-escape"
+    ],
+    "arrow-parens": [
+      2,
+      "as-needed"
+    ],
+    "comma-dangle": [
+      2,
+      "only-multiline"
+    ],
+    "implicit-arrow-linebreak": 0,
+    "object-curly-newline": 0,
+    "no-console": 0,
+    "react/forbid-prop-types": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "react/jsx-props-no-spreading": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "max-lines": [
+      "warn",
+      {
+        "max": 200,
+        "skipBlankLines": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
+      }
+    ],
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "camelcase": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off"
+  },
+  "globals": {
+    "jest/globals": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "standard-with-typescript"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "plugins": [
+        "@typescript-eslint"
+      ],
+      "settings": {
+        "react": {
+          "pragma": "React",
+          "version": "detect",
+          "flowVersion": "0.53"
+        }
+      },
+      "parserOptions": {
+        "project": [
+          "./tsconfig.json"
+        ]
+      },
+      "rules": {
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/strict-boolean-expressions": "off"
+      }
+    }
+  ]
+}
