@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Signup from './screens/Signup2';
+import Signup from './screens/Signup';
 
 const App: FC = () => (
   <div className="App">
