@@ -1,160 +1,91 @@
-# TSDX React User Guide
+<!-- README for NPM; the one for GitHub is in .github directory. -->
+<div align="center">
+  <a href="#">
+  	<img src="https://i.giphy.com/media/z2KbVZxKCHxxIDhnsQ/giphy.webp" alt="Logo project" height="160" />
+  </a>
+  <br>
+  <br>
+  <p>
+    <b>Stardust Auth</b>
+  </p>
+  <p>
+     <i>This project is Stardust library for web auth</i>
+  </p>
+  <p>
+    <!-- [![Build Status](https://travis-ci.com/opticpwr/stardust-auth.svg?branch=master)](https://travis-ci.com/opticpwr/stardust-auth)
+    [![NPM version](https://img.shields.io/npm/v/stardust-auth?style=flat-square)](https://img.shields.io/npm/v/stardust-auth?style=flat-square)
+    [![Package size](https://img.shields.io/bundlephobia/min/stardust-auth)](https://img.shields.io/bundlephobia/min/stardust-auth)
+    [![Dependencies](https://img.shields.io/david/opticpwr/stardust-auth.svg?style=popout-square)](https://david-dm.org/opticpwr/stardust-auth)
+    [![devDependencies Status](https://david-dm.org/opticpwr/stardust-auth/dev-status.svg?style=flat-square)](https://david-dm.org/opticpwr/stardust-auth?type=dev)
+    [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+    [![Twitter](https://img.shields.io/twitter/follow/luctstt.svg?label=Follow&style=social)](https://twitter.com/luctstt) -->
+  </p>
+</div>
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
+---
 
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
+## **Content**
 
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+* [Features](##features)
+* [Install](##install)
+* [Usage](##usage)
+* [examples](##examples)
+* [Documentation](##documentation)
+* [API](##Api)
+* [Contributing](##contributing)
+* [Maintainers](##maintainers)
 
-## Commands
+## Features ✨
+* Sign in with social accounts
+* Sign up with social accounts
+* ...
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
-
-The recommended workflow is to run TSDX in one terminal:
-
-```bash
-npm start # or yarn start
+## Install 🐙
+```
+npm install --save https://github.com/opticpower/stardust-auth.git
 ```
 
-This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
+## Usage 💡
+In this section you can write some popular examples about how you can interact with the project. It's advisable to write some code here.
 
-Then run the example inside another:
+## Examples 🖍
+```
+import { StardustProvide } from 'stardust-auth'
+import Content from 'src/index'
 
-```bash
-cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+const App = () => (
+  <StardustProvide>
+    <Content>
+  </StardustProvide>
+)
 ```
 
-The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
+## Documentation 📄
+If your project has some documentation you can link anything here.
 
-To do a one-off build, use `npm run build` or `yarn build`.
+## API 👩‍💻
+You have a small project or you'll like to share the API of your project ? This is where it's happen.
 
-To run tests, use `npm test` or `yarn test`.
+## Contributing 🍰
+Please make sure to read the [Contributing Guide](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md) before making a pull request.
 
-## Configuration
+Thank you to all the people who already contributed to this project!
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+## Maintainers 👷
 
-### Jest
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/SantiagoMolinaOrozco"><img src="https://avatars.githubusercontent.com/u/17752391?v=4" width="100px;" alt="SantiagoMolinaOrozco"/><br /><sub><b>Santiago Molina Orozco</b></sub></a><br /><a href="#" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/dagibu301"><img src="https://avatars.githubusercontent.com/u/47512198?v=4" width="100px;" alt="DavidGiraldo"/><br /><sub><b>David Giraldo</b></sub></a><br /><a href="#" title="Code">💻</a></td>
+  </tr>
+</table>
 
-Jest tests are set up to run with `npm test` or `yarn test`.
+<!-- ## License ⚖️
+Enter what kind of license you're using. -->
 
-### Bundle analysis
-
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
-
-#### Setup Files
-
-This is the folder structure we set up for you:
-
-```txt
-/example
-  index.html
-  index.tsx       # test your component here in a demo app
-  package.json
-  tsconfig.json
-/src
-  index.tsx       # EDIT THIS
-/test
-  blah.test.tsx   # EDIT THIS
-.gitignore
-package.json
-README.md         # EDIT THIS
-tsconfig.json
-```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
-
-### Rollup
-
-TSDX uses [Rollup](https://rollupjs.org) as a bundler and generates multiple rollup configs for various module formats and build settings. See [Optimizations](#optimizations) for details.
-
-### TypeScript
-
-`tsconfig.json` is set up to interpret `dom` and `esnext` types, as well as `react` for `jsx`. Adjust according to your needs.
-
-## Continuous Integration
-
-### GitHub Actions
-
-Two actions are added by default:
-
-- `main` which installs deps w/ cache, lints, tests, and builds on all pushes against a Node and OS matrix
-- `size` which comments cost comparison of your library on every pull request using [`size-limit`](https://github.com/ai/size-limit)
-
-## Optimizations
-
-Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx#optimizations). In particular, know that you can take advantage of development-only optimizations:
-
-```js
-// ./types/index.d.ts
-declare var __DEV__: boolean;
-
-// inside your code...
-if (__DEV__) {
-  console.log('foo');
-}
-```
-
-You can also choose to install and use [invariant](https://github.com/palmerhq/tsdx#invariant) and [warning](https://github.com/palmerhq/tsdx#warning) functions.
-
-## Module Formats
-
-CJS, ESModules, and UMD module formats are supported.
-
-The appropriate paths are configured in `package.json` and `dist/index.js` accordingly. Please report if any issues are found.
-
-## Deploying the Example Playground
-
-The Playground is just a simple [Parcel](https://parceljs.org) app, you can deploy it anywhere you would normally deploy that. Here are some guidelines for **manually** deploying with the Netlify CLI (`npm i -g netlify-cli`):
-
-```bash
-cd example # if not already in the example folder
-npm run build # builds to dist
-netlify deploy # deploy the dist folder
-```
-
-Alternatively, if you already have a git repo connected, you can set up continuous deployment with Netlify:
-
-```bash
-netlify init
-# build command: yarn build && cd example && yarn && yarn build
-# directory to deploy: example/dist
-# pick yes for netlify.toml
-```
-
-## Named Exports
-
-Per Palmer Group guidelines, [always use named exports.](https://github.com/palmerhq/typescript#exports) Code split inside your React app instead of your React library.
-
-## Including Styles
-
-There are many ways to ship styles, including with CSS-in-JS. TSDX has no opinion on this, configure how you like.
-
-For vanilla CSS, you can include it at the root directory and add it to the `files` section in your `package.json`, so that it can be imported separately by your users and run through their bundler's loader.
-
-## Publishing to NPM
-
-We recommend using [np](https://github.com/sindresorhus/np).
-
-## Usage with Lerna
-
-When creating a new package with TSDX within a project set up with Lerna, you might encounter a `Cannot resolve dependency` error when trying to run the `example` project. To fix that you will need to make changes to the `package.json` file _inside the `example` directory_.
-
-The problem is that due to the nature of how dependencies are installed in Lerna projects, the aliases in the example project's `package.json` might not point to the right place, as those dependencies might have been installed in the root of your Lerna project.
-
-Change the `alias` to point to where those packages are actually installed. This depends on the directory structure of your Lerna project, so the actual path might be different from the diff below.
-
-```diff
-   "alias": {
--    "react": "../node_modules/react",
--    "react-dom": "../node_modules/react-dom"
-+    "react": "../../../node_modules/react",
-+    "react-dom": "../../../node_modules/react-dom"
-   },
-```
-
-An alternative to fixing this problem would be to remove aliases altogether and define the dependencies referenced as aliases as dev dependencies instead. [However, that might cause other problems.](https://github.com/palmerhq/tsdx/issues/64)
+---
+<div align="center">
+	<b>
+		<a href="https://opticpwr.com">Optic Power</a>
+	</b>
+</div>
