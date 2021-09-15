@@ -38,11 +38,11 @@
   "size-limit": [
     {
       "path": "dist/stardust-auth.cjs.production.min.js",
-      "limit": "200 KB"
+      "limit": "300 KB"
     },
     {
       "path": "dist/stardust-auth.esm.js",
-      "limit": "200 KB"
+      "limit": "300 KB"
     }
   ],
   "devDependencies": {
