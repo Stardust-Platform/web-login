@@ -12,9 +12,13 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['example/**'],
+  ignorePatterns: ['example/**', 'dist/**'],
   parserOptions: {
     project: './tsconfig.json',
     createDefaultProgram: true,
+  },
+  rules: {
+    'import/no-unresolved': 'off',
+    'prettier/prettier': ['error', { endOfLine: 'auto' }],
   },
 };
