@@ -9,7 +9,7 @@
     <b>Stardust Auth</b>
   </p>
   <p>
-     <i>This project is Stardust librari for web auth</i>
+     <i>This project is Stardust library for web auth</i>
   </p>
   <p>
     <!-- [![Build Status](https://travis-ci.com/opticpwr/stardust-auth.svg?branch=master)](https://travis-ci.com/opticpwr/stardust-auth)
@@ -29,7 +29,7 @@
 * [Features](##features)
 * [Install](##install)
 * [Usage](##usage)
-* [Exemples](##exemples)
+* [examples](##examples)
 * [Documentation](##documentation)
 * [API](##Api)
 * [Contributing](##contributing)
@@ -48,7 +48,7 @@ npm install --save https://github.com/opticpower/stardust-auth.git
 ## Usage 💡
 In this section you can write some popular examples about how you can interact with the project. It's advisable to write some code here.
 
-## Exemples 🖍
+## Examples 🖍
 ```
 import { StardustProvide } from 'stardust-auth'
 import Content from 'src/index'
