@@ -1,0 +1,17 @@
+{
+  "projectName": "stardustauth",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "src",
+      "DistributionDir": "build",
+      "BuildCommand": "tsdx build",
+      "StartCommand": "tsdx watch"
+    }
+  },
+  "providers": [
+    "awscloudformation"
+  ]
+}
