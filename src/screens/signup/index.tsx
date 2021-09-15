@@ -2,7 +2,7 @@
 import React, { FormEvent, useState, memo, FC } from 'react';
 import { NodeCallback, ISignUpResult } from 'amazon-cognito-identity-js';
 // Config
-import UserPool from 'src/userPool';
+import UserPool from '../../userPool';
 // Interfaces
 import { Error } from './interfaces';
 // Styles
