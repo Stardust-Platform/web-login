@@ -3,9 +3,9 @@ import React, { FormEvent, useState, memo, FC } from 'react';
 import { NodeCallback, ISignUpResult } from 'amazon-cognito-identity-js';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import Amplify, { Auth } from 'aws-amplify';
-import awsconfig from '../../aws-exports';
 // Config
 import UserPool from '../../userPool';
+import awsconfig from '../../aws-exports';
 // Interfaces
 import { Error } from './interfaces';
 // Styles

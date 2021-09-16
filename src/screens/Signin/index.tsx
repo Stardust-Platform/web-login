@@ -2,6 +2,7 @@
 import React, { FormEvent, useState, memo, FC } from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import Amplify, { Auth } from 'aws-amplify';
+// Config
 import awsconfig from '../../aws-exports';
 // Styles
 import { Container, Form, SocialMediaContainer } from './styles';
