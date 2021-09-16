@@ -1,17 +1,12 @@
 // libs
 import React, { FormEvent, useState, memo, FC } from 'react';
 import { NodeCallback, ISignUpResult } from 'amazon-cognito-identity-js';
-import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import Amplify, { Auth } from 'aws-amplify';
 // Config
 import UserPool from '../../userPool';
-import awsconfig from '../../aws-exports';
 // Interfaces
 import { Error } from './interfaces';
 // Styles
-import { Container, Form, SocialMediaContainer } from './styles';
-
-Amplify.configure(awsconfig);
+import { Container, Form } from './styles';
 
 const Signup: FC = () => {
   const [email, setEmail] = useState('');
@@ -51,19 +46,7 @@ const Signup: FC = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-        <button type="submit">Sign up</button>
-        <SocialMediaContainer>
-          <button
-            type="button"
-            onClick={() =>
-              Auth.federatedSignIn({
-                provider: CognitoHostedUIIdentityProvider.Facebook,
-              })
-            }
-          >
-            Facebook
-          </button>
-        </SocialMediaContainer>
+        <button type="submit">Signup</button>
       </Form>
     </Container>
   );
