@@ -109,6 +109,14 @@ Per Palmer Group guidelines, [always use named exports.](https://github.com/palm
 
 We use StyledComponents for make styles
 
+## Branch naming
+
+We are using [git flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) for branch structure
+
+Example:
+- features/#pivotalTask-name-feature
+- feature/179580926-third-party-implementation
+
 ## Publishing to NPM
 
 Recommend using [np](https://github.com/sindresorhus/np).

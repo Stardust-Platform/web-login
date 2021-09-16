@@ -7,7 +7,7 @@ import Amplify, { Auth } from 'aws-amplify';
 import UserPool from '../../userPool';
 import awsconfig from '../../aws-exports';
 // Interfaces
-import { Error } from './interfaces';
+import { IError } from './interfaces';
 // Styles
 import { Container, Form, SocialMediaContainer } from './styles';
 
@@ -17,7 +17,7 @@ const Signup: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignUp: NodeCallback<Error, ISignUpResult> = (err, data) => {
+  const handleSignUp: NodeCallback<IError, ISignUpResult> = (err, data) => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error(err);
