@@ -15,3 +15,9 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
 `;
+
+export const SocialMediaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
