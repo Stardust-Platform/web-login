@@ -1,13 +1,13 @@
 // Libs
 import React, { FC } from 'react';
 // Screens
-import Signup from './screens/Signup';
+import Signin from './screens/Signin';
 // Provider
 import { AuthProvider, useAuthContext } from './components/Provider';
 
 const StardustAuth: FC = () => (
   <div className="StardustAuth">
-    <Signup />
+    <Signin />
   </div>
 );
 
