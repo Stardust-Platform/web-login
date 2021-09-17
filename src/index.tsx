@@ -1,10 +1,4 @@
-import React, { FC } from 'react';
-import Signin from './screens/Signin';
+// Provider
+import { AuthProvider, useAuthContext } from './components/Provider';
 
-const App: FC = () => (
-  <div className="App">
-    <Signin />
-  </div>
-);
-
-export default App;
+export { AuthProvider, useAuthContext };
