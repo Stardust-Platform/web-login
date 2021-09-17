@@ -1,59 +1,60 @@
 // . Libs
-import React, {
-  createContext,
-  useReducer,
-  useMemo,
-  useContext,
-  FC,
-  Dispatch,
-} from 'react';
+import React, { useReducer, useMemo, useEffect, FC } from 'react';
+import { Auth } from 'aws-amplify';
+// Screens
+import SigninScreen from '../../screens/Signin';
 // Consts
 import { initialState } from './constants';
 // Interfaces
-import { TState, TStateContext, TAction, TTypes } from './interfaces';
+import { TTypes, TProviderProps, TUser } from './interfaces';
+// Reducers
+import AuthReducer from './reducer';
+// Hooks
+import useAuthContext, { AuthContext } from './hooks';
 
-type TContext = {
-  state: TState;
-  dispatch: Dispatch<TAction>;
+const checkUserLoggedIn = async () => {
+  let user = {};
+  await Auth.currentAuthenticatedUser().then(
+    (data) => {
+      user = data;
+    },
+    // eslint-disable-next-line no-console
+    (error) => console.error(error)
+  );
+  return user;
 };
 
-const AuthContext = createContext<TContext | undefined>(undefined);
-
-const AuthReducer = (state: TState, action: TAction) => {
-  switch (action.type) {
-    case TTypes.handleOpen: {
-      return {
-        ...state,
-        isOpen: action?.payload,
-      };
-    }
-
-    default:
-      throw new Error(`Action is not supported: ${action.type}`);
-  }
-};
-
-export const AuthProvider: FC = (props) => {
+export const AuthProvider: FC<TProviderProps> = (props) => {
+  const { isOpen = false } = props;
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
 
-  return <AuthContext.Provider value={value} {...props} />;
+  useEffect(() => {
+    (async () => {
+      const user = await checkUserLoggedIn();
+      const payload = Object.entries(user).length !== 0 ? user : undefined;
+      dispatch({
+        type: TTypes.handleSignin,
+        payload: payload as TUser,
+      });
+      dispatch({
+        type: TTypes.handleOpenModal,
+        payload: isOpen ?? false,
+      });
+    })();
+  }, [isOpen]);
+
+  return (
+    <>
+      <AuthContext.Provider value={value} {...props} />
+      {state.isOpen && <SigninScreen />}
+    </>
+  );
 };
 
-// Custom hook useAuthContext
-export const useAuthContext = (): TStateContext => {
-  const context = useContext(AuthContext);
-
-  if (!context) {
-    throw new Error('useAuthContext must be used inside a AuthProvider');
-  }
-
-  const { state, dispatch } = context;
-
-  const handleOpen = (isOpen: boolean) => {
-    dispatch({ type: TTypes.handleOpen, payload: isOpen });
-  };
-
-  return { ...state, handleOpen };
+AuthProvider.defaultProps = {
+  isOpen: false,
 };
+
+export { useAuthContext };

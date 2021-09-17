@@ -1,17 +1,14 @@
+// libs
 import React, { FC } from 'react';
 import * as ReactDOM from 'react-dom';
-import StardustAuth, { AuthProvider, useAuthContext } from '..';
+import { AuthProvider } from '..';
+// Screens
+import MainScreen from './screens/Main';
 
-const App: FC = () => {
-  const { user } = useAuthContext();
-  return (
-    <AuthProvider>
-      <div>
-        {user}
-        <StardustAuth />
-      </div>
-    </AuthProvider>
-  );
-};
+const App: FC = () => (
+  <AuthProvider isOpen>
+    <MainScreen />
+  </AuthProvider>
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));

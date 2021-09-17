@@ -1,12 +1,7 @@
-import { TState, TUser } from './interfaces';
+import { TState } from './interfaces';
 
-export const initialUser: TUser = {
-  id: 1,
-  userId: '23dsjfl2',
-  email: 's.molina@opticpower.com',
-};
-
+// eslint-disable-next-line import/prefer-default-export
 export const initialState: TState = {
-  user: initialUser,
+  user: undefined,
   isOpen: false,
 };

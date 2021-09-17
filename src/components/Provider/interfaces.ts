@@ -1,25 +1,41 @@
+// Libs
+import { Dispatch } from 'react';
+import { CognitoUserInterface } from '@aws-amplify/ui-components';
+
 export enum TTypes {
-  handleOpen = 'HANDLE_OPEN',
+  handleOpenModal = 'HANDLE_OPEN_MODAL',
+  handleSignin = 'HANDLE_SIGNIN',
 }
 
-export type TUser = {
-  id?: number;
-  userId?: string;
-  email?: string;
+export type TActionIsOpen = {
+  type: TTypes.handleOpenModal;
+  payload: boolean;
 };
+
+export type TActionSignin = {
+  type: TTypes.handleSignin;
+  payload?: TUser;
+};
+
+export type TAction = TActionIsOpen | TActionSignin;
+
+export type TUser = CognitoUserInterface | undefined;
 
 export type TState = {
   user?: TUser;
   isOpen: boolean;
 };
 
-export type TActionIsOpen = {
-  type: TTypes.handleOpen;
-  payload: boolean;
+export type TContext = {
+  state: TState;
+  dispatch: Dispatch<TAction>;
 };
 
-export type TAction = TActionIsOpen;
-
 export type TStateContext = TState & {
-  handleOpen: (isOpen: boolean) => void;
+  handleOpenModal: (isOpen: boolean) => void;
+  dispatch: Dispatch<TAction>;
+};
+
+export type TProviderProps = {
+  isOpen?: boolean;
 };
