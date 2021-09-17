@@ -1,11 +1,11 @@
 // . Libs
 import { createContext, useContext } from 'react';
 // Interfaces
-import { TStateContext, TContext, TTypes } from './interfaces';
+import { StateContext, Context, Types } from './types';
 
-export const AuthContext = createContext<TContext | undefined>(undefined);
+export const AuthContext = createContext<Context | undefined>(undefined);
 
-const useAuthContext = (): TStateContext => {
+const useAuthContext = (): StateContext => {
   const context = useContext(AuthContext);
 
   if (!context) {
@@ -15,7 +15,7 @@ const useAuthContext = (): TStateContext => {
   const { state, dispatch } = context;
 
   const handleOpenModal = (isOpen: boolean) => {
-    dispatch({ type: TTypes.handleOpenModal, payload: isOpen });
+    dispatch({ type: Types.handleOpenModal, payload: isOpen });
   };
 
   return { ...state, handleOpenModal, dispatch };

@@ -1,15 +1,15 @@
-import { TState, TAction, TTypes } from './interfaces';
+import { State, Action, Types } from './types';
 
-const AuthReducer = (state: TState, action: TAction): TState => {
+const AuthReducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case TTypes.handleOpenModal: {
+    case Types.handleOpenModal: {
       return {
         ...state,
         isOpen: action?.payload,
       };
     }
 
-    case TTypes.handleSignin: {
+    case Types.handleSignin: {
       return {
         ...state,
         user: action?.payload,

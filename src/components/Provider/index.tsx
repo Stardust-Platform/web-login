@@ -6,7 +6,7 @@ import SigninScreen from '../../screens/Signin';
 // Consts
 import { initialState } from './constants';
 // Interfaces
-import { TTypes, TProviderProps, TUser } from './interfaces';
+import { Types, ProviderProps, User } from './types';
 // Reducers
 import AuthReducer from './reducer';
 // Hooks
@@ -24,7 +24,7 @@ const checkUserLoggedIn = async () => {
   return user;
 };
 
-export const AuthProvider: FC<TProviderProps> = (props) => {
+export const AuthProvider: FC<ProviderProps> = (props) => {
   const { isOpen = false } = props;
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
@@ -35,14 +35,17 @@ export const AuthProvider: FC<TProviderProps> = (props) => {
       const user = await checkUserLoggedIn();
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       dispatch({
-        type: TTypes.handleSignin,
-        payload: payload as TUser,
-      });
-      dispatch({
-        type: TTypes.handleOpenModal,
-        payload: isOpen ?? false,
+        type: Types.handleSignin,
+        payload: payload as User,
       });
     })();
+  }, []);
+
+  useEffect(() => {
+    dispatch({
+      type: Types.handleOpenModal,
+      payload: isOpen ?? false,
+    });
   }, [isOpen]);
 
   return (
