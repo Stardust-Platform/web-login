@@ -40,6 +40,16 @@ const Signin: FC = () => {
           >
             Google
           </button>
+          <button
+            type="button"
+            onClick={() =>
+              Auth.federatedSignIn({
+                customProvider: 'Discord',
+              })
+            }
+          >
+            Discord
+          </button>
         </SocialMediaContainer>
       </Form>
       <button type="button" onClick={() => setIsSingup(!isSingup)}>
