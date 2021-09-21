@@ -9,10 +9,8 @@ import { Container, Form, SocialMediaContainer } from './styles';
 
 Amplify.configure(awsconfig);
 
-const Login: FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+const Signin: FC = () => {
+  const [isSingup, setIsSingup] = useState(false);
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
@@ -20,23 +18,7 @@ const Login: FC = () => {
   return (
     <Container>
       <Form onSubmit={onSubmit}>
-        <label htmlFor="email">
-          Email
-          <input
-            id="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            id="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <button type="submit">Sign in</button>
+        <h1>{isSingup ? 'Sign up' : 'Sign in'}</h1>
         <SocialMediaContainer>
           <button
             type="button"
@@ -48,10 +30,33 @@ const Login: FC = () => {
           >
             Facebook
           </button>
+          <button
+            type="button"
+            onClick={() =>
+              Auth.federatedSignIn({
+                provider: CognitoHostedUIIdentityProvider.Google,
+              })
+            }
+          >
+            Google
+          </button>
+          <button
+            type="button"
+            onClick={() =>
+              Auth.federatedSignIn({
+                customProvider: 'Discord',
+              })
+            }
+          >
+            Discord
+          </button>
         </SocialMediaContainer>
       </Form>
+      <button type="button" onClick={() => setIsSingup(!isSingup)}>
+        {isSingup ? 'Sign in instead' : 'Sign up instead'}
+      </button>
     </Container>
   );
 };
 
-export default memo(Login);
+export default memo(Signin);

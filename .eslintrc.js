@@ -20,5 +20,6 @@ module.exports = {
   rules: {
     'import/no-unresolved': 'off',
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    'react/jsx-props-no-spreading': 'off',
   },
 };
