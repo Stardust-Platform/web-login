@@ -46,9 +46,14 @@ npm install --save https://github.com/opticpower/stardust-auth.git
 ```
 
 ## Usage 💡
-In this section you can write some popular examples about how you can interact with the project. It's advisable to write some code here.
+
+- Add Provider
+- Use hook method
 
 ## Examples 🖍
+
+- Add Provider wrapping all the application
+
 ```
 import { StardustProvide } from 'stardust-auth'
 import Content from 'src/index'
@@ -60,11 +65,47 @@ const App = () => (
 )
 ```
 
-## Documentation 📄
-If your project has some documentation you can link anything here.
+- Add hook for authentication
 
-## API 👩‍💻
-You have a small project or you'll like to share the API of your project ? This is where it's happen.
+```
+import { useAuthContext } from 'stardust-auth';
+
+const Main = () => {
+  const { user, handleOpenModal, isOpen } = useAuthContext();
+
+  return (
+    <div>
+      <div>{user?.username}</div>
+      <button type="button" onClick={() => handleOpenModal(!isOpen)}>
+        Toggle login
+      </button>
+    </div>
+  );
+};
+```
+
+## Documentation 📄
+
+### Provider Props
+
+```import { StardustProvide } from 'stardust-auth'```
+
+| attribute | type    | DefaultValue | description            |
+| --------- | ------- | ------------ | ---------------------- |
+| isOpen    | Boolean | false        | Initialize modal open  |
+
+### Hook
+
+```import { useAuthContext } from 'stardust-auth'```
+
+| attribute          | type     | DefaultValue      | description                                                                  |
+| ------------------ | -------  | ----------------- | ---------------------------------------------------------------------------- |
+| user               | Object   | undefined         | If user is login have the user info                                          |
+| isOpen             | Boolean  | false             | Initialize modal open                                                        |
+| handleOpenModal    | Function | (Boolean) => void | this function receives boolean value for open or close modal and return void |
+
+<!-- ## API 👩‍💻
+You have a small project or you'll like to share the API of your project ? This is where it's happen. -->
 
 ## Contributing 🍰
 Please make sure to read the [Contributing Guide](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md) before making a pull request.
