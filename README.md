@@ -55,13 +55,13 @@ npm install --save https://github.com/opticpower/stardust-auth.git
 - Add Provider wrapping all the application
 
 ```
-import { StardustProvide } from 'stardust-auth'
+import { AuthProvider } from 'stardust-auth'
 import Content from 'src/index'
 
 const App = () => (
-  <StardustProvide>
+  <AuthProvider>
     <Content>
-  </StardustProvide>
+  </AuthProvider>
 )
 ```
 
@@ -88,7 +88,7 @@ const Main = () => {
 
 ### Provider Props
 
-```import { StardustProvide } from 'stardust-auth'```
+```import { AuthProvider } from 'stardust-auth'```
 
 | attribute | type    | DefaultValue | description            |
 | --------- | ------- | ------------ | ---------------------- |
