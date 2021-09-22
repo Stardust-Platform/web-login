@@ -71,13 +71,16 @@ const App = () => (
 import { useAuthContext } from 'stardust-auth';
 
 const Main = () => {
-  const { user, handleOpenModal, isOpen } = useAuthContext();
+  const { user, handleOpenModal, isOpen, handleSignOut } = useAuthContext();
 
   return (
     <div>
       <div>{user?.username}</div>
       <button type="button" onClick={() => handleOpenModal(!isOpen)}>
         Toggle login
+      </button>
+      <button type="button" onClick={handleSignOut}>
+        Close session
       </button>
     </div>
   );
@@ -103,6 +106,7 @@ const Main = () => {
 | user               | Object   | undefined         | If user is login have the user info                                          |
 | isOpen             | Boolean  | false             | Initialize modal open                                                        |
 | handleOpenModal    | Function | (Boolean) => void | this function receives boolean value for open or close modal and return void |
+| handleSignOut      | Function | () => void        | this function close the current session                                      |
 
 <!-- ## API 👩‍💻
 You have a small project or you'll like to share the API of your project ? This is where it's happen. -->
