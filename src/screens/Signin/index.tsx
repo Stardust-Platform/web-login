@@ -96,7 +96,7 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
           <SeparatorLine />
 
           <TermsText>
-            When you sign up, you’re accepting our{' '}
+            When you sign up, you’re accepting our <br />
             <StrongUnderlineText>Terms of Service</StrongUnderlineText> and{' '}
             <StrongUnderlineText>Privacy Policy</StrongUnderlineText>
           </TermsText>
