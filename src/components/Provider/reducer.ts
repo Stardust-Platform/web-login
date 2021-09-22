@@ -16,6 +16,13 @@ const AuthReducer = (state: State, action: Action): State => {
       };
     }
 
+    case Types.handleSignOut: {
+      return {
+        ...state,
+        user: undefined,
+      };
+    }
+
     default:
       throw new Error(`Action is not supported: ${action}`);
   }

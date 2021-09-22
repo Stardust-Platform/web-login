@@ -1,9 +1,18 @@
 // . Libs
 import { createContext, useContext } from 'react';
+import { Auth } from 'aws-amplify';
 // Interfaces
 import { StateContext, Context, Types } from './types';
 
 export const AuthContext = createContext<Context | undefined>(undefined);
+
+const signOut = async (dispatchCallback: () => void) => {
+  await Auth.signOut().then(
+    () => dispatchCallback(),
+    // eslint-disable-next-line no-console
+    (error) => console.error(error)
+  );
+};
 
 const useAuthContext = (): StateContext => {
   const context = useContext(AuthContext);
@@ -18,7 +27,11 @@ const useAuthContext = (): StateContext => {
     dispatch({ type: Types.handleOpenModal, payload: isOpen });
   };
 
-  return { ...state, handleOpenModal, dispatch };
+  const handleSignOut = () => {
+    signOut(() => dispatch({ type: Types.handleSignOut }));
+  };
+
+  return { ...state, handleOpenModal, handleSignOut, dispatch };
 };
 
 export default useAuthContext;

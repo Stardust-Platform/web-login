@@ -11,6 +11,8 @@ import { Types, ProviderProps, User } from './types';
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
+// Styles
+import GlobalStyle from '../../GlobalStyle';
 
 const checkUserLoggedIn = async () => {
   let user = {};
@@ -18,8 +20,10 @@ const checkUserLoggedIn = async () => {
     (data) => {
       user = data;
     },
-    // eslint-disable-next-line no-console
-    (error) => console.error(error)
+    (error) => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
   );
   return user;
 };
@@ -29,6 +33,13 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
+
+  const closeModal = () => {
+    dispatch({
+      type: Types.handleOpenModal,
+      payload: false,
+    });
+  };
 
   useEffect(() => {
     (async () => {
@@ -50,8 +61,9 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   return (
     <>
+      <GlobalStyle />
       <AuthContext.Provider value={value} {...props} />
-      {state.isOpen && <SigninScreen />}
+      {state.isOpen && <SigninScreen closeModal={closeModal} />}
     </>
   );
 };

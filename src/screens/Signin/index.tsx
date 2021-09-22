@@ -1,36 +1,43 @@
 // libs
-import React, { FormEvent, useState, memo, FC } from 'react';
+import React, { FormEvent, memo, FC } from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import Amplify, { Auth } from 'aws-amplify';
+// Components
+import SvgStardustLogo from '../../components/SvgStardustLogo';
+import Icon from '../../components/Icons';
 // Config
 import awsconfig from '../../aws-exports';
 // Styles
-import { Container, Form, SocialMediaContainer } from './styles';
+import {
+  Container,
+  Form,
+  Text,
+  SocialMediaButton,
+  IconContainer,
+  SeparatorLine,
+  TermsText,
+  StrongUnderlineText,
+  Backdrop,
+} from './styles';
+// Enums
+import IconsEnum from '../../components/Icons/iconsEnum';
+// Interfaces
+import { SigninProps } from './types';
 
 Amplify.configure(awsconfig);
 
-const Signin: FC = () => {
-  const [isSingup, setIsSingup] = useState(false);
+const Signin: FC<SigninProps> = ({ closeModal }) => {
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
 
   return (
-    <Container>
-      <Form onSubmit={onSubmit}>
-        <h1>{isSingup ? 'Sign up' : 'Sign in'}</h1>
-        <SocialMediaContainer>
-          <button
-            type="button"
-            onClick={() =>
-              Auth.federatedSignIn({
-                provider: CognitoHostedUIIdentityProvider.Facebook,
-              })
-            }
-          >
-            Facebook
-          </button>
-          <button
+    <>
+      <Container>
+        <Form onSubmit={onSubmit}>
+          <SvgStardustLogo />
+          <Text>Sign In with:</Text>
+          <SocialMediaButton
             type="button"
             onClick={() =>
               Auth.federatedSignIn({
@@ -38,9 +45,41 @@ const Signin: FC = () => {
               })
             }
           >
-            Google
-          </button>
-          <button
+            <IconContainer>
+              <Icon icon={IconsEnum.Google} />
+            </IconContainer>
+            Continue with Google
+          </SocialMediaButton>
+
+          <SocialMediaButton
+            type="button"
+            onClick={() =>
+              Auth.federatedSignIn({
+                provider: CognitoHostedUIIdentityProvider.Facebook,
+              })
+            }
+          >
+            <IconContainer>
+              <Icon icon={IconsEnum.Facebook} />
+            </IconContainer>
+            Continue with Facebook
+          </SocialMediaButton>
+
+          <SocialMediaButton
+            type="button"
+            onClick={() =>
+              Auth.federatedSignIn({
+                customProvider: 'Twitter',
+              })
+            }
+          >
+            <IconContainer>
+              <Icon icon={IconsEnum.Twitter} />
+            </IconContainer>
+            Continue with Twitter
+          </SocialMediaButton>
+
+          <SocialMediaButton
             type="button"
             onClick={() =>
               Auth.federatedSignIn({
@@ -48,14 +87,23 @@ const Signin: FC = () => {
               })
             }
           >
-            Discord
-          </button>
-        </SocialMediaContainer>
-      </Form>
-      <button type="button" onClick={() => setIsSingup(!isSingup)}>
-        {isSingup ? 'Sign in instead' : 'Sign up instead'}
-      </button>
-    </Container>
+            <IconContainer>
+              <Icon icon={IconsEnum.Discord} />
+            </IconContainer>
+            Continue with Discord
+          </SocialMediaButton>
+
+          <SeparatorLine />
+
+          <TermsText>
+            When you sign up, you’re accepting our <br />
+            <StrongUnderlineText>Terms of Service</StrongUnderlineText> and{' '}
+            <StrongUnderlineText>Privacy Policy</StrongUnderlineText>
+          </TermsText>
+        </Form>
+      </Container>
+      <Backdrop onClick={closeModal} />
+    </>
   );
 };
 

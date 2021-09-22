@@ -5,6 +5,7 @@ import { CognitoUserInterface } from '@aws-amplify/ui-components';
 export enum Types {
   handleOpenModal = 'HANDLE_OPEN_MODAL',
   handleSignin = 'HANDLE_SIGNIN',
+  handleSignOut = 'HANDLE_SIGNOUT',
 }
 
 export type ActionIsOpen = {
@@ -17,7 +18,12 @@ export type ActionSignin = {
   payload?: User;
 };
 
-export type Action = ActionIsOpen | ActionSignin;
+export type ActionSignOut = {
+  type: Types.handleSignOut;
+  payload?: undefined;
+};
+
+export type Action = ActionIsOpen | ActionSignin | ActionSignOut;
 
 export type User = CognitoUserInterface | undefined;
 
@@ -33,6 +39,7 @@ export type Context = {
 
 export type StateContext = State & {
   handleOpenModal: (isOpen: boolean) => void;
+  handleSignOut: () => void;
   dispatch: Dispatch<Action>;
 };
 
