@@ -99,7 +99,7 @@ export const SeparatorLine = styled.div`
 `;
 
 export const TermsText = styled.p`
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 1rem 0 1rem;
 
   font-size: 0.75rem;
   line-height: 1rem;
