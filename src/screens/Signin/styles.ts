@@ -39,6 +39,7 @@ export const Text = styled.h2`
   margin: 1rem 0;
   align-self: baseline;
   color: #aaaaaa;
+  font-family: 'DM Sans', sans-serif;
 `;
 
 export const SocialMediaContainer = styled.div`
@@ -64,6 +65,7 @@ export const SocialMediaButton = styled.button`
   line-height: 1.313rem;
   letter-spacing: -0.015em;
   color: #4a4a4a;
+  font-family: 'DM Sans', sans-serif;
 
   &:hover {
     cursor: pointer;
@@ -96,6 +98,7 @@ export const TermsText = styled.p`
   line-height: 1rem;
   text-align: center;
   color: #6a6a6a;
+  font-family: 'DM Sans', sans-serif;
 `;
 
 export const StrongUnderlineText = styled.span`
