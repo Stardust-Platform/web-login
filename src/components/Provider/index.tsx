@@ -11,8 +11,6 @@ import { Types, ProviderProps, User } from './types';
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
-// Styles
-import GlobalStyle from '../../GlobalStyle';
 
 const checkUserLoggedIn = async () => {
   let user = {};
@@ -61,7 +59,6 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   return (
     <>
-      <GlobalStyle />
       <AuthContext.Provider value={value} {...props} />
       {state.isOpen && <SigninScreen closeModal={closeModal} />}
     </>
