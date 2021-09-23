@@ -15,7 +15,6 @@ export const Backdrop = styled.div`
   right: 0px;
   bottom: 0px;
   left: 0px;
-
   background: #2a2a2a;
   opacity: 0.25;
   z-index: 100;
@@ -26,11 +25,9 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-
   position: relative;
   width: 18rem;
   min-height: 13.618rem;
-
   background: #fafafa;
   border-radius: 1.5rem;
 `;
@@ -41,7 +38,6 @@ export const Text = styled.h2`
   line-height: 1.125rem;
   margin: 1rem 0;
   align-self: baseline;
-
   color: #aaaaaa;
 `;
 
@@ -57,16 +53,12 @@ export const SocialMediaButton = styled.button`
   align-items: center;
   padding: 0.625rem 1rem;
   margin-bottom: 0.5rem;
-
   width: 100%;
   height: 2.563rem;
-
   background: #ffffff;
-
   border: 0.063rem solid #dadada;
   box-sizing: border-box;
   border-radius: 0.625rem;
-
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.313rem;
@@ -100,11 +92,9 @@ export const SeparatorLine = styled.div`
 
 export const TermsText = styled.p`
   margin: 0 1rem 0 1rem;
-
   font-size: 0.75rem;
   line-height: 1rem;
   text-align: center;
-
   color: #6a6a6a;
 `;
 
