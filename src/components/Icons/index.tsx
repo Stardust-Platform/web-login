@@ -3,7 +3,9 @@ import { FC } from 'react';
 // Enums
 import IconsEnum from './iconsEnum';
 // Svgs
-import { DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg } from './SocialIcons';
+import {
+  DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg,
+} from './SocialIcons';
 
 type IconProps = {
   icon: string;

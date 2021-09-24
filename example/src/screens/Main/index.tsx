@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { useAuthContext } from '../../..';
+import { useAuthContext } from 'stardust-auth';
 
 const Main = () => {
   const { user, handleOpenModal, isOpen, handleSignOut } = useAuthContext();

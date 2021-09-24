@@ -1,5 +1,7 @@
 // . Libs
-import React, { useReducer, useMemo, useEffect, FC } from 'react';
+import React, {
+  useReducer, useMemo, useEffect, FC,
+} from 'react';
 import { Auth } from 'aws-amplify';
 // Screens
 import SigninScreen from '../../screens/Signin';
@@ -23,7 +25,7 @@ const checkUserLoggedIn = async () => {
     (error) => {
       // eslint-disable-next-line no-console
       console.error(error);
-    }
+    },
   );
   return user;
 };
@@ -69,6 +71,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 };
 
 AuthProvider.defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
   isOpen: false,
 };
 
