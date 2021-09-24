@@ -19,7 +19,7 @@
     "amazon-cognito-identity-js": "^5.1.0",
     "aws-amplify": "^4.2.9",
     "styled-components": "^5.3.1",
-    "stardust-auth": "file:.."
+    "stardust-auth": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",
