@@ -28,8 +28,10 @@ const checkUserLoggedIn = async () => {
   return user;
 };
 
+const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
+
 export const AuthProvider: FC<ProviderProps> = (props) => {
-  const { isOpen = false } = props;
+  const { isOpen, customLogoUrl } = props;
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
@@ -62,7 +64,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   return (
     <>
       <AuthContext.Provider value={value} {...props} />
-      {state.isOpen && <SigninScreen closeModal={closeModal} />}
+      {state.isOpen && <SigninScreen closeModal={closeModal} customLogoUrl={customLogoUrl} />}
     </>
   );
 };
@@ -70,6 +72,8 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 AuthProvider.defaultProps = {
   // eslint-disable-next-line react/default-props-match-prop-types
   isOpen: false,
+  // eslint-disable-next-line react/default-props-match-prop-types
+  customLogoUrl: STARDUST_LOGO,
 };
 
 export { useAuthContext };

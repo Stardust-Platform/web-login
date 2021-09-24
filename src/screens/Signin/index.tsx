@@ -3,7 +3,7 @@ import React, { FormEvent, memo, FC } from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import Amplify, { Auth } from 'aws-amplify';
 // Components
-import SvgStardustLogo from '../../components/SvgStardustLogo';
+import CloseIconSvg from '../../components/CloseIconSvg';
 import Icon from '../../components/Icons';
 // Config
 import awsconfig from '../../aws-exports';
@@ -11,6 +11,9 @@ import awsconfig from '../../aws-exports';
 import {
   Container,
   Form,
+  HeaderContainer,
+  LogoImage,
+  CloseIconContainer,
   Text,
   SocialMediaButton,
   IconContainer,
@@ -38,7 +41,7 @@ const newAWSConfig = {
 
 Amplify.configure(newAWSConfig);
 
-const Signin: FC<SigninProps> = ({ closeModal }) => {
+const Signin: FC<SigninProps> = ({ closeModal, customLogoUrl }) => {
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
   };
@@ -47,7 +50,13 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
     <>
       <Container>
         <Form onSubmit={onSubmit}>
-          <SvgStardustLogo />
+          <HeaderContainer>
+            <LogoImage src={customLogoUrl} alt="Logo" />
+            <CloseIconContainer onClick={closeModal}>
+              <CloseIconSvg />
+            </CloseIconContainer>
+          </HeaderContainer>
+
           <Text>Sign In with:</Text>
           <SocialMediaButton
             type="button"
