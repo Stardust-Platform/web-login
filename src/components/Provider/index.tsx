@@ -1,5 +1,7 @@
 // . Libs
-import React, { useReducer, useMemo, useEffect, FC } from 'react';
+import React, {
+  useReducer, useMemo, useEffect, FC,
+} from 'react';
 import { Auth } from 'aws-amplify';
 // Screens
 import SigninScreen from '../../screens/Signin';
@@ -11,8 +13,6 @@ import { Types, ProviderProps, User } from './types';
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
-// Styles
-import GlobalStyle from '../../GlobalStyle';
 
 const checkUserLoggedIn = async () => {
   let user = {};
@@ -23,7 +23,7 @@ const checkUserLoggedIn = async () => {
     (error) => {
       // eslint-disable-next-line no-console
       console.error(error);
-    }
+    },
   );
   return user;
 };
@@ -61,7 +61,6 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   return (
     <>
-      <GlobalStyle />
       <AuthContext.Provider value={value} {...props} />
       {state.isOpen && <SigninScreen closeModal={closeModal} />}
     </>
@@ -69,6 +68,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 };
 
 AuthProvider.defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
   isOpen: false,
 };
 

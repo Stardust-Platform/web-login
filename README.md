@@ -80,7 +80,7 @@ const Main = () => {
         Toggle login
       </button>
       <button type="button" onClick={handleSignOut}>
-        Close session
+        Sign out
       </button>
     </div>
   );

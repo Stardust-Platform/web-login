@@ -11,7 +11,7 @@ node_modules
 coverage
 
 # Production
-dist
+/lib
 
 # Misc
 .DS_Store
@@ -33,7 +33,7 @@ amplify/backend/amplify-meta.json
 amplify/backend/awscloudformation
 amplify/backend/.temp
 build/
-dist/
+lib/
 node_modules/
 awsconfiguration.json
 amplifyconfiguration.json
@@ -44,3 +44,5 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+yarn-error.log
