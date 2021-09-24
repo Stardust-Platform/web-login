@@ -1,40 +1,42 @@
 {
   "name": "example",
-  "version": "0.0.3",
-  "license": "MIT",
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
-  },
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.9.6",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.4.3",
+    "@aws-amplify/auth": "^4.3.5",
+    "@aws-amplify/ui-components": "^1.7.8",
+    "amazon-cognito-identity-js": "^5.1.0",
+    "aws-amplify": "^4.2.9",
+    "styled-components": "^5.3.1",
+    "stardust-auth": "link:.."
   },
-   "alias": {
-    "react": "../node_modules/react",
-    "react-dom": "../node_modules/react-dom/profiling",
-    "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.8.4",
-    "parcel": "^2.0.0-rc.0",
-    "typescript": "^3.4.5",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-config-airbnb-typescript": "^14.0.0",
-    "eslint-config-airbnb-typescript-prettier": "^4.2.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-config-react-app": "^5.2.1",
-    "eslint-plugin-flowtype": "^3.13.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "prettier": "^2.4.0"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

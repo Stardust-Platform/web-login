@@ -3,7 +3,9 @@ import { FC } from 'react';
 // Types
 import { IconProps, IconsEnum } from './types';
 // Svgs
-import { DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg } from './SocialIcons';
+import {
+  DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg,
+} from './SocialIcons';
 
 const Icon: FC<IconProps> = ({ icon }) => {
   switch (icon) {

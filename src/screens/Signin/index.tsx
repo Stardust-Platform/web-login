@@ -24,7 +24,19 @@ import IconsEnum from '../../components/Icons/iconsEnum';
 // Interfaces
 import { SigninProps } from './types';
 
-Amplify.configure(awsconfig);
+const { origin } = window.location;
+
+// Override aws config redirect with current origin
+const newAWSConfig = {
+  ...awsconfig,
+  oauth: {
+    ...awsconfig.oauth,
+    redirectSignIn: origin,
+    redirectSignOut: origin,
+  },
+};
+
+Amplify.configure(newAWSConfig);
 
 const Signin: FC<SigninProps> = ({ closeModal }) => {
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
@@ -39,11 +51,9 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
           <Text>Sign In with:</Text>
           <SocialMediaButton
             type="button"
-            onClick={() =>
-              Auth.federatedSignIn({
-                provider: CognitoHostedUIIdentityProvider.Google,
-              })
-            }
+            onClick={() => Auth.federatedSignIn({
+              provider: CognitoHostedUIIdentityProvider.Google,
+            })}
           >
             <IconContainer>
               <Icon icon={IconsEnum.Google} />
@@ -53,11 +63,9 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
 
           <SocialMediaButton
             type="button"
-            onClick={() =>
-              Auth.federatedSignIn({
-                provider: CognitoHostedUIIdentityProvider.Facebook,
-              })
-            }
+            onClick={() => Auth.federatedSignIn({
+              provider: CognitoHostedUIIdentityProvider.Facebook,
+            })}
           >
             <IconContainer>
               <Icon icon={IconsEnum.Facebook} />
@@ -67,11 +75,9 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
 
           <SocialMediaButton
             type="button"
-            onClick={() =>
-              Auth.federatedSignIn({
-                customProvider: 'Twitter',
-              })
-            }
+            onClick={() => Auth.federatedSignIn({
+              customProvider: 'Twitter',
+            })}
           >
             <IconContainer>
               <Icon icon={IconsEnum.Twitter} />
@@ -81,11 +87,9 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
 
           <SocialMediaButton
             type="button"
-            onClick={() =>
-              Auth.federatedSignIn({
-                customProvider: 'Discord',
-              })
-            }
+            onClick={() => Auth.federatedSignIn({
+              customProvider: 'Discord',
+            })}
           >
             <IconContainer>
               <Icon icon={IconsEnum.Discord} />
@@ -96,8 +100,12 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
           <SeparatorLine />
 
           <TermsText>
-            When you sign up, you’re accepting our{' '}
-            <StrongUnderlineText>Terms of Service</StrongUnderlineText> and{' '}
+            When you sign up, you’re accepting our
+            {' '}
+            <StrongUnderlineText>Terms of Service</StrongUnderlineText>
+            {' '}
+            and
+            {' '}
             <StrongUnderlineText>Privacy Policy</StrongUnderlineText>
           </TermsText>
         </Form>
