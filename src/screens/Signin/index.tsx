@@ -102,7 +102,6 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
           <TermsText>
             When you sign up, you’re accepting our
             {' '}
-            <br />
             <StrongUnderlineText>Terms of Service</StrongUnderlineText>
             {' '}
             and
