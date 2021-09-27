@@ -93,9 +93,19 @@ const Main = () => {
 
 ```import { AuthProvider } from 'stardust-auth'```
 
-| attribute | type    | DefaultValue | description            |
-| --------- | ------- | ------------ | ---------------------- |
-| isOpen    | Boolean | false        | Initialize modal open  |
+| attribute     | type    | DefaultValue | description                                  |
+| ------------- | ------- | ------------ | -------------------------------------------- |
+| isOpen        | Boolean | false        | Initialize modal open                        |
+| customLogoUrl | String  | undefined    | Custom Logo Url, will override Stardust logo |
+
+For the image provided in the customLogoUrl this are the recommended dimensions:
+
+|        | Size 1 | Size 2 | Size 3 | Size 4 | Size 5 | Size 6 | Size 7 |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| Width  | 160    | 160    | 160    | 132    | 160    | 48     | 36     | 
+| Height | 24     | 27     | 31     | 48     | 48     | 48     | 48     |
+
+![image](https://user-images.githubusercontent.com/47512198/134942504-bc819a27-a229-4ef0-9ddd-b3991210bab2.png)
 
 ### Hook
 

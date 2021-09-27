@@ -45,4 +45,5 @@ export type StateContext = State & {
 
 export type ProviderProps = {
   isOpen?: boolean;
+  customLogoUrl?: string;
 };

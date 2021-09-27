@@ -32,6 +32,26 @@ export const Form = styled.form`
   border-radius: 1.5rem;
 `;
 
+export const HeaderContainer = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+`;
+
+export const LogoImage = styled.img`
+  min-height: 1.5rem;
+  max-height: 3rem;
+  min-width: 3rem;
+  max-width: 10rem;
+`;
+
+export const CloseIconContainer = styled.div`
+  position: absolute;
+  right: 1.313rem;
+  cursor: pointer;
+`;
+
 export const Text = styled.h2`
   font-weight: bold;
   font-size: 0.875rem;
@@ -40,12 +60,6 @@ export const Text = styled.h2`
   align-self: baseline;
   color: #aaaaaa;
   font-family: 'DM Sans', sans-serif;
-`;
-
-export const SocialMediaContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const SocialMediaButton = styled.button`
