@@ -96,7 +96,7 @@ const Main = () => {
 | attribute     | type    | DefaultValue | description                                  |
 | ------------- | ------- | ------------ | -------------------------------------------- |
 | isOpen        | Boolean | false        | Initialize modal open                        |
-| customLogoUrl | String  | false        | Custom Logo Url, will override Stardust logo |
+| customLogoUrl | String  | undefined    | Custom Logo Url, will override Stardust logo |
 
 For the image provided in the customLogoUrl this are the recommended dimensions:
 
