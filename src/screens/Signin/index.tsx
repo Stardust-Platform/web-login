@@ -1,12 +1,9 @@
 // libs
-import React, { FormEvent, memo, FC } from 'react';
+import React, { memo, FC } from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import Amplify, { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 // Components
-import CloseIconSvg from '../../components/CloseIconSvg';
-import Icon from '../../components/Icons';
-// Config
-import awsconfig from '../../aws-exports';
+import Icon, { IconsEnum } from '../../components/Icons';
 // Styles
 import {
   Container,
@@ -22,38 +19,22 @@ import {
   StrongUnderlineText,
   Backdrop,
 } from './styles';
-// Enums
-import IconsEnum from '../../components/Icons/iconsEnum';
 // Interfaces
 import { SigninProps } from './types';
 
-const { origin } = window.location;
-
-// Override aws config redirect with current origin
-const newAWSConfig = {
-  ...awsconfig,
-  oauth: {
-    ...awsconfig.oauth,
-    redirectSignIn: origin,
-    redirectSignOut: origin,
-  },
-};
-
-Amplify.configure(newAWSConfig);
-
-const Signin: FC<SigninProps> = ({ closeModal, customLogoUrl }) => {
-  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-  };
+const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
+  const {
+    logoUrl, termsServiceUrl, privacyPolicyUrl, containerClassName,
+  } = custom ?? {};
 
   return (
     <>
-      <Container>
-        <Form onSubmit={onSubmit}>
+      <Container className={containerClassName ?? ''}>
+        <Form>
           <HeaderContainer>
-            <LogoImage src={customLogoUrl} alt="Logo" />
+            <LogoImage src={logoUrl} alt="Logo" />
             <CloseIconContainer onClick={closeModal}>
-              <CloseIconSvg />
+              <Icon icon={IconsEnum.Close} />
             </CloseIconContainer>
           </HeaderContainer>
 
@@ -111,11 +92,11 @@ const Signin: FC<SigninProps> = ({ closeModal, customLogoUrl }) => {
           <TermsText>
             When you sign up, you’re accepting our
             {' '}
-            <StrongUnderlineText>Terms of Service</StrongUnderlineText>
+            <StrongUnderlineText href={termsServiceUrl ?? ''}>Terms of Service</StrongUnderlineText>
             {' '}
             and
             {' '}
-            <StrongUnderlineText>Privacy Policy</StrongUnderlineText>
+            <StrongUnderlineText href={privacyPolicyUrl ?? ''}>Privacy Policy</StrongUnderlineText>
           </TermsText>
         </Form>
       </Container>
@@ -125,3 +106,4 @@ const Signin: FC<SigninProps> = ({ closeModal, customLogoUrl }) => {
 };
 
 export default memo(Signin);
+export type { SigninProps };

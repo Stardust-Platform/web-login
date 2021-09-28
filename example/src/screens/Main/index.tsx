@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import { useAuthContext } from 'stardust-auth';
 
 const Main = () => {

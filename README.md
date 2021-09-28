@@ -96,13 +96,22 @@ const Main = () => {
 | attribute     | type    | DefaultValue | description                                  |
 | ------------- | ------- | ------------ | -------------------------------------------- |
 | isOpen        | Boolean | false        | Initialize modal open                        |
-| customLogoUrl | String  | undefined    | Custom Logo Url, will override Stardust logo |
+| custom        | Custom  | {}           | Custom Logo Url, Terms                       |
 
-For the image provided in the customLogoUrl this are the recommended dimensions:
+```Custom Type```
+
+| attribute          | type    | DefaultValue | description                                  |
+| ------------------ | ------- | ------------ | -------------------------------------------- |
+| logoUrl            | string  | undefined    | Custom Logo Url, will override Stardust logo |
+| termsServiceUrl    | string  | undefined    | Custom Terms and Service Url              |
+| privacyPolicyUrl   | string  | undefined    | Custom Privacy Policy Url              |
+| containerClassName | string  | undefined    | Custom ClassName for modal container         |
+
+For the image provided in the LogoUrl this are the recommended dimensions:
 
 |        | Size 1 | Size 2 | Size 3 | Size 4 | Size 5 | Size 6 | Size 7 |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| Width  | 160    | 160    | 160    | 132    | 160    | 48     | 36     | 
+| Width  | 160    | 160    | 160    | 132    | 160    | 48     | 36     |
 | Height | 24     | 27     | 31     | 48     | 48     | 48     | 48     |
 
 ![image](https://user-images.githubusercontent.com/47512198/134942504-bc819a27-a229-4ef0-9ddd-b3991210bab2.png)

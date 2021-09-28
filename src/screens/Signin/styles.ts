@@ -20,7 +20,7 @@ export const Backdrop = styled.div`
   z-index: 100;
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,7 +32,7 @@ export const Form = styled.form`
   border-radius: 1.5rem;
 `;
 
-export const HeaderContainer = styled.form`
+export const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,8 +115,9 @@ export const TermsText = styled.p`
   font-family: 'DM Sans', sans-serif;
 `;
 
-export const StrongUnderlineText = styled.span`
+export const StrongUnderlineText = styled.a`
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;
+  color: #6a6a6a;
 `;
