@@ -6,6 +6,7 @@ import { Auth } from 'aws-amplify';
 // Screens
 import SigninScreen from '../../screens/Signin';
 // Consts
+// import Notifications from '../Notifications';
 import { initialState } from './constants';
 // Interfaces
 import { Types, ProviderProps, User } from './types';
@@ -13,6 +14,7 @@ import { Types, ProviderProps, User } from './types';
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
+// Components
 
 const checkUserLoggedIn = async () => {
   let user = {};
@@ -60,6 +62,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   return (
     <>
       <AuthContext.Provider value={value} {...props} />
+      {/* <Notifications /> */}
       {state.isOpen && <SigninScreen closeModal={closeModal} custom={custom} />}
     </>
   );

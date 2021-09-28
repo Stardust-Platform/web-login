@@ -1,12 +1,9 @@
 // libs
-import React, { FormEvent, memo, FC } from 'react';
+import React, { memo, FC } from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import Amplify, { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 // Components
-import CloseIconSvg from '@components/CloseIconSvg';
-import Icon, { IconsEnum } from '@components/Icons';
-// Config
-import awsconfig from '../../aws-exports';
+import Icon, { IconsEnum } from '../../components/Icons';
 // Styles
 import {
   Container,
@@ -22,41 +19,22 @@ import {
   StrongUnderlineText,
   Backdrop,
 } from './styles';
-// Enums
 // Interfaces
 import { SigninProps } from './types';
-
-const { origin } = window.location;
-
-// Override aws config redirect with current origin
-const newAWSConfig = {
-  ...awsconfig,
-  oauth: {
-    ...awsconfig.oauth,
-    redirectSignIn: origin,
-    redirectSignOut: origin,
-  },
-};
-
-Amplify.configure(newAWSConfig);
 
 const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
   const {
     logoUrl, termsServiceUrl, privacyPolicyUrl, containerClassName,
   } = custom ?? {};
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-  };
-
   return (
     <>
       <Container className={containerClassName ?? ''}>
-        <Form onSubmit={onSubmit}>
+        <Form>
           <HeaderContainer>
             <LogoImage src={logoUrl} alt="Logo" />
             <CloseIconContainer onClick={closeModal}>
-              <CloseIconSvg />
+              <Icon icon={IconsEnum.Close} />
             </CloseIconContainer>
           </HeaderContainer>
 

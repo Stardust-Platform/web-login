@@ -19,20 +19,6 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "strict": true,
-    "paths": {
-      "@src/*": [
-        "src/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@screens/*": [
-        "src/screens/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
-    },
   },
   "include": ["src"],
   "exclude": ["node_modules", "lib", "example"]
