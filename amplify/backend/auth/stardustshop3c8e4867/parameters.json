@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "stardustauth9b8ebefa_identitypool_9b8ebefa",
+    "identityPoolName": "stardustshop3c8e4867_identitypool_3c8e4867",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "stardu9b8ebefa",
-    "userPoolName": "stardustauth9b8ebefa_userpool_9b8ebefa",
+    "resourceNameTruncated": "stardu3c8e4867",
+    "userPoolName": "stardustshop3c8e4867_userpool_3c8e4867",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -20,9 +20,7 @@
     "requiredAttributes": [
         "email"
     ],
-    "aliasAttributes": [
-        "email"
-    ],
+    "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -31,10 +29,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "stardu9b8ebefa_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "stardu3c8e4867_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "9b8ebefa",
-    "resourceName": "stardustauth9b8ebefa",
+    "sharedId": "3c8e4867",
+    "resourceName": "stardustshop3c8e4867",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -50,15 +48,18 @@
     },
     "useDefault": "defaultSocial",
     "hostedUI": true,
-    "hostedUIDomainName": "stardustauth9b8ebefa-9b8ebefa",
-    "authProvidersUserPool": [
-        "Facebook",
-        "Google"
-    ],
-    "hostedUIProviderMeta": "[{\"ProviderName\":\"Facebook\",\"authorize_scopes\":\"email,public_profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"id\"}},{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid email profile\",\"AttributeMapping\":{\"email\":\"email\",\"username\":\"sub\"}}]",
+    "triggers": "{}",
+    "hostedUIDomainName": "stardustplayers",
+    "authProvidersUserPool": [],
+    "hostedUIProviderMeta": "[]",
+    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://dev.d3twdqo7cb5otm.amplifyapp.com/\"],\"LogoutURLs\":[\"https://dev.d3twdqo7cb5otm.amplifyapp.com/\"]}",
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "dependsOn": [],
-    "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"http://localhost:1234\"],\"LogoutURLs\":[\"http://localhost:1234\"]}"
+    "parentStack": {
+        "Ref": "AWS::StackId"
+    },
+    "breakCircularDependency": true,
+    "permissions": [],
+    "dependsOn": []
 }

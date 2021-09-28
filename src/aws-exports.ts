@@ -3,12 +3,12 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-1",
-    "aws_cognito_identity_pool_id": "us-east-1:880f1ce3-54a4-4b4f-8e24-c149dbf2d026",
+    "aws_cognito_identity_pool_id": "us-east-1:ffde1b03-9eda-4938-86fe-b5de7e81ccbf",
     "aws_cognito_region": "us-east-1",
-    "aws_user_pools_id": "us-east-1_0cD9VtPr9",
-    "aws_user_pools_web_client_id": "4m432qmcjqn0a64bjs68d6n4l9",
+    "aws_user_pools_id": "us-east-1_7HaN0s3vK",
+    "aws_user_pools_web_client_id": "63sn0gvao4hkujmduc6s0it55p",
     "oauth": {
-        "domain": "stardustauth9b8ebefa-9b8ebefa-dev.auth.us-east-1.amazoncognito.com",
+        "domain": "stardustplayers-dev.auth.us-east-1.amazoncognito.com",
         "scope": [
             "phone",
             "email",
@@ -16,14 +16,12 @@ const awsmobile = {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "http://localhost:1234",
-        "redirectSignOut": "http://localhost:1234",
+        "redirectSignIn": "https://dev.d3twdqo7cb5otm.amplifyapp.com/,http://localhost:3000/",
+        "redirectSignOut": "https://dev.d3twdqo7cb5otm.amplifyapp.com/,http://localhost:3000/",
         "responseType": "code"
     },
     "federationTarget": "COGNITO_USER_POOLS",
-    "aws_cognito_login_mechanisms": [
-        "EMAIL"
-    ],
+    "aws_cognito_login_mechanisms": [],
     "aws_cognito_signup_attributes": [
         "EMAIL"
     ],
@@ -34,7 +32,20 @@ const awsmobile = {
     "aws_cognito_password_protection_settings": {
         "passwordPolicyMinLength": 8,
         "passwordPolicyCharacters": []
-    }
+    },
+    "aws_cognito_verification_mechanisms": [
+        "EMAIL"
+    ],
+    "aws_cloud_logic_custom": [
+        {
+            "name": "StardustShopApi",
+            "endpoint": "https://yavkzz2t3l.execute-api.us-east-1.amazonaws.com/dev",
+            "region": "us-east-1"
+        }
+    ],
+    "aws_content_delivery_bucket": "tardustdminashboa-20201117155748-hostingbucket-amplify",
+    "aws_content_delivery_bucket_region": "us-east-1",
+    "aws_content_delivery_url": "https://d2guq3aixyussq.cloudfront.net"
 };
 
 
