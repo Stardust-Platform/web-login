@@ -1,14 +1,19 @@
 {
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2021-09-18T20:09:56.624Z"
+    }
+  },
   "auth": {
-    "stardustauth9b8ebefa": {
+    "stardustshop3c8e4867": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [
-          "EMAIL"
-        ],
+        "loginMechanisms": [],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -19,8 +24,40 @@
         "mfaConfiguration": "OFF",
         "mfaTypes": [
           "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
         ]
       }
+    }
+  },
+  "function": {
+    "StardustShopApiShops": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "api": {
+    "StardustShopApi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "StardustShopApiShops",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
+  "storage": {
+    "StardustShopStorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

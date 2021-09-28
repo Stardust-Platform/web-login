@@ -1,19 +1,31 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-stardustauth-dev-162844-authRole",
-      "UnauthRoleArn": "arn:aws:iam::204278344425:role/amplify-stardustauth-dev-162844-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::204278344425:role/amplify-stardustauth-dev-162844-authRole",
+      "AuthRoleName": "amplify-stardustshop-dev-130123-authRole",
+      "UnauthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustshop-dev-130123-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustshop-dev-130123-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-stardustauth-dev-162844-deployment",
-      "UnauthRoleName": "amplify-stardustauth-dev-162844-unauthRole",
-      "StackName": "amplify-stardustauth-dev-162844",
-      "StackId": "arn:aws:cloudformation:us-east-1:204278344425:stack/amplify-stardustauth-dev-162844/bef51220-15a2-11ec-9b14-0a0e68cbdba3",
-      "AmplifyAppId": "d1brr2c7hanqwn"
+      "DeploymentBucketName": "amplify-stardustshop-dev-130123-deployment",
+      "UnauthRoleName": "amplify-stardustshop-dev-130123-unauthRole",
+      "StackName": "amplify-stardustshop-dev-130123",
+      "StackId": "arn:aws:cloudformation:us-east-1:593310975959:stack/amplify-stardustshop-dev-130123/34e92b90-18bb-11ec-bdfb-128f53b6430b",
+      "AmplifyAppId": "d3ccmq9xhtxtc2"
     },
     "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3ccmq9xhtxtc2",
+          "type": "cicd"
+        }
+      },
       "auth": {
-        "stardustauth9b8ebefa": {}
+        "stardustshop3c8e4867": {}
+      },
+      "function": {
+        "StardustShopApiShops": {
+          "deploymentBucketName": "amplify-stardustshop-dev-130123-deployment",
+          "s3Key": "amplify-builds/StardustShopApiShops-5579772b6b70652b6e35-build.zip"
+        }
       }
     }
   }
