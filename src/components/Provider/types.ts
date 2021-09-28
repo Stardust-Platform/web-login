@@ -1,6 +1,8 @@
 // Libs
 import { Dispatch } from 'react';
 import { CognitoUserInterface } from '@aws-amplify/ui-components';
+// Components
+import { SigninProps } from '../../screens/Signin';
 
 export enum Types {
   handleOpenModal = 'HANDLE_OPEN_MODAL',
@@ -43,7 +45,6 @@ export type StateContext = State & {
   dispatch: Dispatch<Action>;
 };
 
-export type ProviderProps = {
+export type ProviderProps = SigninProps & {
   isOpen?: boolean;
-  customLogoUrl?: string;
 };

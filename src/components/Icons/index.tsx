@@ -1,5 +1,5 @@
 // Libs
-import { FC } from 'react';
+import { FC, memo } from 'react';
 // Types
 import { IconProps, IconsEnum } from './types';
 // Svgs
@@ -26,4 +26,6 @@ const Icon: FC<IconProps> = ({ icon }) => {
   }
 };
 
-export default Icon;
+export default memo(Icon);
+export type { IconProps };
+export { IconsEnum };

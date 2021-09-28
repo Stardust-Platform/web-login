@@ -115,7 +115,7 @@ export const TermsText = styled.p`
   font-family: 'DM Sans', sans-serif;
 `;
 
-export const StrongUnderlineText = styled.span`
+export const StrongUnderlineText = styled.a`
   text-decoration: underline;
   font-weight: bold;
   cursor: pointer;

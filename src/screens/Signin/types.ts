@@ -1,4 +1,9 @@
 export type SigninProps = {
   closeModal?: () => void;
-  customLogoUrl?: string;
+  custom?: {
+    logoUrl?: string;
+    termsServiceUrl?: string,
+    privacyPolicyUrl?: string;
+    containerClassName?: string;
+  };
 };
