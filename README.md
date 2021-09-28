@@ -103,8 +103,8 @@ const Main = () => {
 | attribute          | type    | DefaultValue | description                                  |
 | ------------------ | ------- | ------------ | -------------------------------------------- |
 | logoUrl            | string  | undefined    | Custom Logo Url, will override Stardust logo |
-| termsServiceUrl    | string  | undefined    | Custom Terms and ServiceUrl Url              |
-| privacyPolicyUrl   | string  | undefined    | Custom Terms and ServiceUrl Url              |
+| termsServiceUrl    | string  | undefined    | Custom Terms and Service Url              |
+| privacyPolicyUrl   | string  | undefined    | Custom Privacy Policy Url              |
 | containerClassName | string  | undefined    | Custom ClassName for modal container         |
 
 For the image provided in the LogoUrl this are the recommended dimensions:
