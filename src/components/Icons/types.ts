@@ -8,4 +8,5 @@ export enum IconsEnum {
   Twitter = 'TWITTER',
   Discord = 'DISCORD',
   Close = 'CLOSE',
+  Email = 'EMAIL',
 }

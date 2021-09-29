@@ -1,5 +1,10 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-unescaped-entities */
 // libs
-import React, { memo, FC } from 'react';
+import React, {
+  memo, FC, useState,
+} from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import { Auth } from 'aws-amplify';
 // Components
@@ -12,6 +17,11 @@ import {
   LogoImage,
   CloseIconContainer,
   Text,
+  EmailContainer,
+  EmailInput,
+  ContinueButton,
+  SwitchModeText,
+  OptionToSocialText,
   SocialMediaButton,
   IconContainer,
   SeparatorLine,
@@ -23,14 +33,21 @@ import {
 import { SigninProps } from './types';
 
 const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
+  const [isSingup, setIsSingup] = useState(false);
+  const [email, setEmail] = useState('');
+
   const {
     logoUrl, termsServiceUrl, privacyPolicyUrl, containerClassName,
   } = custom ?? {};
 
+  const onSubmit = (event: any): void => {
+    event.preventDefault();
+  };
+
   return (
     <>
       <Container className={containerClassName ?? ''}>
-        <Form>
+        <Form onSubmit={onSubmit}>
           <HeaderContainer>
             <LogoImage src={logoUrl} alt="Logo" />
             <CloseIconContainer onClick={closeModal}>
@@ -38,7 +55,40 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
             </CloseIconContainer>
           </HeaderContainer>
 
-          <Text>Sign In with:</Text>
+          <Text>{isSingup ? 'New user? Create your account' : 'Log in to your account'}</Text>
+
+          <EmailContainer>
+            <div>
+              <Icon icon={IconsEnum.Email} />
+            </div>
+            <EmailInput
+              id="email"
+              value={email}
+              placeholder="Email address"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </EmailContainer>
+
+          <ContinueButton type="submit">Continue</ContinueButton>
+
+          {isSingup
+            ? (
+              <SwitchModeText>
+                Already have an account?
+                {' '}
+                <span onClick={() => setIsSingup(false)}>Sign in</span>
+              </SwitchModeText>
+            )
+            : (
+              <SwitchModeText>
+                Don't have an account?
+                {' '}
+                <span onClick={() => setIsSingup(true)}>Sign up</span>
+              </SwitchModeText>
+            )}
+
+          <OptionToSocialText>{isSingup ? 'or Sign up with' : 'or Sign In with'}</OptionToSocialText>
+
           <SocialMediaButton
             type="button"
             onClick={() => Auth.federatedSignIn({
@@ -92,11 +142,15 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
           <TermsText>
             When you sign up, you’re accepting our
             {' '}
-            <StrongUnderlineText href={termsServiceUrl ?? ''}>Terms of Service</StrongUnderlineText>
+            <StrongUnderlineText href={termsServiceUrl ?? ''}>
+              Terms of Service
+            </StrongUnderlineText>
             {' '}
             and
             {' '}
-            <StrongUnderlineText href={privacyPolicyUrl ?? ''}>Privacy Policy</StrongUnderlineText>
+            <StrongUnderlineText href={privacyPolicyUrl ?? ''}>
+              Privacy Policy
+            </StrongUnderlineText>
           </TermsText>
         </Form>
       </Container>

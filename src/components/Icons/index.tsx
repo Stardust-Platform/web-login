@@ -7,6 +7,7 @@ import {
   DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg,
 } from './SocialIcon';
 import CloseIconSvg from './CloseIcon';
+import EmailIconSvg from './EmailIcon';
 
 const Icon: FC<IconProps> = ({ icon }) => {
   switch (icon) {
@@ -24,6 +25,9 @@ const Icon: FC<IconProps> = ({ icon }) => {
 
     case IconsEnum.Close:
       return CloseIconSvg;
+
+    case IconsEnum.Email:
+      return EmailIconSvg;
 
     default:
       return null;
