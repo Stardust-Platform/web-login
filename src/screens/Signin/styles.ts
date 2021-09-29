@@ -17,7 +17,7 @@ export const Backdrop = styled.div`
   left: 0px;
   background: #2a2a2a;
   opacity: 0.25;
-  z-index: 100;
+  z-index: 999;
 `;
 
 export const Form = styled.div`
@@ -37,6 +37,7 @@ export const HeaderContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0px;
+  margin-bottom: 1rem;
 `;
 
 export const LogoImage = styled.img`
@@ -54,12 +55,105 @@ export const CloseIconContainer = styled.div`
 
 export const Text = styled.h2`
   font-weight: bold;
+  font-size: 1rem;
+  margin-top: 0;
+  color: #6A6A6A;
+  font-family: "DM Sans", sans-serif;
+  margin-bottom: 0.5rem;
+`;
+
+export const EmailContainer = styled.div`
+  width: 100%;
+  background: #ffffff;
+  opacity: 0.99;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+`;
+
+export const EmailInput = styled.input`
+  width: 100%;
+  margin-left: 0.75rem;
+  color: #2A2A2A;
+  font-family: "DM Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.313rem;
+  border: none;
+
+  ::placeholder {
+    color: #CACACA;
+  }
+  
+  :focus {
+    border: none;
+    outline: none;
+  }
+`;
+
+export const ContinueButton = styled.button`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.625rem 0.75rem;
+  background: #5F2FFF;
+  border-radius: 0.625rem;
+  border: none;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  font-weight: bold;
+  font-size:1.125rem;
+  line-height: 1.75rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+`;
+
+export const SwitchModeText = styled.p`
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.313rem;
+  color: #000000;
+  margin-top: 0;
+
+  span {
+    font-weight: bold;
+    cursor: pointer;
+  }
+`;
+
+export const OptionToSocialText = styled.p`
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.875rem;
-  line-height: 1.125rem;
-  margin: 1rem 0;
-  align-self: baseline;
-  color: #aaaaaa;
-  font-family: 'DM Sans', sans-serif;
+  line-height:1.125rem;
+  text-align: center;
+  color: #AAAAAA;
+  display: flex;
+  align-items: center;
+
+  ::before {
+    display: inline-block;
+    content: "";
+    border-top: 0.063rem solid #eaeaea;
+    width: 5rem;
+    margin-right: 0.625rem;
+    margin-left: 0;
+  }
+
+  ::after {
+    display: inline-block;
+    content: "";
+    border-top: 0.063rem solid #eaeaea;
+    width: 5rem;
+    margin-left: 0.625rem;
+  }
 `;
 
 export const SocialMediaButton = styled.button`
@@ -79,7 +173,7 @@ export const SocialMediaButton = styled.button`
   line-height: 1.313rem;
   letter-spacing: -0.015em;
   color: #4a4a4a;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 
   &:hover {
     cursor: pointer;
@@ -112,7 +206,7 @@ export const TermsText = styled.p`
   line-height: 1rem;
   text-align: center;
   color: #6a6a6a;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
 `;
 
 export const StrongUnderlineText = styled.a`
