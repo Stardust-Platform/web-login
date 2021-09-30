@@ -4,7 +4,7 @@ import { FC, memo } from 'react';
 import { IconProps, IconsEnum } from './types';
 // Svgs
 import {
-  DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg,
+  DiscordSvg, FacebookSvg, GoogleSvg, AppleSvg,
 } from './SocialIcon';
 import CloseIconSvg from './CloseIcon';
 import EmailIconSvg from './EmailIcon';
@@ -17,8 +17,8 @@ const Icon: FC<IconProps> = ({ icon }) => {
     case IconsEnum.Facebook:
       return FacebookSvg;
 
-    case IconsEnum.Twitter:
-      return TwitterSvg;
+    case IconsEnum.Apple:
+      return AppleSvg;
 
     case IconsEnum.Discord:
       return DiscordSvg;
