@@ -14,7 +14,7 @@
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "prepublishOnly": "yarn build",
-    "prepare": "husky install",
+    "prepare": "yarn build && husky install",
     "lint": "eslint . --fix --max-warnings=0",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch --passWithNoTests",

@@ -63,7 +63,8 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
     <>
       <AuthContext.Provider value={value} {...props} />
       {/* <Notifications /> */}
-      {state.isOpen && <SigninScreen closeModal={closeModal} custom={custom} />}
+      {state.isOpen && (
+        <SigninScreen closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
     </>
   );
 };
@@ -76,3 +77,4 @@ AuthProvider.defaultProps = {
 };
 
 export { useAuthContext };
+export type { ProviderProps };
