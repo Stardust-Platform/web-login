@@ -1,11 +1,13 @@
 // Libs
-import { FC } from 'react';
+import { FC, memo } from 'react';
 // Types
 import { IconProps, IconsEnum } from './types';
 // Svgs
 import {
-  DiscordSvg, FacebookSvg, GoogleSvg, TwitterSvg,
-} from './SocialIcons';
+  DiscordSvg, FacebookSvg, GoogleSvg, AppleSvg,
+} from './SocialIcon';
+import CloseIconSvg from './CloseIcon';
+import EmailIconSvg from './EmailIcon';
 
 const Icon: FC<IconProps> = ({ icon }) => {
   switch (icon) {
@@ -15,15 +17,23 @@ const Icon: FC<IconProps> = ({ icon }) => {
     case IconsEnum.Facebook:
       return FacebookSvg;
 
-    case IconsEnum.Twitter:
-      return TwitterSvg;
+    case IconsEnum.Apple:
+      return AppleSvg;
 
     case IconsEnum.Discord:
       return DiscordSvg;
+
+    case IconsEnum.Close:
+      return CloseIconSvg;
+
+    case IconsEnum.Email:
+      return EmailIconSvg;
 
     default:
       return null;
   }
 };
 
-export default Icon;
+export default memo(Icon);
+export type { IconProps };
+export { IconsEnum };

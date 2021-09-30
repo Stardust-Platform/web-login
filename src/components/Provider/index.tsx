@@ -6,6 +6,7 @@ import { Auth } from 'aws-amplify';
 // Screens
 import SigninScreen from '../../screens/Signin';
 // Consts
+// import Notifications from '../Notifications';
 import { initialState } from './constants';
 // Interfaces
 import { Types, ProviderProps, User } from './types';
@@ -13,23 +14,23 @@ import { Types, ProviderProps, User } from './types';
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
+// Fonts
+import FontStyles from '../../utils/FontStyles';
 
 const checkUserLoggedIn = async () => {
   let user = {};
   await Auth.currentAuthenticatedUser().then(
-    (data) => {
-      user = data;
-    },
-    (error) => {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    },
+    (data) => { user = data; },
+    // eslint-disable-next-line no-console
+    (error) => { console.error(error); },
   );
   return user;
 };
 
+const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
+
 export const AuthProvider: FC<ProviderProps> = (props) => {
-  const { isOpen = false } = props;
+  const { isOpen, custom } = props;
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
@@ -61,15 +62,21 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   return (
     <>
+      <FontStyles />
       <AuthContext.Provider value={value} {...props} />
-      {state.isOpen && <SigninScreen closeModal={closeModal} />}
+      {/* <Notifications /> */}
+      {state.isOpen && (
+        <SigninScreen closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
     </>
   );
 };
 
 AuthProvider.defaultProps = {
-  // eslint-disable-next-line react/default-props-match-prop-types
   isOpen: false,
+  custom: {
+    logoUrl: STARDUST_LOGO,
+  },
 };
 
 export { useAuthContext };
+export type { ProviderProps };

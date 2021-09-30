@@ -36,13 +36,18 @@
 * [Maintainers](##maintainers)
 
 ## Features ✨
+
 * Sign in with social accounts
 * Sign up with social accounts
 * ...
 
 ## Install 🐙
+
 ```
 npm install --save https://github.com/opticpower/stardust-auth.git
+```
+```
+yarn add https://github.com/opticpower/stardust-auth.git
 ```
 
 ## Usage 💡
@@ -93,9 +98,30 @@ const Main = () => {
 
 ```import { AuthProvider } from 'stardust-auth'```
 
-| attribute | type    | DefaultValue | description            |
-| --------- | ------- | ------------ | ---------------------- |
-| isOpen    | Boolean | false        | Initialize modal open  |
+| attribute     | type    | DefaultValue | description                                  |
+| ------------- | ------- | ------------ | -------------------------------------------- |
+| isOpen        | Boolean | false        | Initialize modal open                        |
+| custom        | Custom  | {}           | Custom Logo Url, Terms                       |
+
+```Custom Type```
+
+| attribute           | type                                           | DefaultValue | description                                                                                        |
+| ------------------- | ---------------------------------------------- | ------------ | --------------------------------------------                                                       |
+| logoUrl             | string                                         | undefined    | Custom Logo Url, will override Stardust logo                                                       |
+| termsServiceUrl     | string                                         | undefined    | Custom Terms and Service Url                                                                       |
+| termsServiceProps   | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Terms and Service Anchore props, utils to extend the functionality type: target = "_ blank" |
+| privacyPolicyUrl    | string                                         | undefined    | Custom Privacy Policy Url                                                                          |
+| privacyPolicyProps  | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Privacy Policy Anchore props, utils to extend the functionality type: target = "_ blank" |
+| containerClassName  | string                                         | undefined    | Custom ClassName for modal container                                                               |
+
+For the image provided in the LogoUrl this are the recommended dimensions:
+
+|        | Size 1 | Size 2 | Size 3 | Size 4 | Size 5 | Size 6 | Size 7 |
+| ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| Width  | 160    | 160    | 160    | 132    | 160    | 48     | 36     |
+| Height | 24     | 27     | 31     | 48     | 48     | 48     | 48     |
+
+![image](https://user-images.githubusercontent.com/47512198/134942504-bc819a27-a229-4ef0-9ddd-b3991210bab2.png)
 
 ### Hook
 
@@ -131,6 +157,6 @@ Enter what kind of license you're using. -->
 ---
 <div align="center">
 	<b>
-		<a href="https://opticpwr.com">Optic Power</a>
+		<a href="https://stardust.gg">Stardust</a>
 	</b>
 </div>

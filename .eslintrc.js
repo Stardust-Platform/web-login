@@ -16,5 +16,7 @@ module.exports = {
   rules: {
     'import/no-unresolved': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'linebreak-style': 'off',
+    'react/default-props-match-prop-types': 'off',
   },
 };

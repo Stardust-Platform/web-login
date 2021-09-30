@@ -1,17 +1,27 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable react/no-unescaped-entities */
 // libs
-import React, { FormEvent, memo, FC } from 'react';
+import React, {
+  memo, FC, useState,
+} from 'react';
 import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
-import Amplify, { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 // Components
-import SvgStardustLogo from '../../components/SvgStardustLogo';
-import Icon from '../../components/Icons';
-// Config
-import awsconfig from '../../aws-exports';
+import Icon, { IconsEnum } from '../../components/Icons';
 // Styles
 import {
   Container,
   Form,
+  HeaderContainer,
+  LogoImage,
+  CloseIconContainer,
   Text,
+  EmailContainer,
+  EmailInput,
+  ContinueButton,
+  SwitchModeText,
+  OptionToSocialText,
   SocialMediaButton,
   IconContainer,
   SeparatorLine,
@@ -19,36 +29,71 @@ import {
   StrongUnderlineText,
   Backdrop,
 } from './styles';
-// Enums
-import IconsEnum from '../../components/Icons/iconsEnum';
 // Interfaces
 import { SigninProps } from './types';
 
-const { origin } = window.location;
+const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
+  const [isSingup, setIsSingup] = useState(false);
+  const [email, setEmail] = useState('');
 
-// Override aws config redirect with current origin
-const newAWSConfig = {
-  ...awsconfig,
-  oauth: {
-    ...awsconfig.oauth,
-    redirectSignIn: origin,
-    redirectSignOut: origin,
-  },
-};
+  const {
+    logoUrl,
+    termsServiceUrl,
+    privacyPolicyUrl,
+    containerClassName,
+    termsServiceProps,
+    privacyPolicyProps,
+  } = custom ?? {};
 
-Amplify.configure(newAWSConfig);
-
-const Signin: FC<SigninProps> = ({ closeModal }) => {
-  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const onSubmit = (event: any): void => {
     event.preventDefault();
   };
 
   return (
     <>
-      <Container>
+      <Container className={containerClassName ?? ''}>
         <Form onSubmit={onSubmit}>
-          <SvgStardustLogo />
-          <Text>Sign In with:</Text>
+          <HeaderContainer>
+            <LogoImage src={logoUrl} alt="Logo" />
+            <CloseIconContainer onClick={closeModal}>
+              <Icon icon={IconsEnum.Close} />
+            </CloseIconContainer>
+          </HeaderContainer>
+
+          <Text>{isSingup ? 'New user? Create your account' : 'Log in to your account'}</Text>
+
+          <EmailContainer>
+            <div>
+              <Icon icon={IconsEnum.Email} />
+            </div>
+            <EmailInput
+              id="email"
+              value={email}
+              placeholder="Email address"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+          </EmailContainer>
+
+          <ContinueButton type="submit">Continue</ContinueButton>
+
+          {isSingup
+            ? (
+              <SwitchModeText>
+                Already have an account?
+                {' '}
+                <span onClick={() => setIsSingup(false)}>Sign in</span>
+              </SwitchModeText>
+            )
+            : (
+              <SwitchModeText>
+                Don't have an account?
+                {' '}
+                <span onClick={() => setIsSingup(true)}>Sign up</span>
+              </SwitchModeText>
+            )}
+
+          <OptionToSocialText>{isSingup ? 'or Sign up with' : 'or Sign In with'}</OptionToSocialText>
+
           <SocialMediaButton
             type="button"
             onClick={() => Auth.federatedSignIn({
@@ -76,13 +121,13 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
           <SocialMediaButton
             type="button"
             onClick={() => Auth.federatedSignIn({
-              customProvider: 'Twitter',
+              provider: CognitoHostedUIIdentityProvider.Apple,
             })}
           >
             <IconContainer>
-              <Icon icon={IconsEnum.Twitter} />
+              <Icon icon={IconsEnum.Apple} />
             </IconContainer>
-            Continue with Twitter
+            Continue with Apple
           </SocialMediaButton>
 
           <SocialMediaButton
@@ -102,11 +147,15 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
           <TermsText>
             When you sign up, you’re accepting our
             {' '}
-            <StrongUnderlineText>Terms of Service</StrongUnderlineText>
+            <StrongUnderlineText href={termsServiceUrl ?? ''} {...termsServiceProps}>
+              Terms of Service
+            </StrongUnderlineText>
             {' '}
             and
             {' '}
-            <StrongUnderlineText>Privacy Policy</StrongUnderlineText>
+            <StrongUnderlineText href={privacyPolicyUrl ?? ''} {...privacyPolicyProps}>
+              Privacy Policy
+            </StrongUnderlineText>
           </TermsText>
         </Form>
       </Container>
@@ -116,3 +165,4 @@ const Signin: FC<SigninProps> = ({ closeModal }) => {
 };
 
 export default memo(Signin);
+export type { SigninProps };

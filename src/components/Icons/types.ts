@@ -5,6 +5,8 @@ export type IconProps = {
 export enum IconsEnum {
   Google = 'GOOGLE',
   Facebook = 'FACEBOOK',
-  Twitter = 'TWITTER',
+  Apple = 'APPLE',
   Discord = 'DISCORD',
+  Close = 'CLOSE',
+  Email = 'EMAIL',
 }

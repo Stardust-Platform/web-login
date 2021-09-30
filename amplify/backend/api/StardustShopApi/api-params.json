@@ -1,0 +1,41 @@
+{
+  "paths": [
+    {
+      "name": "/shops",
+      "lambdaFunction": "StardustShopApiShops",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/shops"
+    }
+  ],
+  "resourceName": "StardustShopApi",
+  "apiName": "StardustShopApi",
+  "functionArns": [
+    {
+      "lambdaFunction": "StardustShopApiShops"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-stardustshop-dev-130123-authRole",
+    "unAuthRoleName": "amplify-stardustshop-dev-130123-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "StardustShopApiShops",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
