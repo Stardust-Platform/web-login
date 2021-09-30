@@ -116,13 +116,13 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
           <SocialMediaButton
             type="button"
             onClick={() => Auth.federatedSignIn({
-              customProvider: 'Twitter',
+              provider: CognitoHostedUIIdentityProvider.Apple,
             })}
           >
             <IconContainer>
-              <Icon icon={IconsEnum.Twitter} />
+              <Icon icon={IconsEnum.Apple} />
             </IconContainer>
-            Continue with Twitter
+            Continue with Apple
           </SocialMediaButton>
 
           <SocialMediaButton
