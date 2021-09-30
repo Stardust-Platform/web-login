@@ -15,7 +15,7 @@
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "copy-files": "copyfiles -u 1 \"src/**/*.ttf\" \"lib/cjs/\" && copyfiles -u 1 \"src/**/*.ttf\" \"lib/esm/\"",
     "prepublishOnly": "yarn build",
-    "prepare": "husky install",
+    "prepare": "yarn build && husky install",
     "lint": "eslint . --fix --max-warnings=0",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch --passWithNoTests",

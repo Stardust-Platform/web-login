@@ -37,7 +37,12 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
   const [email, setEmail] = useState('');
 
   const {
-    logoUrl, termsServiceUrl, privacyPolicyUrl, containerClassName,
+    logoUrl,
+    termsServiceUrl,
+    privacyPolicyUrl,
+    containerClassName,
+    termsServiceProps,
+    privacyPolicyProps,
   } = custom ?? {};
 
   const onSubmit = (event: any): void => {
@@ -142,13 +147,13 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
           <TermsText>
             When you sign up, you’re accepting our
             {' '}
-            <StrongUnderlineText href={termsServiceUrl ?? ''}>
+            <StrongUnderlineText href={termsServiceUrl ?? ''} {...termsServiceProps}>
               Terms of Service
             </StrongUnderlineText>
             {' '}
             and
             {' '}
-            <StrongUnderlineText href={privacyPolicyUrl ?? ''}>
+            <StrongUnderlineText href={privacyPolicyUrl ?? ''} {...privacyPolicyProps}>
               Privacy Policy
             </StrongUnderlineText>
           </TermsText>

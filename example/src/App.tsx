@@ -5,7 +5,7 @@ import './App.css';
 import MainScreen from './screens/Main';
 
 const App: FC = () => (
-  <AuthProvider isOpen>
+  <AuthProvider isOpen custom={{ privacyPolicyUrl: 'localhost:3000' }}>
     <MainScreen />
   </AuthProvider>
 );
