@@ -105,14 +105,14 @@ const Main = () => {
 
 ```Custom Type```
 
-| attribute           | type                                     | DefaultValue | description                                                                                        |
-| ------------------- | ---------------------------------------- | ------------ | --------------------------------------------                                                       |
-| logoUrl             | string                                   | undefined    | Custom Logo Url, will override Stardust logo                                                       |
-| termsServiceUrl     | string                                   | undefined    | Custom Terms and Service Url                                                                       |
-| termsServiceProps   | AnchorHTMLAttributes<HTMLAnchorElement>  | undefined    | Custom Terms and Service Anchore props, utils to extend the functionality type: target = "_ blank" |
-| privacyPolicyUrl    | string                                   | undefined    | Custom Privacy Policy Url                                                                          |
-| privacyPolicyProps  | AnchorHTMLAttributes<HTMLAnchorElement>  | undefined    | Custom Privacy Policy Anchore props, utils to extend the functionality type: target = "_ blank" |
-| containerClassName  | string                                   | undefined    | Custom ClassName for modal container                                                               |
+| attribute           | type                                           | DefaultValue | description                                                                                        |
+| ------------------- | ---------------------------------------------- | ------------ | --------------------------------------------                                                       |
+| logoUrl             | string                                         | undefined    | Custom Logo Url, will override Stardust logo                                                       |
+| termsServiceUrl     | string                                         | undefined    | Custom Terms and Service Url                                                                       |
+| termsServiceProps   | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Terms and Service Anchore props, utils to extend the functionality type: target = "_ blank" |
+| privacyPolicyUrl    | string                                         | undefined    | Custom Privacy Policy Url                                                                          |
+| privacyPolicyProps  | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Privacy Policy Anchore props, utils to extend the functionality type: target = "_ blank" |
+| containerClassName  | string                                         | undefined    | Custom ClassName for modal container                                                               |
 
 For the image provided in the LogoUrl this are the recommended dimensions:
 
