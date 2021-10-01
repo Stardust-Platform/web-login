@@ -3,6 +3,7 @@ import React, {
   useReducer, useMemo, useEffect, FC,
 } from 'react';
 import { Auth } from 'aws-amplify';
+import GoogleFontsCss2Loader from 'react-google-fonts-css2';
 // Screens
 import SigninScreen from '../../screens/Signin';
 // Consts
@@ -14,8 +15,6 @@ import { Types, ProviderProps, User } from './types';
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
-// Fonts
-import FontStyles from '../../utils/FontStyles';
 
 const checkUserLoggedIn = async () => {
   let user = {};
@@ -62,7 +61,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   return (
     <>
-      <FontStyles />
+      <GoogleFontsCss2Loader family="DM Sans" styles={[400, 500, 700]} />
       <AuthContext.Provider value={value} {...props} />
       {/* <Notifications /> */}
       {state.isOpen && (

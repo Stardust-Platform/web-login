@@ -10,7 +10,7 @@
   "private": true,
   "scripts": {
     "start": "watch \"yarn build\" ./src",
-    "build": "yarn build:esm && yarn build:cjs && yarn run copy-files",
+    "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "copy-files": "copyfiles -u 1 \"src/**/*.ttf\" \"lib/cjs/\" && copyfiles -u 1 \"src/**/*.ttf\" \"lib/esm/\"",
@@ -32,6 +32,7 @@
     "amazon-cognito-identity-js": "^5.1.0",
     "aws-amplify": "^4.2.9",
     "copyfiles": "^2.4.1",
+    "react-google-fonts-css2": "^1.0.2",
     "styled-components": "^5.3.1"
   },
   "devDependencies": {

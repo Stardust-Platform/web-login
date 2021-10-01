@@ -5383,6 +5383,11 @@ globby@^11.0.3, globby@^11.0.4:
     merge2 "^1.3.0"
     slash "^3.0.0"
 
+google-fonts-css2@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/google-fonts-css2/-/google-fonts-css2-1.0.0.tgz#41c2b1d1bfc0d04ecfe882d61ccff53557795a54"
+  integrity sha512-y3m3kwZrIV7nmeyQ7YQgg4PSTKsLJotd2TtQ3x8aTuPrn6fn1ko+98cHYW93mZb0zLpMvNUG66qo3ri8c3Z02g==
+
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.4:
   version "4.2.8"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
@@ -8003,6 +8008,13 @@ randomfill@^1.0.3:
   dependencies:
     randombytes "^2.0.5"
     safe-buffer "^5.1.0"
+
+react-google-fonts-css2@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-google-fonts-css2/-/react-google-fonts-css2-1.0.2.tgz#33d8f5304694caea06d88af0fee475448262b66e"
+  integrity sha512-Q6GeRd6VTZGI5DqIPue1ZPOfIaDNHRJ7c0K6lGINVRFe+qGaZKmPxDY0nZMoVb9pSRmkjbQVkNnxqkQbpv89cQ==
+  dependencies:
+    google-fonts-css2 "1.0.0"
 
 react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
