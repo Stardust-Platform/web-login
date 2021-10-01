@@ -168,6 +168,8 @@ Hub.listen('auth', (data) => {
 });
 ```
 
+----------------------------------------------------------------
+
 ```import { currentSession } from 'stardust-auth'```
 
 The Auth.currentSession() method retrieves the access, id, and refresh tokens.
