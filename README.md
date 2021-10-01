@@ -105,14 +105,14 @@ const Main = () => {
 
 ```Custom Type```
 
-| attribute           | type                                           | DefaultValue | description                                                                                        |
-| ------------------- | ---------------------------------------------- | ------------ | --------------------------------------------                                                       |
-| logoUrl             | string                                         | undefined    | Custom Logo Url, will override Stardust logo                                                       |
-| termsServiceUrl     | string                                         | undefined    | Custom Terms and Service Url                                                                       |
+| attribute           | type                                            | DefaultValue | description                                                                                        |
+| ------------------- | ----------------------------------------------- | ------------ | --------------------------------------------                                                       |
+| logoUrl             | string                                          | undefined    | Custom Logo Url, will override Stardust logo                                                       |
+| termsServiceUrl     | string                                          | undefined    | Custom Terms and Service Url                                                                       |
 | termsServiceProps   | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Terms and Service Anchore props, utils to extend the functionality type: target = "_ blank" |
-| privacyPolicyUrl    | string                                         | undefined    | Custom Privacy Policy Url                                                                          |
+| privacyPolicyUrl    | string                                          | undefined    | Custom Privacy Policy Url                                                                          |
 | privacyPolicyProps  | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Privacy Policy Anchore props, utils to extend the functionality type: target = "_ blank" |
-| containerClassName  | string                                         | undefined    | Custom ClassName for modal container                                                               |
+| containerClassName  | string                                          | undefined    | Custom ClassName for modal container                                                               |
 
 For the image provided in the LogoUrl this are the recommended dimensions:
 
@@ -133,6 +133,150 @@ For the image provided in the LogoUrl this are the recommended dimensions:
 | isOpen             | Boolean  | false             | Initialize modal open                                                        |
 | handleOpenModal    | Function | (Boolean) => void | this function receives boolean value for open or close modal and return void |
 | handleSignOut      | Function | () => void        | this function close the current session                                      |
+
+### types
+
+```import { CognitoUserSession } from 'stardust-auth'```
+
+Type the current user
+
+### Useful methods
+
+```import { Hub } from 'stardust-auth'```
+
+Auth category publishes in the auth channel when signIn, signUp, and signOut events happen. You can listen and act upon those event notifications.
+
+Example:
+```
+Hub.listen('auth', (data) => {
+  switch (data.payload.event) {
+    case 'signIn':
+        console.log('user signed in');
+        break;
+    case 'signUp':
+        console.log('user signed up');
+        break;
+    case 'signOut':
+        console.log('user signed out');
+        break;
+    case 'signIn_failure':
+        console.log('user sign in failed');
+        break;
+    case 'configured':
+        console.log('the Auth module is configured');
+  }
+});
+```
+
+```import { currentSession } from 'stardust-auth'```
+
+The Auth.currentSession() method retrieves the access, id, and refresh tokens.
+
+Returns: Promise\<CognitoUserSession>
+
+Example:
+```
+{
+  "accessToken": {
+    "jwtToken": "XXXX",
+    "payload": {
+      "auth_time": XXXX,
+      "client_id": "XXXX",
+      "event_id": "XXXX-XXXX-XXXX-XXXX-XXXX",
+      "exp": XXXX,
+      "iat": XXXX,
+      "iss": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_XXXX",
+      "jti": "XXXX-XXXX-XXXX-XXXX-XXXX",
+      "scope": "aws.cognito.signin.user.admin",
+      "sub": "INTERNAL USERID: XXXX-XXXX-XXXX-XXXX-XXXX",
+      "token_use": "access",
+      "username": "MY USERNAME"
+    }
+  },
+  "clockDrift": 0,
+  "idToken": {
+    "jwtToken": "XXXX",
+    "payload": {
+      "aud": "XXXX",
+      "auth_time": XXXX,
+      "cognito:username": "MY USERNAME",
+      "email": "MY EMAIL ADDRESS",
+      "email_verified": true,
+      "event_id": "XXXX-XXXX-XXXX-XXXX-XXXX",
+      "exp": XXXX,
+      "iat": XXXX,
+      "iss": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_XXXX",
+      "sub": "INTERNAL USERID: XXXX-XXXX-XXXX-XXXX-XXXX",
+      "token_use": "id"
+    }
+  },
+  "refreshToken": {
+    "token": "XXXX"
+  }
+}
+```
+
+----------------------------------------------------------------
+
+```import { currentUserInfo } from 'stardust-auth'```
+
+The Auth.currentUserInfo() method retrieves the User Attributes for the current user.
+
+Returns: Promise/<any>
+
+Example:
+```
+{
+  "attributes": {
+    "email": "MY EMAIL ADDRESS",
+    "email_verified": true,
+    "sub": "INTERNAL USERID: XXXX-XXXX-XXXX-XXXX-XXXX"
+  },
+  "id": "us-east-1:XXXX",
+  "username": "MY USERNAME"
+}
+```
+
+----------------------------------------------------------------
+
+```import { currentAuthenticatedUser } from 'stardust-auth'```
+
+The Auth.currentAuthenticatedUser() method returns a combination of the result of the Auth.currentUserInfo() method, the result of the Auth.currentSession() method, and some extra information.
+
+Returns: Promise/<CognitoUserSession | any>
+
+Example:
+```
+{
+  "Session": null,
+  "attributes": {
+    ... SAME AS AUTH.CURRENTUSERINFO()
+  },
+  "authenticationFlowType": "USER_SRP_AUTH",
+  "client": {
+    "endpoint": "https://cognito-idp.us-east-1.amazonaws.com/",
+    "userAgent": "aws-amplify/0.1.x react-native"
+  },
+  "keyPrefix": "CognitoIdentityServiceProvider.XXXX",
+  "pool": {
+    "advancedSecurityDataCollectionFlag": true,
+    "client": {
+      "endpoint": "https://cognito-idp.us-east-1.amazonaws.com/",
+      "userAgent": "aws-amplify/0.1.x react-native"
+    },
+    "clientId": "XXXX",
+    "storage": Function MemoryStorage,
+    "userPoolId": "us-east-1_XXXX"
+  },
+  "preferredMFA": "NOMFA",
+  "signInUserSession": {
+     ... THE ACCESS, ID & REFRESH TOKENS OF AUTH.CURRENTSESSION()
+  },
+  "storage": Function MemoryStorage,
+  "userDataKey": "CognitoIdentityServiceProvider.XXXX.XXXX.userData",
+  "username": "MY USERNAME"
+}
+```
 
 <!-- ## API 👩‍💻
 You have a small project or you'll like to share the API of your project ? This is where it's happen. -->
