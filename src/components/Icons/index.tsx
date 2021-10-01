@@ -8,6 +8,8 @@ import {
 } from './SocialIcon';
 import CloseIconSvg from './CloseIcon';
 import EmailIconSvg from './EmailIcon';
+import SuccessIconSvg from './SuccessIcon';
+import ErrorIconSvg from './ErrorIcon';
 
 const Icon: FC<IconProps> = ({ icon }) => {
   switch (icon) {
@@ -28,6 +30,12 @@ const Icon: FC<IconProps> = ({ icon }) => {
 
     case IconsEnum.Email:
       return EmailIconSvg;
+
+    case IconsEnum.Success:
+      return SuccessIconSvg;
+
+    case IconsEnum.Error:
+      return ErrorIconSvg;
 
     default:
       return null;

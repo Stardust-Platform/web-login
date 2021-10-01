@@ -48,3 +48,9 @@ export type StateContext = State & {
 export type ProviderProps = SigninProps & {
   isOpen?: boolean;
 };
+
+export type SnackBarStatus = {
+  isOpen: boolean;
+  hasError: boolean;
+  message?: string;
+};

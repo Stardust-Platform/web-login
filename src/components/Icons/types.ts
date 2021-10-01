@@ -9,4 +9,6 @@ export enum IconsEnum {
   Discord = 'DISCORD',
   Close = 'CLOSE',
   Email = 'EMAIL',
+  Success = 'SUCCESS',
+  Error = 'ERROR',
 }
