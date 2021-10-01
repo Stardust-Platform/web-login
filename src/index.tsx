@@ -1,4 +1,5 @@
-import Amplify from 'aws-amplify';
+import Amplify, { Hub, Auth } from 'aws-amplify';
+import { CognitoUserInterface } from '@aws-amplify/ui-components';
 // Config
 import awsconfig from './aws-exports';
 // Provider
@@ -20,5 +21,15 @@ const newAWSConfig = {
 
 Amplify.configure(newAWSConfig);
 
-export { AuthProvider, useAuthContext };
+const { currentSession, currentUserInfo, currentAuthenticatedUser } = Auth;
+
+export {
+  AuthProvider,
+  CognitoUserInterface,
+  Hub,
+  useAuthContext,
+  currentSession,
+  currentUserInfo,
+  currentAuthenticatedUser,
+};
 export type { ProviderProps };

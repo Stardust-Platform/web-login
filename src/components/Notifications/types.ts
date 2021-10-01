@@ -1,4 +1,6 @@
 export type NotificationsProps = {
   closeNotification?: () => void,
-  isOpen?: boolean
+  isOpen?: boolean,
+  hasError?: boolean,
+  message?: string,
 };
