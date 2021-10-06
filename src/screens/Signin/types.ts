@@ -11,3 +11,12 @@ export type SigninProps = {
     containerClassName?: string;
   };
 };
+
+export type EmailError = {
+  hasError?: boolean,
+  message?: string,
+};
+
+export type EmailContainerProps = {
+  hasError?: Boolean,
+};
