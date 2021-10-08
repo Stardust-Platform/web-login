@@ -108,6 +108,7 @@ const Main = () => {
 | attribute           | type                                            | DefaultValue | description                                                                                        |
 | ------------------- | ----------------------------------------------- | ------------ | --------------------------------------------                                                       |
 | logoUrl             | string                                          | undefined    | Custom Logo Url, will override Stardust logo                                                       |
+| magicLinkRedirectUrl| string                                          | undefined    | Custom base Url for the link to be received by users while using email magic link sign in          |
 | termsServiceUrl     | string                                          | undefined    | Custom Terms and Service Url                                                                       |
 | termsServiceProps   | React.AnchorHTMLAttributes\<HTMLAnchorElement>  | undefined    | Custom Terms and Service Anchore props, utils to extend the functionality type: target = "_ blank" |
 | privacyPolicyUrl    | string                                          | undefined    | Custom Privacy Policy Url                                                                          |

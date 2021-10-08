@@ -38,20 +38,22 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
   const [emailError, setEmailError] = useState<EmailError>({
     hasError: false, message: '',
   });
-  const {
-    loginWithMagicLink, emailRegex, cleanErrors, SigninSignupWithEmail,
-  } = useEmailSignin({
-    email, setIsEmailLoading, setEmailError, isSingup,
-  });
 
   const {
     logoUrl,
+    magicLinkRedirectUrl,
     termsServiceUrl,
     privacyPolicyUrl,
     containerClassName,
     termsServiceProps,
     privacyPolicyProps,
   } = custom ?? {};
+
+  const {
+    loginWithMagicLink, emailRegex, cleanErrors, SigninSignupWithEmail,
+  } = useEmailSignin({
+    email, setIsEmailLoading, setEmailError, isSingup, magicLinkRedirectUrl,
+  });
 
   const onSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();

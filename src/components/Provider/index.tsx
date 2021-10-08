@@ -57,7 +57,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window?.location?.search);
     const challenge = params.get('challenge');
     if (challenge) {
       finishSignin(challenge);

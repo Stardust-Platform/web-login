@@ -13,11 +13,12 @@ type UseEmailSigninProps = {
   setIsEmailLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setEmailError: React.Dispatch<React.SetStateAction<EmailError>>;
   isSingup: boolean;
+  magicLinkRedirectUrl?: string;
 };
 
 const useEmailSignin = (
   {
-    email, setIsEmailLoading, setEmailError, isSingup,
+    email, setIsEmailLoading, setEmailError, isSingup, magicLinkRedirectUrl,
   }: UseEmailSigninProps,
 ) => {
   const cleanErrors = () => {
@@ -28,7 +29,9 @@ const useEmailSignin = (
 
   const loginWithMagicLink = async () => {
     try {
-      await axios.post(loginUrl, { email });
+      await axios.post(loginUrl, {
+        email, redirect: magicLinkRedirectUrl ?? window?.location?.origin,
+      });
       cleanErrors();
       setIsEmailLoading(true);
     } catch {

@@ -4,6 +4,7 @@ export type SigninProps = {
   closeModal?: () => void;
   custom?: {
     logoUrl?: string;
+    magicLinkRedirectUrl?: string;
     termsServiceUrl?: string,
     termsServiceProps?: AnchorHTMLAttributes<HTMLAnchorElement>;
     privacyPolicyUrl?: string;
