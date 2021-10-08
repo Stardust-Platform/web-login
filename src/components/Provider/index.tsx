@@ -38,6 +38,32 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   const value = useMemo(() => ({ state, dispatch }), [state]);
 
+  const finishSignin = async (challenge: any) => {
+    try {
+      const [email, code] = challenge.split(',');
+      const user = await Auth.signIn(email);
+      await Auth.sendCustomChallengeAnswer(user, code);
+      await Auth.currentSession();
+      const payload = Object.entries(user).length !== 0 ? user : undefined;
+      dispatch({
+        type: Types.handleSignin,
+        payload: payload as User,
+      });
+    } catch (e) {
+      setSnackBarStatus({
+        isOpen: true, hasError: false, message: 'There was an error Singing in',
+      });
+    }
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const challenge = params.get('challenge');
+    if (challenge) {
+      finishSignin(challenge);
+    }
+  }, []);
+
   Hub.listen('auth', async (data) => {
     switch (data.payload.event) {
       case 'signIn':
