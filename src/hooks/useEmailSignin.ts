@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify';
 // Interfaces
 import { EmailError } from '../screens/Signin/types';
 
-const loginUrl = 'https://zgdyt9fjia.execute-api.us-east-1.amazonaws.com/dev/login';
+const loginUrl = 'https://opzvmjx033.execute-api.us-east-1.amazonaws.com/v1/player/login';
 
 const emailRegex = new RegExp(/^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
