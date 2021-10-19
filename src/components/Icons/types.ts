@@ -11,4 +11,5 @@ export enum IconsEnum {
   Email = 'EMAIL',
   Success = 'SUCCESS',
   Error = 'ERROR',
+  BackArrow = 'BACK_ARROW',
 }

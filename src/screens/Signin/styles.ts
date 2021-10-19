@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { EmailContainerProps } from './types';
 
 export const Container = styled.div`
   position: absolute;
@@ -40,6 +41,12 @@ export const HeaderContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
+export const BackArrowIconContainer = styled.div`
+  position: absolute;
+  left: 1rem;
+  cursor: pointer;
+`;
+
 export const LogoImage = styled.img`
   min-height: 1.5rem;
   max-height: 3rem;
@@ -62,17 +69,27 @@ export const Text = styled.h2`
   margin-bottom: 0.5rem;
 `;
 
-export const EmailContainer = styled.div`
+export const EmailContainer = styled.div<EmailContainerProps>`
   width: 100%;
   background: #ffffff;
   opacity: 0.99;
-  border: 1px solid #e0e0e0;
+  border: ${(props) => (props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0')};
   box-sizing: border-box;
   border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
   padding: 1rem;
+`;
+
+export const ErrorMessage = styled.div`
+  align-self: start; 
+  font-family: 'DM Sans';
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 18px;
+  color: #FF5473;
+  margin-bottom: 0.5rem;
 `;
 
 export const EmailInput = styled.input`
@@ -121,7 +138,14 @@ export const SwitchModeText = styled.p`
   color: #000000;
   margin-top: 0;
 
-  span {
+  button {
+    font-family: "DM Sans", sans-serif;
+    font-size: 1rem;
+    line-height: 1.313rem;
+    color: #000000;
+    padding: 0;
+    border: none;
+    background: none;
     font-weight: bold;
     cursor: pointer;
   }
@@ -154,43 +178,6 @@ export const OptionToSocialText = styled.p`
     width: 5rem;
     margin-left: 0.625rem;
   }
-`;
-
-export const SocialMediaButton = styled.button`
-  display: flex;
-  justify-content: baseline;
-  align-items: center;
-  padding: 0.625rem 1rem;
-  margin-bottom: 0.5rem;
-  width: 100%;
-  height: 2.563rem;
-  background: #ffffff;
-  border: 0.063rem solid #dadada;
-  box-sizing: border-box;
-  border-radius: 0.625rem;
-  font-weight: bold;
-  font-size: 1rem;
-  line-height: 1.313rem;
-  letter-spacing: -0.015em;
-  color: #4a4a4a;
-  font-family: "DM Sans", sans-serif;
-
-  &:hover {
-    cursor: pointer;
-    background: #f2eeff;
-    border: 0.063rem solid #b59fff;
-  }
-
-  &:active {
-    background: #f2eeff;
-    opacity: 0.4;
-  }
-`;
-
-export const IconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 0.75rem;
 `;
 
 export const SeparatorLine = styled.div`
