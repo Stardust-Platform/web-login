@@ -1,6 +1,6 @@
 {
   "name": "stardust-auth",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Stardust auth library in Typescript!",
   "author": "Opticpwr<https://opticpwr.com>",
   "main": "./lib/cjs/index.js",
