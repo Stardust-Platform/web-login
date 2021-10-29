@@ -23,7 +23,6 @@ jobs:
         node: ['14.x']
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
-    runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
@@ -35,20 +34,23 @@ jobs:
         with:
           node-version: ${{ matrix.node }
 
+      - name: Install yarn packages
+        run: npm install -g yarn
+
       - name: Install Node.js packages
-        run: npm install
+        run: yarn install
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
-        
+
       - name: Run Lint
-        run: yarn lint 
-        
+        run: yarn lint
+
       - name: Run Test
         run: yarn test --ci --coverage --maxWorkers=2
         env:
           CI: true
-        
+
       - name: Run Build
         run: yarn build  --if-present
 
