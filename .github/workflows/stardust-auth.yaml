@@ -52,7 +52,7 @@ jobs:
           CI: true
 
       - name: Run Build
-        run: yarn build  --if-present
+        run: yarn build
 
       - name: Post to Discord
         uses: sarisia/actions-status-discord@v1
