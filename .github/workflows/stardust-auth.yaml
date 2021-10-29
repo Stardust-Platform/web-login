@@ -1,0 +1,61 @@
+# https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-nodejs
+
+name: stardust-auth
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ['14.x']
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }
+
+      - name: Install Node.js packages
+        run: npm install
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+        
+      - name: Run Lint
+        run: yarn lint 
+        
+      - name: Run Test
+        run: yarn test --ci --coverage --maxWorkers=2
+        env:
+          CI: true
+        
+      - name: Run Build
+        run: yarn build  --if-present
+
+      - name: Post to Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          title: ${{ github.workflow }}

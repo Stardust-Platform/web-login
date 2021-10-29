@@ -1,10 +1,5 @@
 <!-- README for NPM; the one for GitHub is in .github directory. -->
 <div align="center">
-  <a href="#">
-  	<img src="https://i.giphy.com/media/z2KbVZxKCHxxIDhnsQ/giphy.webp" alt="Logo project" height="160" />
-  </a>
-  <br>
-  <br>
   <p>
     <b>Stardust Auth</b>
   </p>
@@ -44,10 +39,10 @@
 ## Install 🐙
 
 ```
-npm install --save https://github.com/opticpower/stardust-auth.git
+npm install --save https://github.com/Stardust-Platform/stardust-auth/stardust-auth.git
 ```
 ```
-yarn add https://github.com/opticpower/stardust-auth.git
+yarn add https://github.com/Stardust-Platform/stardust-auth/stardust-auth.git
 ```
 
 ## Usage 💡
