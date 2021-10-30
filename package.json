@@ -1,12 +1,24 @@
 {
-  "name": "stardust-auth",
+  "name": "@stardust-platform/stardust-auth",
   "version": "1.0.0",
   "description": "Stardust auth library in Typescript!",
-  "author": "Opticpwr<https://opticpwr.com>",
+  "readme": "README.md",
+  "repository": "https://github.com/Stardust-Platform/stardust-auth.git",
+  "bugs": {
+    "url" : "https://github.com/Stardust-Platform/stardust-auth/issues",
+    "email" : "support@stardust.gg"
+  },
+  "author": "STARDUST CARDS CORPORATION",
+  "contributors": [
+    {
+    "name": "Opticpwr",
+    "url": "https://opticpwr.com"
+    }
+  ],
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
-  "license": "unlicense",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "watch \"yarn build\" ./src",
@@ -81,5 +93,8 @@
     "tabWidth": 2,
     "semi": true,
     "singleQuote": false
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

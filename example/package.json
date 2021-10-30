@@ -1,7 +1,24 @@
 {
-  "name": "example",
+  "name": "stardust-auth-web-ui-example",
   "version": "1.0.0",
+  "description": "Stardust auth example Web UI in ReactJS!",
   "private": true,
+  "readme": "README.md",
+  "repository": "https://github.com/Stardust-Platform/stardust-auth.git",
+  "license": "MIT",
+  "author": "STARDUST CARDS CORPORATION",
+  "contributors": [
+    {
+      "name": "Opticpwr",
+      "url": "https://opticpwr.com"
+    }
+  ],
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.0",
@@ -20,12 +37,6 @@
     "aws-amplify": "^4.2.9",
     "styled-components": "^5.3.1",
     "stardust-auth": "link:.."
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
