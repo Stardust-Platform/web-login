@@ -10,42 +10,17 @@ const awsmobile = {
     "oauth": {
         "domain": "stardustplayers-dev.auth.us-east-1.amazoncognito.com",
         "scope": [
-            "phone",
+            "aws.cognito.signin.user.admin",
             "email",
             "openid",
-            "profile",
-            "aws.cognito.signin.user.admin"
+            "phone",
+            "profile"
         ],
-        "redirectSignIn": "https://dev.d3twdqo7cb5otm.amplifyapp.com/,http://localhost:3000/",
-        "redirectSignOut": "https://dev.d3twdqo7cb5otm.amplifyapp.com/,http://localhost:3000/",
+        "redirectSignIn": "http://localhost:3000,https://dev.d3twdqo7cb5otm.amplifyapp.com/",
+        "redirectSignOut": "http://localhost:3000,https://dev.d3twdqo7cb5otm.amplifyapp.com/",
         "responseType": "code"
     },
-    "federationTarget": "COGNITO_USER_POOLS",
-    "aws_cognito_login_mechanisms": [],
-    "aws_cognito_signup_attributes": [
-        "EMAIL"
-    ],
-    "aws_cognito_mfa_configuration": "OFF",
-    "aws_cognito_mfa_types": [
-        "SMS"
-    ],
-    "aws_cognito_password_protection_settings": {
-        "passwordPolicyMinLength": 8,
-        "passwordPolicyCharacters": []
-    },
-    "aws_cognito_verification_mechanisms": [
-        "EMAIL"
-    ],
-    "aws_cloud_logic_custom": [
-        {
-            "name": "StardustShopApi",
-            "endpoint": "https://yavkzz2t3l.execute-api.us-east-1.amazonaws.com/dev",
-            "region": "us-east-1"
-        }
-    ],
-    "aws_content_delivery_bucket": "tardustdminashboa-20201117155748-hostingbucket-amplify",
-    "aws_content_delivery_bucket_region": "us-east-1",
-    "aws_content_delivery_url": "https://d2guq3aixyussq.cloudfront.net"
+    "federationTarget": "COGNITO_USER_POOLS"
 };
 
 

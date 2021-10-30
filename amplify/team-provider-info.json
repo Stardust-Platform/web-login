@@ -1,30 +1,30 @@
 {
-  "dev": {
+  "prod": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-stardustshop-dev-130123-authRole",
-      "UnauthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustshop-dev-130123-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustshop-dev-130123-authRole",
+      "AuthRoleName": "amplify-stardustauth-prod-102432-authRole",
+      "UnauthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustauth-prod-102432-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustauth-prod-102432-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-stardustshop-dev-130123-deployment",
-      "UnauthRoleName": "amplify-stardustshop-dev-130123-unauthRole",
-      "StackName": "amplify-stardustshop-dev-130123",
-      "StackId": "arn:aws:cloudformation:us-east-1:593310975959:stack/amplify-stardustshop-dev-130123/34e92b90-18bb-11ec-bdfb-128f53b6430b",
-      "AmplifyAppId": "d3ccmq9xhtxtc2"
+      "DeploymentBucketName": "amplify-stardustauth-prod-102432-deployment",
+      "UnauthRoleName": "amplify-stardustauth-prod-102432-unauthRole",
+      "StackName": "amplify-stardustauth-prod-102432",
+      "StackId": "arn:aws:cloudformation:us-east-1:593310975959:stack/amplify-stardustauth-prod-102432/40969ed0-39a6-11ec-a960-12722b358535",
+      "AmplifyAppId": "d1nbm5neapycqr"
     },
     "categories": {
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d3ccmq9xhtxtc2",
-          "type": "cicd"
-        }
-      },
       "auth": {
-        "stardustshop3c8e4867": {}
-      },
-      "function": {
-        "StardustShopApiShops": {
-          "deploymentBucketName": "amplify-stardustshop-dev-130123-deployment",
-          "s3Key": "amplify-builds/StardustShopApiShops-5579772b6b70652b6e35-build.zip"
+        "stardustauthf833a06f": {
+          "userPoolId": "us-east-1_7HaN0s3vK",
+          "userPoolName": "stardustshop3c8e4867_userpool_3c8e4867-dev",
+          "webClientId": "63sn0gvao4hkujmduc6s0it55p",
+          "nativeClientId": "4rq4ql66g3rs1dj1vq2qi3l5vn",
+          "identityPoolId": "us-east-1:ffde1b03-9eda-4938-86fe-b5de7e81ccbf",
+          "identityPoolName": "stardustshop3c8e4867_identitypool_3c8e4867__dev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustshop-dev-130123-authRole",
+          "authRoleName": "amplify-stardustshop-dev-130123-authRole",
+          "unauthRoleArn": "arn:aws:iam::593310975959:role/amplify-stardustshop-dev-130123-unauthRole",
+          "unauthRoleName": "amplify-stardustshop-dev-130123-unauthRole"
         }
       }
     }
