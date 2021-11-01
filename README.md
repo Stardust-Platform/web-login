@@ -7,11 +7,11 @@
      <i>This project is Stardust library for web auth</i>
   </p>
   <p>
-    <!-- [![Build Status](https://travis-ci.com/opticpwr/stardust-auth.svg?branch=master)](https://travis-ci.com/opticpwr/stardust-auth)
-    [![NPM version](https://img.shields.io/npm/v/stardust-auth?style=flat-square)](https://img.shields.io/npm/v/stardust-auth?style=flat-square)
-    [![Package size](https://img.shields.io/bundlephobia/min/stardust-auth)](https://img.shields.io/bundlephobia/min/stardust-auth)
-    [![Dependencies](https://img.shields.io/david/opticpwr/stardust-auth.svg?style=popout-square)](https://david-dm.org/opticpwr/stardust-auth)
-    [![devDependencies Status](https://david-dm.org/opticpwr/stardust-auth/dev-status.svg?style=flat-square)](https://david-dm.org/opticpwr/stardust-auth?type=dev)
+    <!-- [![Build Status](https://travis-ci.com/opticpwr/web-login.svg?branch=master)](https://travis-ci.com/opticpwr/web-login)
+    [![NPM version](https://img.shields.io/npm/v/web-login?style=flat-square)](https://img.shields.io/npm/v/web-login?style=flat-square)
+    [![Package size](https://img.shields.io/bundlephobia/min/web-login)](https://img.shields.io/bundlephobia/min/web-login)
+    [![Dependencies](https://img.shields.io/david/opticpwr/web-login.svg?style=popout-square)](https://david-dm.org/opticpwr/web-login)
+    [![devDependencies Status](https://david-dm.org/opticpwr/web-login/dev-status.svg?style=flat-square)](https://david-dm.org/opticpwr/web-login?type=dev)
     [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
     [![Twitter](https://img.shields.io/twitter/follow/luctstt.svg?label=Follow&style=social)](https://twitter.com/luctstt) -->
   </p>
@@ -39,10 +39,10 @@
 ## Install 🐙
 
 ```
-npm install --save https://github.com/Stardust-Platform/stardust-auth/stardust-auth.git
+npm install --save https://github.com/Stardust-Platform/web-login/web-login.git
 ```
 ```
-yarn add https://github.com/Stardust-Platform/stardust-auth/stardust-auth.git
+yarn add https://github.com/Stardust-Platform/web-login/web-login.git
 ```
 
 ## Usage 💡
@@ -55,7 +55,7 @@ yarn add https://github.com/Stardust-Platform/stardust-auth/stardust-auth.git
 - Add Provider wrapping all the application
 
 ```
-import { AuthProvider } from 'stardust-auth'
+import { AuthProvider } from 'web-login'
 import Content from 'src/index'
 
 const App = () => (
@@ -68,7 +68,7 @@ const App = () => (
 - Add hook for authentication
 
 ```
-import { useAuthContext } from 'stardust-auth';
+import { useAuthContext } from 'web-login';
 
 const Main = () => {
   const { user, handleOpenModal, isOpen, handleSignOut } = useAuthContext();
@@ -91,7 +91,7 @@ const Main = () => {
 
 ### Provider Props
 
-```import { AuthProvider } from 'stardust-auth'```
+```import { AuthProvider } from 'web-login'```
 
 | attribute     | type    | DefaultValue | description                                  |
 | ------------- | ------- | ------------ | -------------------------------------------- |
@@ -121,7 +121,7 @@ For the image provided in the LogoUrl this are the recommended dimensions:
 
 ### Hook
 
-```import { useAuthContext } from 'stardust-auth'```
+```import { useAuthContext } from 'web-login'```
 
 | attribute          | type     | DefaultValue      | description                                                                  |
 | ------------------ | -------  | ----------------- | ---------------------------------------------------------------------------- |
@@ -132,13 +132,13 @@ For the image provided in the LogoUrl this are the recommended dimensions:
 
 ### types
 
-```import { CognitoUserSession } from 'stardust-auth'```
+```import { CognitoUserSession } from 'web-login'```
 
 Type the current user
 
 ### Useful methods
 
-```import { Hub } from 'stardust-auth'```
+```import { Hub } from 'web-login'```
 
 Auth category publishes in the auth channel when signIn, signUp, and signOut events happen. You can listen and act upon those event notifications.
 
@@ -166,7 +166,7 @@ Hub.listen('auth', (data) => {
 
 ----------------------------------------------------------------
 
-```import { currentSession } from 'stardust-auth'```
+```import { currentSession } from 'web-login'```
 
 The Auth.currentSession() method retrieves the access, id, and refresh tokens.
 
@@ -216,7 +216,7 @@ Example:
 
 ----------------------------------------------------------------
 
-```import { currentUserInfo } from 'stardust-auth'```
+```import { currentUserInfo } from 'web-login'```
 
 The Auth.currentUserInfo() method retrieves the User Attributes for the current user.
 
@@ -237,7 +237,7 @@ Example:
 
 ----------------------------------------------------------------
 
-```import { currentAuthenticatedUser } from 'stardust-auth'```
+```import { currentAuthenticatedUser } from 'web-login'```
 
 The Auth.currentAuthenticatedUser() method returns a combination of the result of the Auth.currentUserInfo() method, the result of the Auth.currentSession() method, and some extra information.
 
@@ -291,7 +291,7 @@ Thank you to all the people who already contributed to this project!
    * Create your feature branch (`git checkout -b your_github_name-feature`)
    * Commit your changes (`git commit -am 'Added some feature'`)
    * Make sure to add tests for it. This is important so we don't break it in a future version unintentionally.
-   * [File an Issue](https://github.com/Stardust-Platform/stardust-auth/stardust-auth/issues)
+   * [File an Issue](https://github.com/Stardust-Platform/web-login/web-login/issues)
    * Push to the branch (`git push origin your_github_name-feature`)
    * Create new Pull Request
 

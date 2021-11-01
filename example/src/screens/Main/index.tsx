@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useAuthContext } from 'stardust-auth';
+import { useAuthContext } from 'web-login';
 
 const Main = () => {
   const { user, handleOpenModal, isOpen, handleSignOut } = useAuthContext();
