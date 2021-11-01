@@ -48,7 +48,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 -## Maintainers 👷
- 
+
 -<table>
 -  <tr>
 -    <td align="center"><a href="https://github.com/SantiagoMolinaOrozco"><img src="https://avatars.githubusercontent.com/u/17752391?v=4" width="100px;" alt="SantiagoMolinaOrozco"/><br /><sub><b>Santiago Molina Orozco</b></sub></a><br /><a href="#" title="Code">💻</a></td>
@@ -70,7 +70,7 @@ Thank you to all the people who already contributed to this project!
    * Create your feature branch (`git checkout -b your_github_name-feature`)
    * Commit your changes (`git commit -am 'Added some feature'`)
    * Make sure to add tests for it. This is important so we don't break it in a future version unintentionally.
-   * [File an Issue](https://github.com/Stardust-Platform/stardust-auth/stardust-auth/issues)
+   * [File an Issue](https://github.com/Stardust-Platform/web-login/web-login/issues)
    * Push to the branch (`git push origin your_github_name-feature`)
    * Create new Pull Request
 
