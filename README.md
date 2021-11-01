@@ -1,23 +1,6 @@
-<!-- README for NPM; the one for GitHub is in .github directory. -->
-<div align="center">
-  <p>
-    <b>Stardust Auth</b>
-  </p>
-  <p>
-     <i>This project is Stardust library for web auth</i>
-  </p>
-  <p>
-    <!-- [![Build Status](https://travis-ci.com/opticpwr/web-login.svg?branch=master)](https://travis-ci.com/opticpwr/web-login)
-    [![NPM version](https://img.shields.io/npm/v/web-login?style=flat-square)](https://img.shields.io/npm/v/web-login?style=flat-square)
-    [![Package size](https://img.shields.io/bundlephobia/min/web-login)](https://img.shields.io/bundlephobia/min/web-login)
-    [![Dependencies](https://img.shields.io/david/opticpwr/web-login.svg?style=popout-square)](https://david-dm.org/opticpwr/web-login)
-    [![devDependencies Status](https://david-dm.org/opticpwr/web-login/dev-status.svg?style=flat-square)](https://david-dm.org/opticpwr/web-login?type=dev)
-    [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-    [![Twitter](https://img.shields.io/twitter/follow/luctstt.svg?label=Follow&style=social)](https://twitter.com/luctstt) -->
-  </p>
-</div>
+# Stardust Web Login Widget
 
----
+[![web-login](https://github.com/Stardust-Platform/web-login/workflows/web-login/badge.svg)](https://github.com/Stardust-Platform/web-login/actions)
 
 ## **Content**
 
