@@ -1,10 +1,10 @@
 {
-  "name": "stardust-auth-web-ui-example",
+  "name": "web-login-web-ui-example",
   "version": "1.0.0",
   "description": "Stardust auth example Web UI in ReactJS!",
   "private": true,
   "readme": "README.md",
-  "repository": "https://github.com/Stardust-Platform/stardust-auth.git",
+  "repository": "https://github.com/Stardust-Platform/web-login.git",
   "license": "MIT",
   "author": "STARDUST CARDS CORPORATION",
   "contributors": [
@@ -36,7 +36,7 @@
     "amazon-cognito-identity-js": "^5.1.0",
     "aws-amplify": "^4.2.9",
     "styled-components": "^5.3.1",
-    "stardust-auth": "link:.."
+    "web-login": "link:.."
   },
   "browserslist": {
     "production": [

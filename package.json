@@ -1,11 +1,11 @@
 {
-  "name": "@stardust-platform/stardust-auth",
+  "name": "@stardust-platform/web-login",
   "version": "1.0.0",
   "description": "Stardust auth library in Typescript!",
   "readme": "README.md",
-  "repository": "https://github.com/Stardust-Platform/stardust-auth.git",
+  "repository": "https://github.com/Stardust-Platform/web-login.git",
   "bugs": {
-    "url" : "https://github.com/Stardust-Platform/stardust-auth/issues",
+    "url" : "https://github.com/Stardust-Platform/web-login/issues",
     "email" : "support@stardust.gg"
   },
   "author": "STARDUST CARDS CORPORATION",

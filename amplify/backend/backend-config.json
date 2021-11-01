@@ -1,6 +1,6 @@
 {
   "auth": {
-    "stardustauthf833a06f": {
+    "webloginb547e6a5": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",
