@@ -284,21 +284,15 @@ Please make sure to read the [Contributing Guide](https://github.com/auth0/open-
 
 Thank you to all the people who already contributed to this project!
 
-## Maintainers 👷
 
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/SantiagoMolinaOrozco"><img src="https://avatars.githubusercontent.com/u/17752391?v=4" width="100px;" alt="SantiagoMolinaOrozco"/><br /><sub><b>Santiago Molina Orozco</b></sub></a><br /><a href="#" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/dagibu301"><img src="https://avatars.githubusercontent.com/u/47512198?v=4" width="100px;" alt="DavidGiraldo"/><br /><sub><b>David Giraldo</b></sub></a><br /><a href="#" title="Code">💻</a></td>
-  </tr>
-</table>
 
-<!-- ## License ⚖️
-Enter what kind of license you're using. -->
+# Contributing
+   * Fork it
+   * Create your feature branch (`git checkout -b your_github_name-feature`)
+   * Commit your changes (`git commit -am 'Added some feature'`)
+   * Make sure to add tests for it. This is important so we don't break it in a future version unintentionally.
+   * [File an Issue](https://github.com/Stardust-Platform/stardust-auth/stardust-auth/issues)
+   * Push to the branch (`git push origin your_github_name-feature`)
+   * Create new Pull Request
 
----
-<div align="center">
-	<b>
-		<a href="https://stardust.gg">Stardust</a>
-	</b>
-</div>
+
