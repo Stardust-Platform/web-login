@@ -1,17 +1,26 @@
-# Stardust Web Login Widget
+Stardust Web Login Widget
+=========================
 
 [![web-login](https://github.com/Stardust-Platform/web-login/workflows/web-login/badge.svg)](https://github.com/Stardust-Platform/web-login/actions)
 
-## **Content**
 
-* [Features](##features)
-* [Install](##install)
-* [Usage](##usage)
-* [examples](##examples)
-* [Documentation](##documentation)
-* [API](##Api)
-* [Contributing](##contributing)
-* [Maintainers](##maintainers)
+Table of Contents
+=================
+
+   * [Stardust Web Login Widget](#stardust-web-login-widget)
+   * [Table of Contents](#table-of-contents)
+      * [Features <g-emoji class="g-emoji" alias="sparkles" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png">✨</g-emoji>](#features-)
+      * [Install <g-emoji class="g-emoji" alias="octopus" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f419.png">🐙</g-emoji>](#install-)
+      * [Usage <g-emoji class="g-emoji" alias="bulb" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png">💡</g-emoji>](#usage-)
+      * [Examples <g-emoji class="g-emoji" alias="crayon" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f58d.png">🖍</g-emoji>](#examples-)
+      * [Documentation <g-emoji class="g-emoji" alias="page_facing_up" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c4.png">📄</g-emoji>](#documentation-)
+         * [Provider Props](#provider-props)
+         * [Hook](#hook)
+         * [types](#types)
+         * [Useful methods](#useful-methods)
+      * [Contributing <g-emoji class="g-emoji" alias="cake" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f370.png">🍰</g-emoji>](#contributing-)
+   * [Contributing](#contributing)
+
 
 ## Features ✨
 
