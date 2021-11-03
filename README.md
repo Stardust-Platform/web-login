@@ -18,6 +18,10 @@ Table of Contents
          * [Hook](#hook)
          * [types](#types)
          * [Useful methods](#useful-methods)
+         * [Tokens](#tokens)
+           * [Access Token](#access-token)
+           * [Refresh Token](#refresh-token)
+           * [ID Tokens](#id-tokens)
       * [Contributing <g-emoji class="g-emoji" alias="cake" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f370.png">🍰</g-emoji>](#contributing-)
    * [Contributing](#contributing)
 
@@ -157,6 +161,26 @@ Hub.listen('auth', (data) => {
 ```
 
 ----------------------------------------------------------------
+
+### Tokens
+The two token types involved in OAuth 2 authentication are Access Token and Refresh Token.
+
+#### Access Token
+The access token is used to for authentication and authorization to get access to the resources from the resource server.
+
+#### Refresh Token
+The refresh token normally is sent together with the access token.
+
+The refresh token is used to get a new access token, when the old one expires. Instead of the normal grant type, the client provides the refresh token, and receives a new access token.
+
+Using refresh tokens allows for having a short expiration time for access token to the resource server, and a long expiration time for access to the authorization server.
+
+#### ID Tokens
+ID tokens are used in token-based authentication to cache user profile information and provide it to a client application, thereby providing better performance and experience. The application receives an ID token after a user successfully authenticates, then consumes the ID token and extracts user information from it, which it can then use to personalize the user's experience.
+
+For example, if you allow users to login with Google. Once a user logs in, use the ID token to gather information such as name and email address, which you can then use to auto-generate and send a personalized welcome email.
+
+ID Tokens should never be used to obtain direct access to APIs or to make authorization decisions.
 
 ```import { currentSession } from 'web-login'```
 
