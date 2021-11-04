@@ -38,13 +38,13 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
-    "@aws-amplify/auth": "^4.3.5",
-    "@aws-amplify/ui-components": "^1.7.8",
-    "amazon-cognito-identity-js": "^5.1.0",
-    "aws-amplify": "^4.2.9",
-    "axios": "^0.22.0",
+    "@aws-amplify/auth": "^4.3.12",
+    "@aws-amplify/ui-components": "^1.9.2",
+    "amazon-cognito-identity-js": "^5.2.2",
+    "aws-amplify": "^4.3.4",
+    "axios": "^0.24.0",
     "react-google-fonts-css2": "^1.0.2",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^5.0.3",
