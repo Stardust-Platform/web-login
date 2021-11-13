@@ -71,7 +71,7 @@ const useEmailSignin = (
         });
       }
     } else if (!isSingup) {
-      loginWithMagicLink();
+      await loginWithMagicLink();
     }
   };
 
