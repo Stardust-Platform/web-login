@@ -59,20 +59,18 @@ const useEmailSignin = (
       crypto.getRandomValues(array);
 
       try {
-        // console.log('process.env=', JSON.stringify(process.env, null, 2));
         if (!process.env.REACT_APP_GAME_ID || Number(process.env.REACT_APP_GAME_ID) < 1) {
           setEmailError({
             hasError: true, message: 'REACT_APP_GAME_ID must be a value > 0',
           });
           return;
         }
-        // console.log('REACT_APP_GAME_ID=', Number(process.env.REACT_APP_GAME_ID));
         await Auth.signUp({
           username: email,
           password: array.join('-'),
           attributes: {
             email,
-            'custom:gameId': process.env.REACT_APP_GAME_ID, // required to be a strig representation of a number in this api
+            'custom:gameId': process.env.REACT_APP_GAME_ID, // required to be a string representation of a number in this api
           },
         });
         cleanErrors();
