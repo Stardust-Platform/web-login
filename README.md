@@ -48,9 +48,11 @@ yarn add https://github.com/Stardust-Platform/web-login/web-login.git
 
 ```bash
 cd ~/web-login
-touch .env
-echo "REACT_APP_USER_POOL_ID=us-east-1_7HaN0s3vK" >> .env
+touch example/.env
+echo "REACT_APP_GAME_ID=0" >> example/.env
 ```
+
+NOTE: where the value of 0 needs to be replaced by your game's id number which is a value that is greater than 1
 
 ## Usage 💡
 
