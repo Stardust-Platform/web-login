@@ -52,7 +52,7 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
   const {
     loginWithMagicLink, emailRegex, cleanErrors, SigninSignupWithEmail,
   } = useEmailSignin({
-    email, setIsEmailLoading, setEmailError, isSingup, magicLinkRedirectUrl,
+    email, setIsEmailLoading, setEmailError, isSignUp: isSingup, magicLinkRedirectUrl,
   });
 
   const onSubmit = async (event: FormEvent): Promise<void> => {
