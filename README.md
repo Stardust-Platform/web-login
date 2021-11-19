@@ -36,10 +36,10 @@ Table of Contents
 ## Install 🐙
 
 ```
-npm install --save https://github.com/Stardust-Platform/web-login/web-login.git
+npm install --save https://github.com/Stardust-Platform/web-login.git
 ```
 ```
-yarn add https://github.com/Stardust-Platform/web-login/web-login.git
+yarn add https://github.com/Stardust-Platform/web-login.git
 ```
 
 ### Configure

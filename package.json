@@ -22,7 +22,7 @@
   "private": true,
   "scripts": {
     "start": "watch \"yarn build\" ./src",
-    "build": "rm -rf lib && yarn build:esm && yarn build:cjs",
+    "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "prepublishOnly": "yarn build",
