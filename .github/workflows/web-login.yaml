@@ -24,6 +24,10 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     timeout-minutes: 10
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.NODE_AUTH_TOKEN}}
+      REACT_APP_GAME_ID: ${{secrets.REACT_APP_GAME_ID}}
+      REACT_APP_USER_POOL_ID: ${{secrets.REACT_APP_USER_POOL_ID}}
 
     steps:
       - name: Checkout sources
