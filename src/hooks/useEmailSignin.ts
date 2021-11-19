@@ -16,13 +16,13 @@ type UseEmailSigninProps = {
   email: string;
   setIsEmailLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setEmailError: React.Dispatch<React.SetStateAction<EmailError>>;
-  isSingup: boolean;
+  isSignUp: boolean;
   magicLinkRedirectUrl?: string;
 };
 
 const useEmailSignin = (
   {
-    email, setIsEmailLoading, setEmailError, isSingup, magicLinkRedirectUrl,
+    email, setIsEmailLoading, setEmailError, isSignUp, magicLinkRedirectUrl,
   }: UseEmailSigninProps,
 ) => {
   const cleanErrors = () => {
@@ -52,19 +52,18 @@ const useEmailSignin = (
       });
       return;
     }
-
-    if (isSingup) {
+    if (!process.env.REACT_APP_GAME_ID || Number(process.env.REACT_APP_GAME_ID) < 1) {
+      setEmailError({
+        hasError: true, message: 'REACT_APP_GAME_ID must be a value > 0',
+      });
+      return;
+    }
+    if (isSignUp) {
       if (typeof window === 'undefined') return;
       const array = new Uint32Array(5);
       crypto.getRandomValues(array);
 
       try {
-        if (!process.env.REACT_APP_GAME_ID || Number(process.env.REACT_APP_GAME_ID) < 1) {
-          setEmailError({
-            hasError: true, message: 'REACT_APP_GAME_ID must be a value > 0',
-          });
-          return;
-        }
         await Auth.signUp({
           username: email,
           password: array.join('-'),
@@ -81,7 +80,7 @@ const useEmailSignin = (
           hasError: true, message: error.message,
         });
       }
-    } else if (!isSingup) {
+    } else if (!isSignUp) {
       await loginWithMagicLink();
     }
   };
