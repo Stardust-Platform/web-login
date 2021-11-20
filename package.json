@@ -1,6 +1,6 @@
 {
   "name": "@stardust-platform/web-login",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Stardust auth library in Typescript!",
   "readme": "README.md",
   "repository": "https://github.com/Stardust-Platform/web-login.git",
@@ -42,7 +42,6 @@
     "amazon-cognito-identity-js": "^5.2.2",
     "aws-amplify": "^4.3.4",
     "axios": "^0.24.0",
-    "dotenv": "^10.0.0",
     "react-google-fonts-css2": "^1.0.2",
     "styled-components": "^5.3.3"
   },

@@ -1,7 +1,6 @@
 // libs
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
-import * as dotenv from 'dotenv';
 
 // Interfaces
 import { EmailError } from '../screens/Signin/types';
@@ -10,7 +9,6 @@ const loginUrl = 'https://opzvmjx033.execute-api.us-east-1.amazonaws.com/v1/play
 
 const emailRegex = new RegExp(/^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
-dotenv.config();
 
 type UseEmailSigninProps = {
   email: string;
@@ -52,6 +50,7 @@ const useEmailSignin = (
       });
       return;
     }
+    // console.log('process.env=', process.env);
     if (!process.env.REACT_APP_GAME_ID || Number(process.env.REACT_APP_GAME_ID) < 1) {
       setEmailError({
         hasError: true, message: 'REACT_APP_GAME_ID must be a value > 0',
