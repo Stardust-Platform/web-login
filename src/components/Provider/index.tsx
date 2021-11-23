@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import { Auth, Hub } from 'aws-amplify';
 import GoogleFontsCss2Loader from 'react-google-fonts-css2';
+// import axios, { AxiosRequestConfig } from 'axios';
 // Screens
 import SigninScreen from '../../screens/Signin';
 // Components
@@ -21,29 +22,57 @@ import useAuthContext, { AuthContext } from './hooks';
 
 const checkUserLoggedIn = async () => {
   let user = {};
-  await Auth.currentAuthenticatedUser().then(
-    (data) => { user = data; },
-  );
+  await Auth.currentAuthenticatedUser()
+    .then(
+      (data) => {
+        user = data;
+      },
+    );
   return user;
 };
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
 export const AuthProvider: FC<ProviderProps> = (props) => {
-  const { isOpen, custom } = props;
+  const {
+    isOpen,
+    custom,
+  } = props;
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   const [snackBarStatus, setSnackBarStatus] = useState<SnackBarStatus>({
-    isOpen: false, hasError: false, message: '',
+    isOpen: false,
+    hasError: false,
+    message: '',
   });
 
-  const value = useMemo(() => ({ state, dispatch }), [state]);
+  const value = useMemo(() => ({
+    state,
+    dispatch,
+  }), [state]);
 
   const finishSignin = async (challenge: any) => {
     try {
       const [email, code] = challenge.split(',');
+      // MUST be here for TriggerPlayerPreTokenGeneration
+      Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
       const user = await Auth.signIn(email);
       await Auth.sendCustomChallengeAnswer(user, code);
       await Auth.currentSession();
+      // *******************************************************************************************
+      // const session = await Auth.currentSession();
+      // const idToken = session.getIdToken().getJwtToken();
+      // const url = 'https://bddtm60cbd.execute-api.us-east-1.amazonaws.com/v1/oauth2/token';
+      // const config: AxiosRequestConfig = {
+      //   method: 'get',
+      //   url,
+      //   headers: {
+      //     Authorization: `${idToken}`,
+      //     'Content-Type': 'application/json',
+      //   },
+      // };
+      // const response = await axios(config);
+      // console.log('response=', JSON.stringify(response, null, 2));
+      // *******************************************************************************************
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       dispatch({
         type: Types.handleSignin,
@@ -51,7 +80,9 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
       });
     } catch (e) {
       setSnackBarStatus({
-        isOpen: true, hasError: false, message: 'There was an error Singing in',
+        isOpen: true,
+        hasError: false,
+        message: 'There was an error Signing in',
       });
     }
   };
@@ -67,17 +98,21 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   Hub.listen('auth', async (data) => {
     switch (data.payload.event) {
       case 'signIn':
-        await Auth.currentAuthenticatedUser().then(
-          (user) => {
-            setSnackBarStatus({
-              isOpen: true, hasError: false, message: user.attributes.email,
-            });
-          },
-        );
+        await Auth.currentAuthenticatedUser()
+          .then(
+            (user) => {
+              setSnackBarStatus({
+                isOpen: true,
+                hasError: false,
+                message: user.attributes.email,
+              });
+            },
+          );
         break;
       case 'signIn_failure':
         setSnackBarStatus({
-          isOpen: true, hasError: true,
+          isOpen: true,
+          hasError: true,
         });
         break;
 
