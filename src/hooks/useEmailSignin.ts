@@ -9,7 +9,6 @@ const loginUrl = 'https://opzvmjx033.execute-api.us-east-1.amazonaws.com/v1/play
 
 const emailRegex = new RegExp(/^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
-
 type UseEmailSigninProps = {
   email: string;
   setIsEmailLoading: React.Dispatch<React.SetStateAction<boolean>>;
