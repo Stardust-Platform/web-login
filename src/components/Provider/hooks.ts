@@ -7,7 +7,9 @@ import { StateContext, Context, Types } from './types';
 export const AuthContext = createContext<Context | undefined>(undefined);
 
 const signOut = async (dispatchCallback: () => void) => {
-  await Auth.signOut().then(
+  const cognitoUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+  cognitoUser.signOut();
+  await Auth.signOut({ global: true }).then(
     () => dispatchCallback(),
     // eslint-disable-next-line no-console
     (error) => console.error(error),

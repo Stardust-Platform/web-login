@@ -1,6 +1,6 @@
 {
   "name": "web-login-ui",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Stardust auth example Web UI in ReactJS!",
   "readme": "README.md",
   "repository": "https://github.com/Stardust-Platform/web-login.git",
