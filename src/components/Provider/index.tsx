@@ -20,9 +20,10 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
+
 const checkUserLoggedIn = async () => {
   let user = {};
-  await Auth.currentAuthenticatedUser()
+  await Auth.currentAuthenticatedUser({ bypassCache: true })
     .then(
       (data) => {
         user = data;
@@ -30,6 +31,7 @@ const checkUserLoggedIn = async () => {
     );
   return user;
 };
+
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
@@ -95,10 +97,49 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
     }
   }, []);
 
+  const forceTokenRefresh = async () => {
+    try {
+      Auth.currentAuthenticatedUser({ bypassCache: true });
+      Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID }, Auth: { oauth: { responseType: 'code' } } });
+      const cognitoUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      // THIS IS THE MAGIC THAT ACTUALLY WORKS
+      // https://aws.amazon.com/blogs/mobile/aws-amplify-adds-support-for-custom-attributes-in-amazon-cognito-user-pools/
+      await Auth.updateUserAttributes(cognitoUser, {
+        'custom:gameId': process.env.REACT_APP_GAME_ID,
+      });
+      const { refreshToken } = cognitoUser.getSignInUserSession();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      cognitoUser.refreshSession(refreshToken, (err: any) => {
+        if (err) {
+          setSnackBarStatus({
+            isOpen: true,
+            hasError: true,
+            message: `There was an error refreshing the session token ${err}`,
+          });
+        } else {
+          setSnackBarStatus({
+            isOpen: true,
+            hasError: false,
+            message: 'session token refreshed',
+          });
+        }
+        // const { idToken, refreshToken, accessToken } = session;
+        // do whatever you want to do now :)
+      });
+    } catch (err) {
+      setSnackBarStatus({
+        isOpen: true,
+        hasError: true,
+        message: `There was an error refreshing the session token ${err}`,
+      });
+    }
+  };
+
   Hub.listen('auth', async (data) => {
     switch (data.payload.event) {
       case 'signIn':
-        await Auth.currentAuthenticatedUser()
+        await forceTokenRefresh();
+        await Auth.currentAuthenticatedUser({ bypassCache: true })
           .then(
             (user) => {
               setSnackBarStatus({
