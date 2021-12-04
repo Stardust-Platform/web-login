@@ -20,7 +20,6 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
-
 const checkUserLoggedIn = async () => {
   let user = {};
   await Auth.currentAuthenticatedUser({ bypassCache: true })
@@ -31,7 +30,6 @@ const checkUserLoggedIn = async () => {
     );
   return user;
 };
-
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
