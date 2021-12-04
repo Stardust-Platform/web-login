@@ -7,6 +7,8 @@ import { StateContext, Context, Types } from './types';
 export const AuthContext = createContext<Context | undefined>(undefined);
 
 const signOut = async (dispatchCallback: () => void) => {
+  // More magic to invalidate tokens
+  // https://stackoverflow.com/questions/37442973/cognito-user-pool-how-to-refresh-access-token-using-refresh-token
   const cognitoUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
   cognitoUser.signOut();
   await Auth.signOut({ global: true }).then(
