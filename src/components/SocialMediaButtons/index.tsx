@@ -5,46 +5,10 @@ import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 // Components
 import Icon, { IconsEnum } from '../Icons';
 // Styles
-import { SocialMediaButton, IconContainer } from './styles';
+import { SocialMediaButton, IconContainer, Disable } from './styles';
 
 const SocialMediaButtons = () => (
   <>
-    <SocialMediaButton
-      type="button"
-      onClick={() => Auth.federatedSignIn({
-        provider: CognitoHostedUIIdentityProvider.Google,
-      })}
-    >
-      <IconContainer>
-        <Icon icon={IconsEnum.Google} />
-      </IconContainer>
-      Continue with Google
-    </SocialMediaButton>
-
-    <SocialMediaButton
-      type="button"
-      onClick={() => Auth.federatedSignIn({
-        provider: CognitoHostedUIIdentityProvider.Facebook,
-      })}
-    >
-      <IconContainer>
-        <Icon icon={IconsEnum.Facebook} />
-      </IconContainer>
-      Continue with Facebook
-    </SocialMediaButton>
-
-    <SocialMediaButton
-      type="button"
-      onClick={() => Auth.federatedSignIn({
-        provider: CognitoHostedUIIdentityProvider.Apple,
-      })}
-    >
-      <IconContainer>
-        <Icon icon={IconsEnum.Apple} />
-      </IconContainer>
-      Continue with Apple
-    </SocialMediaButton>
-
     <SocialMediaButton
       type="button"
       onClick={() => Auth.federatedSignIn({
@@ -56,6 +20,35 @@ const SocialMediaButtons = () => (
       </IconContainer>
       Continue with Discord
     </SocialMediaButton>
+
+    <Disable>
+      <SocialMediaButton
+        type="button"
+        onClick={() => Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Facebook,
+        })}
+      >
+        <IconContainer>
+          <Icon icon={IconsEnum.Facebook} />
+        </IconContainer>
+        Continue with Facebook
+      </SocialMediaButton>
+    </Disable>
+
+    <Disable>
+      <SocialMediaButton
+        type="button"
+        onClick={() => Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Apple,
+        })}
+      >
+        <IconContainer>
+          <Icon icon={IconsEnum.Apple} />
+        </IconContainer>
+        Continue with Apple
+      </SocialMediaButton>
+    </Disable>
+
   </>
 );
 

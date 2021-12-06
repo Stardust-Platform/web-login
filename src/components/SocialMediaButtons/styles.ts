@@ -31,6 +31,12 @@ export const SocialMediaButton = styled.button`
   }
 `;
 
+export const Disable = styled.div`
+  opacity: 0.5;
+  width: 100%;
+  pointer-events: none;
+`;
+
 export const IconContainer = styled.div`
   display: flex;
   align-items: center;
