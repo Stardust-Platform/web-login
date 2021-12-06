@@ -9,6 +9,19 @@ import { SocialMediaButton, IconContainer, Disable } from './styles';
 
 const SocialMediaButtons = () => (
   <>
+
+    <SocialMediaButton
+      type="button"
+      onClick={() => Auth.federatedSignIn({
+        provider: CognitoHostedUIIdentityProvider.Google,
+      })}
+    >
+      <IconContainer>
+        <Icon icon={IconsEnum.Google} />
+      </IconContainer>
+      Continue with Google
+    </SocialMediaButton>
+
     <SocialMediaButton
       type="button"
       onClick={() => Auth.federatedSignIn({
