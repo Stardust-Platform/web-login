@@ -9,6 +9,7 @@ import { SocialMediaButton, IconContainer, Disable } from './styles';
 
 const SocialMediaButtons = () => (
   <>
+
     <SocialMediaButton
       type="button"
       onClick={() => Auth.federatedSignIn({
@@ -34,31 +35,31 @@ const SocialMediaButtons = () => (
     </SocialMediaButton>
 
     <Disable>
-    <SocialMediaButton
-      type="button"
-      onClick={() => Auth.federatedSignIn({
-        provider: CognitoHostedUIIdentityProvider.Facebook,
-      })}
-    >
-      <IconContainer>
-        <Icon icon={IconsEnum.Facebook} />
-      </IconContainer>
-      Continue with Facebook
-    </SocialMediaButton>
+      <SocialMediaButton
+        type="button"
+        onClick={() => Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Facebook,
+        })}
+      >
+        <IconContainer>
+          <Icon icon={IconsEnum.Facebook} />
+        </IconContainer>
+        Continue with Facebook
+      </SocialMediaButton>
     </Disable>
 
     <Disable>
-    <SocialMediaButton
-      type="button"
-      onClick={() => Auth.federatedSignIn({
-        provider: CognitoHostedUIIdentityProvider.Apple,
-      })}
-    >
-      <IconContainer>
-        <Icon icon={IconsEnum.Apple} />
-      </IconContainer>
-      Continue with Apple
-    </SocialMediaButton>
+      <SocialMediaButton
+        type="button"
+        onClick={() => Auth.federatedSignIn({
+          provider: CognitoHostedUIIdentityProvider.Apple,
+        })}
+      >
+        <IconContainer>
+          <Icon icon={IconsEnum.Apple} />
+        </IconContainer>
+        Continue with Apple
+      </SocialMediaButton>
     </Disable>
 
   </>
