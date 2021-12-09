@@ -24,7 +24,7 @@ const checkUserLoggedIn = async (authContext: any) => {
   const { dispatch } = authContext;
   let user = {};
   dispatch({ type: Types.handleSessionLoading, payload: true });
-  await Auth.currentAuthenticatedUser({ bypassCache: true })
+  await Auth.currentAuthenticatedUser()
     .then((data) => {
       user = data;
       dispatch({ type: Types.handleSessionLoading, payload: false });
@@ -86,9 +86,9 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   const forceTokenRefresh = async () => {
     try {
-      await Auth.currentAuthenticatedUser({ bypassCache: true });
+      await Auth.currentAuthenticatedUser();
       Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID }, Auth: { oauth: { responseType: 'code' } } });
-      const cognitoUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      const cognitoUser = await Auth.currentAuthenticatedUser();
       // THIS IS THE MAGIC THAT ACTUALLY WORKS
       // https://aws.amazon.com/blogs/mobile/aws-amplify-adds-support-for-custom-attributes-in-amazon-cognito-user-pools/
       await Auth.updateUserAttributes(cognitoUser, {
@@ -126,7 +126,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
     switch (data.payload.event) {
       case 'signIn':
         await forceTokenRefresh();
-        await Auth.currentAuthenticatedUser({ bypassCache: true })
+        await Auth.currentAuthenticatedUser()
           .then(
             (user) => {
               setSnackBarStatus({
