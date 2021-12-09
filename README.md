@@ -7,13 +7,13 @@ Stardust Web Login Widget
 Table of Contents
 =================
 
-
 * [Stardust Web Login Widget](#stardust-web-login-widget)
 * [Table of Contents](#table-of-contents)
   * [Features <g-emoji class="g-emoji" alias="sparkles" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2728.png">✨</g-emoji>](#features-)
-  * [Install <g-emoji class="g-emoji" alias="octopus" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f419.png">🐙</g-emoji>](#install-)
     * [Configure](#configure)
-      * [NextJS support](#nextjs-support)
+    * [To optionally build and run project locally](#to-optionally-build-and-run-project-locally)
+  * [Install into your project's package.json <g-emoji class="g-emoji" alias="octopus" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f419.png">🐙</g-emoji>](#install-into-your-projects-packagejson-)
+    * [Optional NextJS support](#optional-nextjs-support)
   * [Usage <g-emoji class="g-emoji" alias="bulb" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png">💡</g-emoji>](#usage-)
   * [Examples <g-emoji class="g-emoji" alias="crayon" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f58d.png">🖍</g-emoji>](#examples-)
   * [Documentation <g-emoji class="g-emoji" alias="page_facing_up" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c4.png">📄</g-emoji>](#documentation-)
@@ -28,21 +28,11 @@ Table of Contents
   * [Contributing <g-emoji class="g-emoji" alias="cake" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f370.png">🍰</g-emoji>](#contributing-)
 * [Contributing](#contributing)
 
-
 ## Features ✨
 
 * Sign in with social accounts
 * Sign up with social accounts
 * ...
-
-## Install 🐙
-
-```
-npm install --save https://github.com/Stardust-Platform/web-login.git
-```
-```
-yarn add https://github.com/Stardust-Platform/web-login.git
-```
 
 ### Configure
 
@@ -51,14 +41,35 @@ yarn add https://github.com/Stardust-Platform/web-login.git
 ```bash
 cd ~/web-login
 touch example/.env
-echo "REACT_APP_GAME_ID=0" >> example/.env
+echo REACT_APP_GAME_ID=0 >> example/.env
 ```
 
 NOTE: where the value of 0 needs to be replaced by your game's id number which is a value that is greater than 1
 
 To expose the environment variable in his nextjs example program was: To add environment variables to the JavaScript bundle, open next.config.js and add the env config:
 
-#### NextJS support
+### To optionally build and run project locally
+
+```bash
+cd ~/web-login
+yarn install && yarn run build
+cd ~/web-login/example
+yarn install && yarn run build && yarn start
+```
+The start command will launch your default browser on your computer
+
+example:
+
+```bash
+open http://localhost:3000
+```
+## Install into your project's package.json 🐙
+
+```
+yarn add https://github.com/Stardust-Platform/web-login.git
+```
+
+### Optional NextJS support
 
 ```module.exports = {
   env: {
