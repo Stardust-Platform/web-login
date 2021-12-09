@@ -2,6 +2,7 @@ import { AnchorHTMLAttributes } from 'react';
 
 export type SigninProps = {
   closeModal?: () => void;
+  authContext?: any;
   custom?: {
     logoUrl?: string;
     magicLinkRedirectUrl?: string;

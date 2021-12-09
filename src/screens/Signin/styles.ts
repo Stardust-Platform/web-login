@@ -12,10 +12,10 @@ export const Container = styled.div`
 
 export const Backdrop = styled.div`
   position: fixed;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: #2a2a2a;
   opacity: 0.25;
   z-index: 999;
@@ -37,7 +37,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 0;
   margin-bottom: 1rem;
 `;
 
@@ -83,7 +83,7 @@ export const EmailContainer = styled.div<EmailContainerProps>`
 `;
 
 export const ErrorMessage = styled.div`
-  align-self: start; 
+  align-self: start;
   font-family: 'DM Sans';
   font-weight: bold;
   font-size: 14px;
@@ -105,7 +105,7 @@ export const EmailInput = styled.input`
   ::placeholder {
     color: #CACACA;
   }
-  
+
   :focus {
     border: none;
     outline: none;

@@ -20,14 +20,17 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
-const checkUserLoggedIn = async () => {
+const checkUserLoggedIn = async (authContext: any) => {
+  const { dispatch } = authContext;
   let user = {};
-  await Auth.currentAuthenticatedUser({ bypassCache: true })
-    .then(
-      (data) => {
-        user = data;
-      },
-    );
+  dispatch({ type: Types.handleSessionLoading, payload: true });
+  await Auth.currentAuthenticatedUser()
+    .then((data) => {
+      user = data;
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+    }).catch(() => {
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+    });
   return user;
 };
 
@@ -58,21 +61,6 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
       const user = await Auth.signIn(email);
       await Auth.sendCustomChallengeAnswer(user, code);
       await Auth.currentSession();
-      // *******************************************************************************************
-      // const session = await Auth.currentSession();
-      // const idToken = session.getIdToken().getJwtToken();
-      // const url = 'https://bddtm60cbd.execute-api.us-east-1.amazonaws.com/v1/oauth2/token';
-      // const config: AxiosRequestConfig = {
-      //   method: 'get',
-      //   url,
-      //   headers: {
-      //     Authorization: `${idToken}`,
-      //     'Content-Type': 'application/json',
-      //   },
-      // };
-      // const response = await axios(config);
-      // console.log('response=', JSON.stringify(response, null, 2));
-      // *******************************************************************************************
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       dispatch({
         type: Types.handleSignin,
@@ -92,14 +80,15 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
     const challenge = params.get('challenge');
     if (challenge) {
       finishSignin(challenge);
+      dispatch({ type: Types.handleSessionLoading, payload: true });
     }
   }, []);
 
   const forceTokenRefresh = async () => {
     try {
-      Auth.currentAuthenticatedUser({ bypassCache: true });
+      await Auth.currentAuthenticatedUser();
       Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID }, Auth: { oauth: { responseType: 'code' } } });
-      const cognitoUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      const cognitoUser = await Auth.currentAuthenticatedUser();
       // THIS IS THE MAGIC THAT ACTUALLY WORKS
       // https://aws.amazon.com/blogs/mobile/aws-amplify-adds-support-for-custom-attributes-in-amazon-cognito-user-pools/
       await Auth.updateUserAttributes(cognitoUser, {
@@ -137,7 +126,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
     switch (data.payload.event) {
       case 'signIn':
         await forceTokenRefresh();
-        await Auth.currentAuthenticatedUser({ bypassCache: true })
+        await Auth.currentAuthenticatedUser()
           .then(
             (user) => {
               setSnackBarStatus({
@@ -169,7 +158,7 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
 
   useEffect(() => {
     (async () => {
-      const user = await checkUserLoggedIn();
+      const user = await checkUserLoggedIn(value);
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       dispatch({
         type: Types.handleSignin,
@@ -179,6 +168,10 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   }, []);
 
   useEffect(() => {
+    // const params = window.location.search;
+    // if (params.startsWith('?challenge=')) {
+    //   dispatch({ type: Types.handleSessionLoading, payload: true });
+    // }
     dispatch({
       type: Types.handleOpenModal,
       payload: isOpen ?? false,
@@ -199,7 +192,8 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
         message={snackBarStatus.message}
       />
       {state.isOpen && (
-        <SigninScreen closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
+        // eslint-disable-next-line max-len
+        <SigninScreen authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
     </>
   );
 };

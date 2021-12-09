@@ -6,7 +6,7 @@ export const Notification = styled.div`
   right: 55px;
   top: 24px;
   background: #FAFAFA;
-  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
   border-radius: 24px;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ export const Notification = styled.div`
   align-items: center;
   padding: 16px;
   z-index: 10000;
- 
+
 
   /* -webkit-animation: notify 3s ease-in-out infinite;
   animation: notify 3s ease-in-out infinite; */

@@ -1,44 +1,47 @@
 // libs
 import React, {
-  memo, FC, useState, FormEvent,
+  FC, memo, useState,
 } from 'react';
 // Components
 import EmailLoading from '../../components/EmailLoading';
 import SocialMediaButtons from '../../components/SocialMediaButtons';
 import Icon, { IconsEnum } from '../../components/Icons';
 // Hooks
+// eslint-disable-next-line import/no-cycle
 import useEmailSignin from '../../hooks/useEmailSignin';
 // Styles
 import {
+  BackArrowIconContainer,
+  Backdrop,
+  CloseIconContainer,
   Container,
+  ContinueButton,
+  EmailContainer,
+  EmailInput,
+  ErrorMessage,
   Form,
   HeaderContainer,
-  BackArrowIconContainer,
   LogoImage,
-  CloseIconContainer,
-  Text,
-  EmailContainer,
-  ErrorMessage,
-  EmailInput,
-  ContinueButton,
-  SwitchModeText,
   OptionToSocialText,
   SeparatorLine,
-  TermsText,
   StrongUnderlineText,
-  Backdrop,
+  SwitchModeText,
+  TermsText,
+  Text,
 } from './styles';
 // Interfaces
 import { EmailError, SigninProps } from './types';
+// eslint-disable-next-line import/no-cycle
+import { Types } from '../../components/Provider/types';
 
-const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
+const Signin: FC<SigninProps> = ({ closeModal, custom, authContext }) => {
   const [isSingup, setIsSingup] = useState(false);
   const [email, setEmail] = useState('');
+  const { dispatch } = authContext;
   const [isEmailLoading, setIsEmailLoading] = useState(false);
   const [emailError, setEmailError] = useState<EmailError>({
     hasError: false, message: '',
   });
-
   const {
     logoUrl,
     magicLinkRedirectUrl,
@@ -55,9 +58,16 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
     email, setIsEmailLoading, setEmailError, isSignUp: isSingup, magicLinkRedirectUrl,
   });
 
-  const onSubmit = async (event: FormEvent): Promise<void> => {
-    event.preventDefault();
-    SigninSignupWithEmail();
+  const onSubmit = async (): Promise<void> => {
+    dispatch({ type: Types.handleSessionLoading, payload: true });
+    await SigninSignupWithEmail(authContext);
+  };
+
+  const loginWithMagic = async () => {
+    dispatch({ type: Types.handleSessionLoading, payload: true });
+    await loginWithMagicLink().catch(() => {
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+    });
   };
 
   return (
@@ -82,7 +92,8 @@ const Signin: FC<SigninProps> = ({ closeModal, custom }) => {
           {
             isEmailLoading
               ? (
-                <EmailLoading email={email} resendEmail={loginWithMagicLink} />
+                // eslint-disable-next-line max-len
+                <EmailLoading email={email} resendEmail={loginWithMagic} />
               )
               : (
                 <>

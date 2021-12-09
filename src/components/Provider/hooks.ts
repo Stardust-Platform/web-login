@@ -2,6 +2,7 @@
 import { createContext, useContext } from 'react';
 import { Auth } from 'aws-amplify';
 // Interfaces
+// eslint-disable-next-line import/no-cycle
 import { StateContext, Context, Types } from './types';
 
 export const AuthContext = createContext<Context | undefined>(undefined);
@@ -9,7 +10,7 @@ export const AuthContext = createContext<Context | undefined>(undefined);
 const signOut = async (dispatchCallback: () => void) => {
   // More magic to invalidate tokens
   // https://stackoverflow.com/questions/37442973/cognito-user-pool-how-to-refresh-access-token-using-refresh-token
-  const cognitoUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+  const cognitoUser = await Auth.currentAuthenticatedUser();
   cognitoUser.signOut();
   await Auth.signOut({ global: true }).then(
     () => dispatchCallback(),
@@ -32,7 +33,10 @@ const useAuthContext = (): StateContext => {
   };
 
   const handleSignOut = () => {
-    signOut(() => dispatch({ type: Types.handleSignOut }));
+    dispatch({ type: Types.handleSessionLoading, payload: true });
+    signOut(() => dispatch({ type: Types.handleSignOut })).then(() => {
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+    });
   };
 
   return {
