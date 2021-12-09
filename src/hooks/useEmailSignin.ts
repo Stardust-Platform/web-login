@@ -4,6 +4,8 @@ import { Auth } from 'aws-amplify';
 
 // Interfaces
 import { EmailError } from '../screens/Signin/types';
+// eslint-disable-next-line import/no-cycle
+import { Types } from '../components/Provider/types';
 
 const loginUrl = 'https://opzvmjx033.execute-api.us-east-1.amazonaws.com/v1/player/login';
 
@@ -35,18 +37,20 @@ const useEmailSignin = (
       });
       cleanErrors();
       setIsEmailLoading(true);
-    } catch {
+    } catch (err: any) {
       setEmailError({
-        hasError: false, message: 'There was an error. Try again.',
+        hasError: false, message: err.message,
       });
     }
   };
 
-  const SigninSignupWithEmail = async () => {
+  const SigninSignupWithEmail = async (authContext: any) => {
+    const { dispatch } = authContext;
     if (email.length === 0 || !(emailRegex.test(email))) {
       setEmailError({
         hasError: true, message: 'Enter a valid email.',
       });
+      dispatch({ type: Types.handleSessionLoading, payload: false });
       return;
     }
     // console.log('process.env=', process.env);
@@ -72,7 +76,7 @@ const useEmailSignin = (
         });
         cleanErrors();
         setIsEmailLoading(true);
-        loginWithMagicLink();
+        await loginWithMagicLink();
       } catch (error: any) {
         setEmailError({
           hasError: true, message: error.message,

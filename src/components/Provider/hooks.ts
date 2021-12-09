@@ -2,6 +2,7 @@
 import { createContext, useContext } from 'react';
 import { Auth } from 'aws-amplify';
 // Interfaces
+// eslint-disable-next-line import/no-cycle
 import { StateContext, Context, Types } from './types';
 
 export const AuthContext = createContext<Context | undefined>(undefined);
@@ -32,7 +33,10 @@ const useAuthContext = (): StateContext => {
   };
 
   const handleSignOut = () => {
-    signOut(() => dispatch({ type: Types.handleSignOut }));
+    dispatch({ type: Types.handleSessionLoading, payload: true });
+    signOut(() => dispatch({ type: Types.handleSignOut })).then(() => {
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+    });
   };
 
   return {
