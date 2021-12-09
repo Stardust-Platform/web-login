@@ -80,7 +80,6 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
     const challenge = params.get('challenge');
     if (challenge) {
       finishSignin(challenge);
-      dispatch({ type: Types.handleSessionLoading, payload: true });
     }
   }, []);
 
@@ -168,10 +167,10 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    // const params = window.location.search;
-    // if (params.startsWith('?challenge=')) {
-    //   dispatch({ type: Types.handleSessionLoading, payload: true });
-    // }
+    const params = window.location.search;
+    if (params.startsWith('?challenge=')) {
+      dispatch({ type: Types.handleSessionLoading, payload: true });
+    }
     dispatch({
       type: Types.handleOpenModal,
       payload: isOpen ?? false,
