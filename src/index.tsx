@@ -1,6 +1,7 @@
 import Amplify, { Hub, Auth } from 'aws-amplify';
 import { CognitoUserInterface } from '@aws-amplify/ui-components';
 // Config
+import { CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';
 import awsconfig from './aws-exports';
 // Provider
 import { AuthProvider, useAuthContext, ProviderProps } from './components/Provider';
@@ -24,7 +25,12 @@ const newAWSConfig = {
 
 Amplify.configure(newAWSConfig);
 
-const { currentSession, currentUserInfo, currentAuthenticatedUser } = Auth;
+const currentSession = async () => Auth.currentSession();
+
+const currentUserInfo = async () => Auth.currentUserInfo();
+
+// eslint-disable-next-line max-len
+const currentAuthenticatedUser = async (params?: CurrentUserOpts | undefined) => Auth.currentAuthenticatedUser(params);
 
 export {
   AuthProvider,
