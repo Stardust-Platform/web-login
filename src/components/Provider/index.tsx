@@ -102,12 +102,6 @@ export const AuthProvider: FC<ProviderProps> = (props) => {
             hasError: true,
             message: `There was an error refreshing the session token ${err}`,
           });
-        } else {
-          setSnackBarStatus({
-            isOpen: true,
-            hasError: false,
-            message: 'session token refreshed',
-          });
         }
         // const { idToken, refreshToken, accessToken } = session;
         // do whatever you want to do now :)
