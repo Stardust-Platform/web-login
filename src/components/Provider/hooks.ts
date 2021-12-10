@@ -17,7 +17,6 @@ const signOut = async (dispatchCallback: () => void) => {
     // eslint-disable-next-line no-console
     (error) => console.error(error),
   );
-
 };
 
 const useAuthContext = (): StateContext => {
