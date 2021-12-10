@@ -1,24 +1,23 @@
 {
   "name": "@stardust-platform/web-login",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Stardust auth library in Typescript!",
-  "readme": "README.md",
-  "repository": "https://github.com/Stardust-Platform/web-login.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stardust-Platform/web-login.git"
+  },
   "bugs": {
-    "url" : "https://github.com/Stardust-Platform/web-login/issues",
-    "email" : "support@stardust.gg"
+    "url": "https://github.com/Stardust-Platform/web-login/issues",
+    "email": "support@stardust.gg"
   },
   "author": "STARDUST CARDS CORPORATION",
   "contributors": [
-    {
-    "name": "Opticpwr",
-    "url": "https://opticpwr.com"
-    }
+    "Opticpwr (https://opticpwr.com)"
   ],
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
-  "license": "GPL-3",
+  "license": "GPL-3.0-only",
   "scripts": {
     "start": "watch \"yarn build\" ./src",
     "build": "yarn build:esm && yarn build:cjs",
@@ -95,5 +94,13 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  }
+  },
+  "homepage": "https://github.com/Stardust-Platform/web-login#readme",
+  "directories": {
+    "example": "example",
+    "lib": "lib"
+  },
+  "keywords": [
+    "SSO"
+  ]
 }
