@@ -34,7 +34,8 @@ import { EmailError, SigninProps } from './types';
 // eslint-disable-next-line import/no-cycle
 import { Types } from '../../components/Provider/types';
 
-const Signin: FC<SigninProps> = ({ closeModal, custom, authContext }) => {
+// eslint-disable-next-line func-names
+const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
   const [isSingup, setIsSingup] = useState(false);
   const [email, setEmail] = useState('');
   const { dispatch } = authContext;

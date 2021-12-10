@@ -36,7 +36,8 @@ const checkUserLoggedIn = async (authContext: any) => {
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
-export const AuthProvider: FC<ProviderProps> = (props) => {
+// eslint-disable-next-line func-names
+export const AuthProvider: FC<ProviderProps> = function (props) {
   const {
     isOpen,
     custom,

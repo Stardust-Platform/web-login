@@ -9,7 +9,8 @@ import { NotificationsProps } from './types';
 // Components
 import Icon, { IconsEnum } from '../Icons';
 
-const Notifications: FC<NotificationsProps> = (props) => {
+// eslint-disable-next-line func-names
+const Notifications: FC<NotificationsProps> = function (props) {
   const {
     closeNotification, isOpen, hasError, message,
   } = props;
@@ -23,30 +24,28 @@ const Notifications: FC<NotificationsProps> = (props) => {
   if (!isOpen) return null;
 
   return (
-    <>
-      <Notification>
-        <TextContainer>
-          { !hasError
-            ? (
-              <>
-                <Icon icon={IconsEnum.Success} />
-                <Text>Sucessfully Logged In</Text>
-              </>
-            ) : (
-              <>
-                <Icon icon={IconsEnum.Error} />
-                <Text>Error Logging in. Please try again.</Text>
-              </>
-            )}
+    <Notification>
+      <TextContainer>
+        { !hasError
+          ? (
+            <>
+              <Icon icon={IconsEnum.Success} />
+              <Text>Sucessfully Logged In</Text>
+            </>
+          ) : (
+            <>
+              <Icon icon={IconsEnum.Error} />
+              <Text>Error Logging in. Please try again.</Text>
+            </>
+          )}
 
-          <CloseIconContainer onClick={closeNotification}>
-            <Icon icon={IconsEnum.Close} />
-          </CloseIconContainer>
-        </TextContainer>
+        <CloseIconContainer onClick={closeNotification}>
+          <Icon icon={IconsEnum.Close} />
+        </CloseIconContainer>
+      </TextContainer>
 
-        <NotificationMessage>{message}</NotificationMessage>
-      </Notification>
-    </>
+      <NotificationMessage>{message}</NotificationMessage>
+    </Notification>
   );
 };
 

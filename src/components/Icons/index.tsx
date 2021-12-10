@@ -12,7 +12,8 @@ import SuccessIconSvg from './SuccessIcon';
 import ErrorIconSvg from './ErrorIcon';
 import BackArrowIcon from './BackArrowIcon';
 
-const Icon: FC<IconProps> = ({ icon }) => {
+// eslint-disable-next-line func-names
+const Icon: FC<IconProps> = function ({ icon }) {
   switch (icon) {
     case IconsEnum.Google:
       return GoogleSvg;
