@@ -1,10 +1,10 @@
 {
   "name": "web-login-ui",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "Stardust auth example Web UI in ReactJS!",
   "readme": "README.md",
   "repository": "https://github.com/Stardust-Platform/web-login.git",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "author": "STARDUST CARDS CORPORATION",
   "contributors": [
     {
@@ -19,21 +19,21 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.0.2",
-    "@types/node": "^16.11.6",
-    "@types/react": "^17.0.34",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
+    "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.4.4",
-    "@aws-amplify/auth": "^4.3.12",
-    "@aws-amplify/ui-components": "^1.9.2",
-    "amazon-cognito-identity-js": "^5.2.2",
-    "aws-amplify": "^4.3.4",
+    "typescript": "^4.5.3",
+    "@aws-amplify/auth": "^4.3.18",
+    "@aws-amplify/ui-components": "^1.9.6",
+    "amazon-cognito-identity-js": "^5.2.3",
+    "aws-amplify": "^4.3.10",
     "styled-components": "^5.3.3",
     "web-login": "link:.."
   },
