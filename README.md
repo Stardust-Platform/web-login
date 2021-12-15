@@ -38,6 +38,8 @@ Table of Contents
 
 * [Generate a new, dedicated API Key from the Stardust Dashboard](https://dashboard.stardust.gg/)
 
+**NOTE As of 2021-12-15 NodeJS v 17 is not supported! Tested with NodeJS version 16 and 14v on all operating systems.**
+
 ```bash
 cd ~/web-login
 touch example/.env
