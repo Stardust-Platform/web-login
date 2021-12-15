@@ -47,19 +47,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
--## Maintainers 👷
-
--<table>
--  <tr>
--    <td align="center"><a href="https://github.com/SantiagoMolinaOrozco"><img src="https://avatars.githubusercontent.com/u/17752391?v=4" width="100px;" alt="SantiagoMolinaOrozco"/><br /><sub><b>Santiago Molina Orozco</b></sub></a><br /><a href="#" title="Code">💻</a></td>
--    <td align="center"><a href="https://github.com/dagibu301"><img src="https://avatars.githubusercontent.com/u/47512198?v=4" width="100px;" alt="DavidGiraldo"/><br /><sub><b>David Giraldo</b></sub></a><br /><a href="#" title="Code">💻</a></td>
--  </tr>
--</table>
-
-
-<!-- ## API 👩<200d>💻
-You have a small project or you'll like to share the API of your project ? This is where it's happen. -->
-
 ## Contributing 🍰
 Please make sure to read the [Contributing Guide](https://github.com/auth0/open-source-template/blob/master/GENERAL-CONTRIBUTING.md) before making a pull request.
 

@@ -41,6 +41,7 @@ Table of Contents
 ```bash
 cd ~/web-login
 touch example/.env
+echo SKIP_PREFLIGHT_CHECK=true >> example/.env
 echo REACT_APP_GAME_ID=0 >> example/.env
 ```
 
