@@ -1,6 +1,6 @@
 {
   "name": "@stardust-platform/web-login",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Stardust auth library in Typescript!",
   "repository": {
     "type": "git",
