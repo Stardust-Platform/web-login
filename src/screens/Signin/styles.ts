@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { EmailContainerProps } from './types';
 
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
