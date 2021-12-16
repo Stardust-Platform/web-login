@@ -38,7 +38,7 @@ Table of Contents
 
 * [Generate a new, dedicated API Key from the Stardust Dashboard](https://dashboard.stardust.gg/)
 
-**NOTE As of 2021-12-15 NodeJS v 17 is not supported! Tested with NodeJS version 16 and 14v on all operating systems.**
+**NOTE As of 2021-12-15 NodeJS v17 is not supported! Tested with NodeJS version 16 and 14 on all operating systems.**
 
 ```bash
 cd ~/web-login
@@ -224,7 +224,7 @@ ID Tokens should never be used to obtain direct access to APIs or to make author
 
 ```import { currentSession } from 'web-login'```
 
-The Auth.currentSession() method retrieves the access, id, and refresh tokens.
+The Amplify method currentSession() retrieves the access, id, and refresh tokens.
 
 Returns: Promise\<CognitoUserSession>
 
@@ -274,7 +274,7 @@ Example:
 
 ```import { currentUserInfo } from 'web-login'```
 
-The Auth.currentUserInfo() method retrieves the User Attributes for the current user.
+The Amplify method currentUserInfo() retrieves the User Attributes for the current user.
 
 Returns: Promise/<any>
 
@@ -295,7 +295,7 @@ Example:
 
 ```import { currentAuthenticatedUser } from 'web-login'```
 
-The Auth.currentAuthenticatedUser() method returns a combination of the result of the Auth.currentUserInfo() method, the result of the Auth.currentSession() method, and some extra information.
+The Amplify method currentAuthenticatedUser() returns a combination of the result of the Auth.currentUserInfo() method, the result of the Auth.currentSession() method, and some extra information.
 
 Returns: Promise/<CognitoUserSession | any>
 
