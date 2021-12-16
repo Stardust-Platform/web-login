@@ -4,7 +4,10 @@ import { useAuthContext } from 'web-login';
 const Main = () => {
   const { user, handleOpenModal, isOpen, handleSignOut, isSessionLoading } = useAuthContext();
 
-  console.log(isSessionLoading)
+  const logoutHandler = () => {
+    handleSignOut
+    window.location.replace('/')
+  }
 
   return (
     <div>
@@ -13,7 +16,7 @@ const Main = () => {
       <button type="button" onClick={() => handleOpenModal(!isOpen)}>
         Toggle login
       </button>
-      <button type="button" onClick={handleSignOut}>
+      <button type="button" onClick={logoutHandler}>
         Sign out
       </button>
     </div>
