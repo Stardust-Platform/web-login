@@ -5,7 +5,7 @@ const Main = () => {
   const { user, handleOpenModal, isOpen, handleSignOut, isSessionLoading } = useAuthContext();
 
   const logoutHandler = () => {
-    handleSignOut
+    handleSignOut()
     window.location.replace('/')
   }
 
