@@ -47,7 +47,7 @@
     "@aws-amplify/api-graphql" "2.2.18"
     "@aws-amplify/api-rest" "2.0.29"
 
-"@aws-amplify/auth@4.3.19", "@aws-amplify/auth@^4.3.18":
+"@aws-amplify/auth@4.3.19", "@aws-amplify/auth@^4.3.19":
   version "4.3.19"
   resolved "https://registry.yarnpkg.com/@aws-amplify/auth/-/auth-4.3.19.tgz#76ad277fabef91ef22055538b25cb5c16b3d3e00"
   integrity sha512-FM23lwDtIc8ppeL1Hal5Rb4kVBC3JbqPbdhpiwKV5PAbXCWJwxMBTv52faq2yLc0Dn7eeJqiYxlh90Xq8fcYbw==
@@ -4518,7 +4518,7 @@ autoprefixer@^9.6.1:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-aws-amplify@^4.3.10:
+aws-amplify@^4.3.11:
   version "4.3.11"
   resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-4.3.11.tgz#f882866eab4f58627bc1fe3148fc2dffb62cc4b4"
   integrity sha512-pkMlo86FEKBRKGdUZH2DwE+Hq8G5m9Wp2r2HpXu2zdPlzpjjGnsAWyaaoRgQ29NZKpoqvWaIZu8LkbaucIAZZw==
