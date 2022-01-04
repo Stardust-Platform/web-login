@@ -26,6 +26,7 @@ const useEmailSignin = (
   }: UseEmailSigninProps,
 ) => {
   const cleanErrors = () => {
+
     setEmailError({
       hasError: false, message: '',
     });
@@ -39,11 +40,17 @@ const useEmailSignin = (
       cleanErrors();
       setIsEmailLoading(true);
     } catch (err: any) {
-      setEmailError({
-        hasError: false, message: err.message,
-      });
+      if (err.response.data.error.startsWith('Sorry, we could not find your account')) {
+        setEmailError({
+          hasError: false, message: 'Please sign up, this account does not exist',
+        });
+      } else {
+        setEmailError({
+          hasError: false, message: err.message,
+        });
+      }
     }
-  };
+  }
 
   const SigninSignupWithEmail = async (authContext: any) => {
     const { dispatch } = authContext;
