@@ -35,7 +35,9 @@ const useAuthContext = (): StateContext => {
   const handleSignOut = () => {
     dispatch({ type: Types.handleSessionLoading, payload: true });
     signOut(() => dispatch({ type: Types.handleSignOut })).then(() => {
-      if (typeof window !== 'undefined') window.location.reload();
+      if (typeof window !== 'undefined') {
+        window.location.reload();
+      }
       dispatch({ type: Types.handleSessionLoading, payload: false });
     });
   };

@@ -1,12 +1,14 @@
 import { memo } from 'react';
 import { useAuthContext } from 'web-login';
+import {useNavigate } from 'react-router-dom'
 
 const Main = () => {
   const { user, handleOpenModal, isOpen, handleSignOut, isSessionLoading } = useAuthContext();
+  const navigate = useNavigate();
 
-  const logoutHandler = () => {
-    handleSignOut()
-    window.location.replace('/')
+  const logoutHandler =  () => {
+    handleSignOut();
+    navigate('/');
   }
 
   return (
