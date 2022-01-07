@@ -38,7 +38,7 @@ import { Types } from '../../components/Provider/types';
 const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
   const [isSingup, setIsSingup] = useState(false);
   const [email, setEmail] = useState('');
-  const { dispatch } = authContext;
+  const { dispatch, state } = authContext;
   const [isEmailLoading, setIsEmailLoading] = useState(false);
   const [emailError, setEmailError] = useState<EmailError>({
     hasError: false, message: '',
@@ -65,10 +65,15 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
   };
 
   const loginWithMagic = async () => {
+    if (state.isResendClicked === true) {
+      return;
+    }
+    dispatch({ type: Types.handleResendClicked, payload: true });
     dispatch({ type: Types.handleSessionLoading, payload: true });
-    await loginWithMagicLink().catch(() => {
-      dispatch({ type: Types.handleSessionLoading, payload: false });
-    });
+    await loginWithMagicLink()
+      .catch(() => {
+        // dispatch({ type: Types.handleSessionLoading, payload: false });
+      });
   };
 
   return (
@@ -94,7 +99,7 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
             isEmailLoading
               ? (
                 // eslint-disable-next-line max-len
-                <EmailLoading email={email} resendEmail={loginWithMagic} />
+                <EmailLoading isResendClicked={state.isResendClicked} email={email} resendEmail={loginWithMagic} />
               )
               : (
                 <>

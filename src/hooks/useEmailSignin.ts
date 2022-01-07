@@ -50,7 +50,7 @@ const useEmailSignin = (
         });
       }
     }
-  }
+  };
 
   const SigninSignupWithEmail = async (authContext: any) => {
     const { dispatch } = authContext;
@@ -85,6 +85,7 @@ const useEmailSignin = (
         cleanErrors();
         setIsEmailLoading(true);
         await loginWithMagicLink();
+        dispatch({ type: Types.handleResendClicked, payload: false });
       } catch (error: any) {
         setEmailError({
           hasError: true, message: error.message,

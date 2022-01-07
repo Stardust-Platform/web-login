@@ -9,6 +9,13 @@ const AuthReducer = (state: State, action: Action): State => {
       };
     }
 
+    case Types.handleResendClicked: {
+      return {
+        ...state,
+        isResendClicked: action?.payload,
+      };
+    }
+
     case Types.handleSessionLoading: {
       return {
         ...state,
