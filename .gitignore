@@ -21,6 +21,8 @@ coverage
 .env.development.local
 .env.test.local
 .env.production.local
+package-lock.json
+example/package-lock.json
 
 # Logs
 *.log
