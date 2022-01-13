@@ -20,16 +20,11 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
-const checkUserLoggedIn = async (authContext: any) => {
-  const { dispatch } = authContext;
+const checkUserLoggedIn = async () => {
   let user = {};
-  dispatch({ type: Types.handleSessionLoading, payload: true });
   await Auth.currentAuthenticatedUser()
     .then((data) => {
       user = data;
-      dispatch({ type: Types.handleSessionLoading, payload: false });
-    }).catch(() => {
-      dispatch({ type: Types.handleSessionLoading, payload: false });
     });
   return user;
 };
@@ -63,10 +58,11 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       await Auth.sendCustomChallengeAnswer(user, code);
       await Auth.currentSession();
       const payload = Object.entries(user).length !== 0 ? user : undefined;
-      dispatch({
+      await dispatch({
         type: Types.handleSignin,
         payload: payload as User,
       });
+      dispatch({ type: Types.handleSessionLoading, payload: false });
     } catch (e) {
       setSnackBarStatus({
         isOpen: true,
@@ -82,7 +78,12 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     if (challenge) {
       finishSignin(challenge);
     }
-  }, []);
+    if (state.isResendClicked) {
+      setTimeout(() => {
+        dispatch({ type: Types.handleResendClicked, payload: false });
+      }, 10000);
+    }
+  }, [state.isResendClicked]);
 
   const forceTokenRefresh = async () => {
     try {
@@ -152,20 +153,21 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
 
   useEffect(() => {
     (async () => {
-      const user = await checkUserLoggedIn(value);
+      const params = window.location.search;
+      if (params.startsWith('?challenge=')) {
+        dispatch({ type: Types.handleSessionLoading, payload: true });
+      }
+      const user = await checkUserLoggedIn();
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       dispatch({
         type: Types.handleSignin,
         payload: payload as User,
       });
+      dispatch({ type: Types.handleSessionLoading, payload: false });
     })();
   }, []);
 
   useEffect(() => {
-    const params = window.location.search;
-    if (params.startsWith('?challenge=')) {
-      dispatch({ type: Types.handleSessionLoading, payload: true });
-    }
     dispatch({
       type: Types.handleOpenModal,
       payload: isOpen ?? false,
