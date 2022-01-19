@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AuthProvider } from 'web-login';
+import { AuthProvider } from "@stardust-platform/web-login";
 import './App.css';
 // Screens
 import MainScreen from './screens/Main';
