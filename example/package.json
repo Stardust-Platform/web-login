@@ -1,6 +1,6 @@
 {
   "name": "web-login-ui",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Stardust auth example Web UI in ReactJS!",
   "readme": "README.md",
   "repository": "https://github.com/Stardust-Platform/web-login.git",
@@ -27,7 +27,8 @@
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "web-login": "link:.."
   },
   "browserslist": {
     "production": [

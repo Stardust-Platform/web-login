@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { useAuthContext } from "@stardust-platform/web-login";
+import { useAuthContext } from "web-login";
 import {useNavigate } from 'react-router-dom'
 
 const Main = () => {
@@ -10,7 +10,7 @@ const Main = () => {
     handleSignOut();
     navigate('/');
   }
-  
+
   return (
     <div>
       <h1>{isSessionLoading ? 'LOADING...' : ''}</h1>
