@@ -25,9 +25,7 @@ const checkUserLoggedIn = async (dispatch: any) => {
   await Auth.currentAuthenticatedUser()
     .then((data) => {
       user = data;
-    }).catch(() => {
-      return dispatch({ type: Types.handleSessionLoading, payload: false });
-    });
+    }).catch(() => dispatch({ type: Types.handleSessionLoading, payload: false }));
   return user;
 };
 
@@ -161,13 +159,13 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       }
       const user = await checkUserLoggedIn(dispatch);
       const payload = Object.entries(user).length !== 0 ? user : undefined;
-      dispatch({
-        type: Types.handleSignin,
-        payload: payload as User,
-      });
       if (Object.entries(user).length !== 0) {
         dispatch({ type: Types.handleSessionLoading, payload: false });
       }
+      return dispatch({
+        type: Types.handleSignin,
+        payload: payload as User,
+      });
     })();
   }, []);
 
