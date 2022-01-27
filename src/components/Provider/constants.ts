@@ -4,6 +4,6 @@ import { State } from './types';
 export const initialState: State = {
   user: undefined,
   isOpen: false,
-  isSessionLoading: false,
+  isSessionLoading: true,
   isResendClicked: false,
 };

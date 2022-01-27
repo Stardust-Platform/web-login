@@ -20,12 +20,12 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
-const checkUserLoggedIn = async () => {
+const checkUserLoggedIn = async (dispatch: any) => {
   let user = {};
   await Auth.currentAuthenticatedUser()
     .then((data) => {
       user = data;
-    });
+    }).catch(() => dispatch({ type: Types.handleSessionLoading, payload: false }));
   return user;
 };
 
@@ -155,15 +155,17 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     (async () => {
       const params = window.location.search;
       if (params.startsWith('?challenge=')) {
-        dispatch({ type: Types.handleSessionLoading, payload: true });
+        return dispatch({ type: Types.handleSessionLoading, payload: true });
       }
-      const user = await checkUserLoggedIn();
+      const user = await checkUserLoggedIn(dispatch);
       const payload = Object.entries(user).length !== 0 ? user : undefined;
-      dispatch({
+      if (Object.entries(user).length !== 0) {
+        dispatch({ type: Types.handleSessionLoading, payload: false });
+      }
+      return dispatch({
         type: Types.handleSignin,
         payload: payload as User,
       });
-      dispatch({ type: Types.handleSessionLoading, payload: false });
     })();
   }, []);
 
