@@ -26,7 +26,6 @@ const useEmailSignin = (
   }: UseEmailSigninProps,
 ) => {
   const cleanErrors = () => {
-
     setEmailError({
       hasError: false, message: '',
     });

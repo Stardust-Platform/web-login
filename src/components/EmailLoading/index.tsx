@@ -1,5 +1,5 @@
 // Libs
-import React, { FC } from "react";
+import React, { FC } from 'react';
 // Types
 import { EmailLoadingProps } from './types';
 // Styles
@@ -9,7 +9,6 @@ import {
 
 // eslint-disable-next-line func-names
 const EmailLoading: FC<EmailLoadingProps> = function ({ email, resendEmail, isResendClicked }) {
-
   return (
     <>
       <EmailVerificationText>

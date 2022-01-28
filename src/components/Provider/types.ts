@@ -10,7 +10,7 @@ export enum Types {
   handleSignin = 'HANDLE_SIGNIN',
   handleSignOut = 'HANDLE_SIGNOUT',
   handleSessionLoading = 'HANDLE_SESSION_LOADING',
-  handleResendClicked = 'HANDLE_RESEND_CLICKED'
+  handleResendClicked = 'HANDLE_RESEND_CLICKED',
 }
 
 export type ActionIsSessionLoading = {
@@ -21,7 +21,7 @@ export type ActionIsSessionLoading = {
 export type ActionIsResendClicked = {
   type: Types.handleResendClicked,
   payload: boolean
-}
+};
 
 export type ActionIsOpen = {
   type: Types.handleOpenModal;
