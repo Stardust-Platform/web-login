@@ -49,9 +49,8 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     dispatch,
   }), [state]);
 
-  const finishSignin = async (challenge: any) => {
+  const finishSignin = async (email: string, code: string) => {
     try {
-      const [email, code] = challenge.split(',');
       // MUST be here for TriggerPlayerPreTokenGeneration
       Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
       const user = await Auth.signIn(email);
@@ -75,8 +74,13 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
   useEffect(() => {
     const params = new URLSearchParams(window?.location?.search);
     const challenge = params.get('challenge');
+    const email = params.get('email');
+    const code = params.get('code');
     if (challenge) {
-      finishSignin(challenge);
+      const [Email, Code] = challenge.split(',');
+      finishSignin(Email, Code);
+    } else if (email && code) {
+      finishSignin(email, code);
     }
     if (state.isResendClicked) {
       setTimeout(() => {
@@ -153,8 +157,8 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
 
   useEffect(() => {
     (async () => {
-      const params = window.location.search;
-      if (params.startsWith('?challenge=')) {
+      const params = new URLSearchParams(window?.location?.search);
+      if (params.get('challenge') || (params.get('email') && params.get('code'))) {
         return dispatch({ type: Types.handleSessionLoading, payload: true });
       }
       const user = await checkUserLoggedIn(dispatch);

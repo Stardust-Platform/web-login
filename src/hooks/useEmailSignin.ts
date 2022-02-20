@@ -1,6 +1,7 @@
 // libs
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
+import { LIB_VERSION } from '../version';
 
 // Interfaces
 import { EmailError } from '../screens/Signin/types';
@@ -34,7 +35,9 @@ const useEmailSignin = (
   const loginWithMagicLink = async () => {
     try {
       await axios.post(loginUrl, {
-        email, redirect: magicLinkRedirectUrl ?? window?.location?.origin,
+        email,
+        redirect: magicLinkRedirectUrl ?? window?.location?.origin,
+        version: LIB_VERSION,
       });
       cleanErrors();
       setIsEmailLoading(true);
