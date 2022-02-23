@@ -77,6 +77,13 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     const email = params.get('email');
     if (!email && challenge) {
       const [Email, Challenge] = challenge.split(',');
+      if (typeof Challenge === 'undefined') {
+        return setSnackBarStatus({
+          isOpen: true,
+          hasError: true,
+          message: 'Challenge response cannot be empty, value after email in link',
+        });
+      }
       finishSignin(Email, Challenge);
     } else if (email && challenge) {
       finishSignin(email, challenge);
