@@ -1,6 +1,6 @@
 {
   "name": "@stardust-platform/web-login",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Stardust auth library in Typescript!",
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "start": "watch \"yarn build\" ./src",
+    "prebuild": "node -p \"'export const LIB_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
     "build": "yarn build:esm && yarn build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",

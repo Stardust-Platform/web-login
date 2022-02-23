@@ -18,5 +18,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'linebreak-style': 'off',
     'react/default-props-match-prop-types': 'off',
+    'import/prefer-default-export': 'off',
+    '@typescript-eslint/quotes': 'off',
   },
 };
