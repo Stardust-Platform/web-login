@@ -51,21 +51,26 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
 
   const finishSignin = async (email: string, challenge: string) => {
     try {
-      // MUST be here for TriggerPlayerPreTokenGeneration
-      Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
-      const user = await Auth.signIn(email);
-      await Auth.sendCustomChallengeAnswer(user, challenge);
-      await Auth.currentSession();
-      const payload = Object.entries(user).length !== 0 ? user : undefined;
-      await dispatch({
-        type: Types.handleSignin,
-        payload: payload as User,
-      });
+      if (typeof challenge === 'string') {
+        // MUST be here for TriggerPlayerPreTokenGeneration
+        Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
+        const user = await Auth.signIn(email);
+        await Auth.sendCustomChallengeAnswer(user, challenge);
+        await Auth.currentSession();
+        const payload = Object.entries(user).length !== 0 ? user : undefined;
+        await dispatch({ type: Types.handleSignin, payload: payload as User });
+      } else {
+        setSnackBarStatus({
+          isOpen: true,
+          hasError: true,
+          message: 'Challenge response cannot be empty, value after email in link',
+        });
+      }
       dispatch({ type: Types.handleSessionLoading, payload: false });
     } catch (e) {
       setSnackBarStatus({
         isOpen: true,
-        hasError: false,
+        hasError: true,
         message: 'There was an error Signing in',
       });
     }
@@ -77,13 +82,6 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     const email = params.get('email');
     if (!email && challenge) {
       const [Email, Challenge] = challenge.split(',');
-      if (typeof Challenge === 'undefined') {
-        return setSnackBarStatus({
-          isOpen: true,
-          hasError: true,
-          message: 'Challenge response cannot be empty, value after email in link',
-        });
-      }
       finishSignin(Email, Challenge);
     } else if (email && challenge) {
       finishSignin(email, challenge);
@@ -165,7 +163,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     (async () => {
       const params = new URLSearchParams(window?.location?.search);
       if (params.get('challenge') || (params.get('email') && params.get('challenge'))) {
-        return dispatch({ type: Types.handleSessionLoading, payload: true });
+        dispatch({ type: Types.handleSessionLoading, payload: true });
       }
       const user = await checkUserLoggedIn(dispatch);
       const payload = Object.entries(user).length !== 0 ? user : undefined;
