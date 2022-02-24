@@ -49,24 +49,28 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     dispatch,
   }), [state]);
 
-  const finishSignin = async (challenge: any) => {
+  const finishSignin = async (email: string, challenge: string) => {
     try {
-      const [email, code] = challenge.split(',');
-      // MUST be here for TriggerPlayerPreTokenGeneration
-      Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
-      const user = await Auth.signIn(email);
-      await Auth.sendCustomChallengeAnswer(user, code);
-      await Auth.currentSession();
-      const payload = Object.entries(user).length !== 0 ? user : undefined;
-      await dispatch({
-        type: Types.handleSignin,
-        payload: payload as User,
-      });
+      if (typeof challenge === 'string') {
+        // MUST be here for TriggerPlayerPreTokenGeneration
+        Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
+        const user = await Auth.signIn(email);
+        await Auth.sendCustomChallengeAnswer(user, challenge);
+        await Auth.currentSession();
+        const payload = Object.entries(user).length !== 0 ? user : undefined;
+        await dispatch({ type: Types.handleSignin, payload: payload as User });
+      } else {
+        setSnackBarStatus({
+          isOpen: true,
+          hasError: true,
+          message: 'Challenge response cannot be empty, value after email in link',
+        });
+      }
       dispatch({ type: Types.handleSessionLoading, payload: false });
     } catch (e) {
       setSnackBarStatus({
         isOpen: true,
-        hasError: false,
+        hasError: true,
         message: 'There was an error Signing in',
       });
     }
@@ -75,8 +79,12 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
   useEffect(() => {
     const params = new URLSearchParams(window?.location?.search);
     const challenge = params.get('challenge');
-    if (challenge) {
-      finishSignin(challenge);
+    const email = params.get('email');
+    if (!email && challenge) {
+      const [Email, Challenge] = challenge.split(',');
+      finishSignin(Email, Challenge);
+    } else if (email && challenge) {
+      finishSignin(email, challenge);
     }
     if (state.isResendClicked) {
       setTimeout(() => {
@@ -153,9 +161,9 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
 
   useEffect(() => {
     (async () => {
-      const params = window.location.search;
-      if (params.startsWith('?challenge=')) {
-        return dispatch({ type: Types.handleSessionLoading, payload: true });
+      const params = new URLSearchParams(window?.location?.search);
+      if (params.get('challenge') || (params.get('email') && params.get('challenge'))) {
+        dispatch({ type: Types.handleSessionLoading, payload: true });
       }
       const user = await checkUserLoggedIn(dispatch);
       const payload = Object.entries(user).length !== 0 ? user : undefined;

@@ -33,6 +33,7 @@ import {
 import { EmailError, SigninProps } from './types';
 // eslint-disable-next-line import/no-cycle
 import { Types } from '../../components/Provider/types';
+import { LIB_VERSION } from '../../version';
 
 // eslint-disable-next-line func-names
 const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
@@ -168,6 +169,12 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
                   <SeparatorLine />
 
                   <TermsText>
+                    Version:
+                    {' '}
+                    {LIB_VERSION}
+                    <br />
+                    <br />
+                    {' '}
                     When you sign up, you’re accepting our
                     <br />
                     {' '}
