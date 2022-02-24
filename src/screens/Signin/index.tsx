@@ -169,7 +169,9 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
                   <SeparatorLine />
 
                   <TermsText>
-                    Version: {LIB_VERSION}
+                    Version:
+                    {' '}
+                    {LIB_VERSION}
                     <br />
                     <br />
                     {' '}
