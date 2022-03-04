@@ -10,10 +10,12 @@ import Icon, { IconsEnum } from '../../components/Icons';
 // eslint-disable-next-line import/no-cycle
 import useEmailSignin from '../../hooks/useEmailSignin';
 // Styles
+import { LoaderContainer } from '../../components/EmailLoading/styles';
 import {
   BackArrowIconContainer,
   Backdrop,
   CloseIconContainer,
+  MagicLoading,
   Container,
   ContinueButton,
   EmailContainer,
@@ -25,7 +27,6 @@ import {
   OptionToSocialText,
   SeparatorLine,
   StrongUnderlineText,
-  SwitchModeText,
   TermsText,
   Text,
 } from './styles';
@@ -37,7 +38,7 @@ import { LIB_VERSION } from '../../version';
 
 // eslint-disable-next-line func-names
 const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
-  const [isSingup, setIsSingup] = useState(false);
+  const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
   const { dispatch, state } = authContext;
   const [isEmailLoading, setIsEmailLoading] = useState(false);
@@ -57,7 +58,7 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
   const {
     loginWithMagicLink, emailRegex, cleanErrors, SigninSignupWithEmail,
   } = useEmailSignin({
-    email, setIsEmailLoading, setEmailError, isSignUp: isSingup, magicLinkRedirectUrl,
+    email, setIsEmailLoading, setEmailError, isSignup, setIsSignup, magicLinkRedirectUrl,
   });
 
   const onSubmit = async (): Promise<void> => {
@@ -73,7 +74,6 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
     dispatch({ type: Types.handleSessionLoading, payload: true });
     await loginWithMagicLink()
       .catch(() => {
-        // dispatch({ type: Types.handleSessionLoading, payload: false });
       });
   };
 
@@ -96,101 +96,82 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
             </CloseIconContainer>
           </HeaderContainer>
 
-          {
-            isEmailLoading
-              ? (
-                // eslint-disable-next-line max-len
-                <EmailLoading isResendClicked={state.isResendClicked} email={email} resendEmail={loginWithMagic} />
-              )
-              : (
-                <>
-                  <Text>{isSingup ? 'Create an Account' : 'Log in to your account'}</Text>
+          {state.isMagicLinkLoading
+            && (
+              <MagicLoading>
+                <LoaderContainer>
+                  <div />
+                  <div />
+                  <div />
+                  <div />
+                </LoaderContainer>
+                Logging in...
+              </MagicLoading>
+            )}
 
-                  <EmailContainer hasError={emailError.hasError}>
-                    <div>
-                      <Icon icon={IconsEnum.Email} />
-                    </div>
-                    <EmailInput
-                      id="email"
-                      value={email}
-                      placeholder="Email address"
-                      onChange={(event) => {
-                        setEmail(event.target.value);
-                        if (emailRegex.test(event.target.value)) {
-                          cleanErrors();
-                        }
-                      }}
-                    />
-                  </EmailContainer>
+          {isEmailLoading && !state.isMagicLinkLoading
+            && (
+            // eslint-disable-next-line max-len
+              <EmailLoading isResendClicked={state.isResendClicked} email={email} resendEmail={loginWithMagic} />
+            )}
 
-                  { emailError && emailError.message && emailError.message.length > 0
-                   && <ErrorMessage>{emailError.message}</ErrorMessage>}
+          {!isEmailLoading && !state.isMagicLinkLoading
+          && (
+          <>
+            <Text>Enter an email to login</Text>
+            <EmailContainer hasError={emailError.hasError}>
+              <div>
+                <Icon icon={IconsEnum.Email} />
+              </div>
+              <EmailInput
+                id="email"
+                value={email}
+                placeholder="Email address"
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  if (emailRegex.test(event.target.value)) {
+                    cleanErrors();
+                  }
+                }}
+              />
+            </EmailContainer>
 
-                  <ContinueButton onClick={onSubmit} type="submit">
-                    {isSingup ? 'Create Account' : 'Continue'}
-                  </ContinueButton>
+            { emailError && emailError.message && emailError.message.length > 0
+            && <ErrorMessage>{emailError.message}</ErrorMessage>}
 
-                  {isSingup
-                    ? (
-                      <SwitchModeText>
-                        Already have an account?
-                        {' '}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setIsSingup(false);
-                            cleanErrors();
-                          }}
-                        >
-                          Log in
-                        </button>
-                      </SwitchModeText>
-                    )
-                    : (
-                      <SwitchModeText>
-                        Don&apos;t have an account?
-                        {' '}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setIsSingup(true);
-                            cleanErrors();
-                          }}
-                        >
-                          Sign up
-                        </button>
-                      </SwitchModeText>
-                    )}
+            <ContinueButton onClick={onSubmit} type="submit">
+              Continue
+            </ContinueButton>
 
-                  <OptionToSocialText>or Sign In with</OptionToSocialText>
+            <OptionToSocialText>or Sign In with</OptionToSocialText>
 
-                  <SocialMediaButtons />
+            <SocialMediaButtons />
 
-                  <SeparatorLine />
+            <SeparatorLine />
 
-                  <TermsText>
-                    Version:
-                    {' '}
-                    {LIB_VERSION}
-                    <br />
-                    <br />
-                    {' '}
-                    When you sign up, you’re accepting our
-                    <br />
-                    {' '}
-                    <StrongUnderlineText href={termsServiceUrl ?? ''} {...termsServiceProps}>
-                      Terms of Service
-                    </StrongUnderlineText>
-                    {' '}
-                    and
-                    {' '}
-                    <StrongUnderlineText href={privacyPolicyUrl ?? ''} {...privacyPolicyProps}>
-                      Privacy Policy
-                    </StrongUnderlineText>
-                  </TermsText>
-                </>
-              )
-          }
+            <TermsText>
+              Version:
+              {' '}
+              {LIB_VERSION}
+              <br />
+              <br />
+              {' '}
+              When you sign up, you’re accepting our
+              <br />
+              {' '}
+              <StrongUnderlineText href={termsServiceUrl ?? ''} {...termsServiceProps}>
+                Terms of Service
+              </StrongUnderlineText>
+              {' '}
+              and
+              {' '}
+              <StrongUnderlineText href={privacyPolicyUrl ?? ''} {...privacyPolicyProps}>
+                Privacy Policy
+              </StrongUnderlineText>
+            </TermsText>
+          </>
+          )}
+
         </Form>
       </Container>
       <Backdrop onClick={closeModal} />

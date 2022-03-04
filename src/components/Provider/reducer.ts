@@ -16,6 +16,13 @@ const AuthReducer = (state: State, action: Action): State => {
       };
     }
 
+    case Types.handleMagicLinkLoading: {
+      return {
+        ...state,
+        isMagicLinkLoading: action?.payload,
+      };
+    }
+
     case Types.handleSessionLoading: {
       return {
         ...state,

@@ -11,10 +11,16 @@ export enum Types {
   handleSignOut = 'HANDLE_SIGNOUT',
   handleSessionLoading = 'HANDLE_SESSION_LOADING',
   handleResendClicked = 'HANDLE_RESEND_CLICKED',
+  handleMagicLinkLoading = 'HANDLE_MAGIC_LINK_LOADING',
 }
 
 export type ActionIsSessionLoading = {
   type: Types.handleSessionLoading,
+  payload: boolean
+};
+
+export type ActionIsMagicLinkLoading = {
+  type: Types.handleMagicLinkLoading,
   payload: boolean
 };
 
@@ -43,6 +49,7 @@ export type Action =
   ActionSignin |
   ActionSignOut |
   ActionIsSessionLoading |
+  ActionIsMagicLinkLoading |
   ActionIsResendClicked;
 
 export type User = CognitoUserInterface | undefined;
@@ -51,6 +58,7 @@ export type State = {
   user?: User;
   isOpen: boolean;
   isSessionLoading: boolean;
+  isMagicLinkLoading: boolean;
   isResendClicked: boolean;
 };
 

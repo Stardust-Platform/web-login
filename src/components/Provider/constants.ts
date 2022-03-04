@@ -5,5 +5,6 @@ export const initialState: State = {
   user: undefined,
   isOpen: false,
   isSessionLoading: true,
+  isMagicLinkLoading: false,
   isResendClicked: false,
 };

@@ -58,7 +58,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
         await Auth.sendCustomChallengeAnswer(user, challenge);
         await Auth.currentSession();
         const payload = Object.entries(user).length !== 0 ? user : undefined;
-        await dispatch({ type: Types.handleSignin, payload: payload as User });
+        dispatch({ type: Types.handleSignin, payload: payload as User });
       } else {
         setSnackBarStatus({
           isOpen: true,
@@ -67,7 +67,10 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
         });
       }
       dispatch({ type: Types.handleSessionLoading, payload: false });
+      dispatch({ type: Types.handleMagicLinkLoading, payload: false });
+      dispatch({ type: Types.handleOpenModal, payload: false });
     } catch (e) {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: false });
       setSnackBarStatus({
         isOpen: true,
         hasError: true,
@@ -84,6 +87,8 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       const [Email, Challenge] = challenge.split(',');
       finishSignin(Email, Challenge);
     } else if (email && challenge) {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: true });
+      dispatch({ type: Types.handleOpenModal, payload: true });
       finishSignin(email, challenge);
     }
     if (state.isResendClicked) {
