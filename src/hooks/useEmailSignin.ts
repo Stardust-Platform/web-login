@@ -2,13 +2,12 @@
 import axios from 'axios';
 import { Auth } from 'aws-amplify';
 import { LIB_VERSION } from '../version';
-
+// loginUrl
+import { LoginUrl } from '../loginUrl';
 // Interfaces
 import { EmailError } from '../screens/Signin/types';
 // eslint-disable-next-line import/no-cycle
 import { Types } from '../components/Provider/types';
-
-const loginUrl = 'https://bddtm60cbd.execute-api.us-east-1.amazonaws.com/v1/player/login';
 
 // eslint-disable-next-line prefer-regex-literals
 const emailRegex = new RegExp(/^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -35,7 +34,7 @@ const useEmailSignin = (
 
   const loginWithMagicLink = async () => {
     try {
-      await axios.post(loginUrl, {
+      await axios.post(LoginUrl.url, {
         email,
         redirect: magicLinkRedirectUrl ?? window?.location?.origin,
         version: LIB_VERSION,
