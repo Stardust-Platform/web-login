@@ -5,6 +5,8 @@ import { CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';
 import awsconfig from './aws-exports';
 // Provider
 import { AuthProvider, useAuthContext, ProviderProps } from './components/Provider';
+// loginUrl
+import { LoginUrl } from './loginUrl';
 
 let origin = 'localhost:3000';
 
@@ -32,6 +34,23 @@ const currentUserInfo = async () => Auth.currentUserInfo();
 // eslint-disable-next-line max-len
 const currentAuthenticatedUser = async (params?: CurrentUserOpts | undefined) => Auth.currentAuthenticatedUser(params);
 
+/**
+ * Allow custom aws-exports file to overwrite default environment
+ */
+const overwriteEnvironment = (awsExports: any, loginUrl: string) => {
+  LoginUrl.update(loginUrl);
+  Amplify.configure({
+    ...awsExports,
+    Auth: { oauth: { responseType: 'code' } },
+    oauth: {
+      ...awsconfig.oauth,
+      responseType: 'code',
+      redirectSignIn: origin,
+      redirectSignOut: origin,
+    },
+  });
+};
+
 export {
   AuthProvider,
   CognitoUserInterface,
@@ -40,5 +59,6 @@ export {
   currentSession,
   currentUserInfo,
   currentAuthenticatedUser,
+  overwriteEnvironment,
 };
 export type { ProviderProps };

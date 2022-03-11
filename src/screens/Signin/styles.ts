@@ -202,3 +202,10 @@ export const StrongUnderlineText = styled.a`
   cursor: pointer;
   color: #6a6a6a;
 `;
+
+export const MagicLoading = styled.div`
+  margin: 30px auto 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
