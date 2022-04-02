@@ -23,7 +23,7 @@ type UseEmailSigninProps = {
 
 const useEmailSignin = (
   {
-    email, setIsEmailLoading, setEmailError, setIsSignup, magicLinkRedirectUrl,
+    email, setIsEmailLoading, setEmailError, magicLinkRedirectUrl,
   }: UseEmailSigninProps,
 ) => {
   const cleanErrors = () => {
@@ -33,6 +33,7 @@ const useEmailSignin = (
   };
 
   const loginWithMagicLink = async () => {
+    setIsEmailLoading(true);
     try {
       await axios.post(LoginUrl.url, {
         email,
@@ -40,10 +41,34 @@ const useEmailSignin = (
         version: LIB_VERSION,
       });
       cleanErrors();
+    } catch (err: any) {
+      if (err.response.status === 400) {
+        setIsEmailLoading(false);
+        setEmailError({
+          hasError: false, message: err.message,
+        });
+      }
+      throw err;
+    }
+  };
+
+  const SignupWithEmail = async () => {
+    const array = new Uint32Array(5);
+    crypto.getRandomValues(array);
+    try {
+      await Auth.signUp({
+        username: email,
+        password: array.join('-'),
+        attributes: {
+          email,
+          'custom:gameId': process.env.REACT_APP_GAME_ID, // required to be a string representation of a number in this api
+        },
+      });
+      cleanErrors();
       setIsEmailLoading(true);
     } catch (err: any) {
       setEmailError({
-        hasError: false, message: err.message,
+        hasError: true, message: err.message,
       });
     }
   };
@@ -64,31 +89,16 @@ const useEmailSignin = (
       return;
     }
     if (typeof window === 'undefined') return;
-    const array = new Uint32Array(5);
-    crypto.getRandomValues(array);
 
     try {
-      await Auth.signUp({
-        username: email,
-        password: array.join('-'),
-        attributes: {
-          email,
-          'custom:gameId': process.env.REACT_APP_GAME_ID, // required to be a string representation of a number in this api
-        },
-      });
-      cleanErrors();
-      setIsEmailLoading(true);
       await loginWithMagicLink();
-      dispatch({ type: Types.handleResendClicked, payload: false });
     } catch (err: any) {
-      if (err.message.startsWith('User already exists')) {
-        setIsSignup(false);
+      if (err.response.status === 403) {
+        await SignupWithEmail();
         await loginWithMagicLink();
       }
-      setEmailError({
-        hasError: true, message: err.message,
-      });
     }
+    dispatch({ type: Types.handleResendClicked, payload: false });
   };
 
   return {
