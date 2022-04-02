@@ -93,7 +93,7 @@ const useEmailSignin = (
     try {
       await loginWithMagicLink();
     } catch (err: any) {
-      if (err.response.status === 404) {
+      if (err.response.status === 403) {
         await SignupWithEmail();
         await loginWithMagicLink();
       }

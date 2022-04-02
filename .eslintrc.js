@@ -1,8 +1,5 @@
 module.exports = {
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-  ],
+  root: true,
   settings: {
     react: {
       version: 'detect',
