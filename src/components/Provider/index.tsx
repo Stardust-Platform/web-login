@@ -79,8 +79,8 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     }
   };
 
-  const params = new URLSearchParams(window?.location?.search);
   useEffect(() => {
+    const params = new URLSearchParams(window?.location?.search);
     const challenge = params.get('challenge');
     const email = params.get('email');
     const googleCode = params.get('code');
@@ -96,7 +96,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     } else {
       dispatch({ type: Types.handleMagicLinkLoading, payload: false });
     }
-  }, [params.get('code')]);
+  }, [state.isResendClicked]);
 
   const forceTokenRefresh = async () => {
     try {

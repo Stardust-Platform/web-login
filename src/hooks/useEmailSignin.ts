@@ -99,6 +99,7 @@ const useEmailSignin = (
         await loginWithMagicLink();
       }
     }
+    dispatch({ type: Types.handleResendClicked, payload: false });
   };
 
   return {
