@@ -87,10 +87,44 @@ export const ErrorMessage = styled.div`
   font-family: 'DM Sans';
   font-weight: bold;
   font-size: 14px;
+  text-align: center;
   line-height: 18px;
   color: #FF5473;
-  margin-bottom: 0.5rem;
+  margin: 0.3rem 0 0.5rem 0;
 `;
+
+export const TextContainer = styled.div<EmailContainerProps>`
+  width: 100%;
+  background: #ffffff;
+  opacity: 0.99;
+  border: ${(props) => (props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0')};
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+`;
+
+export const TextInput = styled.input`
+  width: 100%;
+  margin-left: 0.75rem;
+  color: #2A2A2A;
+  font-family: "DM Sans", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.313rem;
+  border: none;
+
+  ::placeholder {
+    color: #CACACA;
+  }
+
+  :focus {
+    border: none;
+    outline: none;
+  }
+`
 
 export const EmailInput = styled.input`
   width: 100%;

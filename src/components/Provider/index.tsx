@@ -79,24 +79,24 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     }
   };
 
+  const params = new URLSearchParams(window?.location?.search);
   useEffect(() => {
-    const params = new URLSearchParams(window?.location?.search);
     const challenge = params.get('challenge');
     const email = params.get('email');
+    const googleCode = params.get('code');
     if (!email && challenge) {
       const [Email, Challenge] = challenge.split(',');
       finishSignin(Email, Challenge);
+    } else if (googleCode) {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: true });
     } else if (email && challenge) {
       dispatch({ type: Types.handleMagicLinkLoading, payload: true });
       dispatch({ type: Types.handleOpenModal, payload: true });
       finishSignin(email, challenge);
+    } else {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: false });
     }
-    if (state.isResendClicked) {
-      setTimeout(() => {
-        dispatch({ type: Types.handleResendClicked, payload: false });
-      }, 10000);
-    }
-  }, [state.isResendClicked]);
+  }, [params.get('code')]);
 
   const forceTokenRefresh = async () => {
     try {
@@ -204,7 +204,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       />
       {state.isOpen && (
         // eslint-disable-next-line max-len
-        <SigninScreen authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
+        <SigninScreen setSnackBar={() => setSnackBarStatus} authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
     </>
   );
 };

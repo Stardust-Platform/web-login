@@ -3,6 +3,7 @@ import { AnchorHTMLAttributes } from 'react';
 export type SigninProps = {
   closeModal?: () => void;
   authContext?: any;
+  setSnackBar?: (arg: {isOpen: boolean, hasError: boolean, message: string}) => void;
   custom?: {
     logoUrl?: string;
     magicLinkRedirectUrl?: string;
