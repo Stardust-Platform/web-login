@@ -45,6 +45,7 @@ cd ~/web-login
 touch example/.env
 echo SKIP_PREFLIGHT_CHECK=true >> example/.env
 echo REACT_APP_GAME_ID=0 >> example/.env
+echo REACT_APP_LINK=false >> example/.env
 ```
 
 NOTE: where the value of 0 needs to be replaced by your game's id number which is a value that is greater than 1

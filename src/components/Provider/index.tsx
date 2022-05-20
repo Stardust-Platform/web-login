@@ -20,14 +20,6 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
-const checkUserLoggedIn = async (dispatch: any) => {
-  let user = {};
-  await Auth.currentAuthenticatedUser()
-    .then((data) => {
-      user = data;
-    }).catch(() => dispatch({ type: Types.handleSessionLoading, payload: false }));
-  return user;
-};
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
@@ -48,6 +40,28 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     state,
     dispatch,
   }), [state]);
+
+  const checkUserLoggedIn = async (dispatch: any) => {
+    console.log('checkUserLoggedIn');
+    let user = {};
+    // await forceTokenRefresh();
+    await Auth.currentAuthenticatedUser()
+      .then((data) => {
+        user = data;
+        setSnackBarStatus({
+          isOpen: true,
+          hasError: false,
+          message: data.attributes.email,
+        });
+      }).catch(() => {
+        // setSnackBarStatus({
+        //   isOpen: true,
+        //   hasError: true,
+        // });
+        dispatch({ type: Types.handleSessionLoading, payload: false })
+      });
+    return user;
+  };
 
   const finishSignin = async (email: string, challenge: string) => {
     try {
@@ -130,32 +144,35 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     }
   };
 
-  Hub.listen('auth', async (data) => {
-    switch (data.payload.event) {
-      case 'signIn':
-        await forceTokenRefresh();
-        await Auth.currentAuthenticatedUser()
-          .then(
-            (user) => {
-              setSnackBarStatus({
-                isOpen: true,
-                hasError: false,
-                message: user.attributes.email,
-              });
-            },
-          );
-        break;
-      case 'signIn_failure':
-        setSnackBarStatus({
-          isOpen: true,
-          hasError: true,
-        });
-        break;
+  useEffect(() => {
+    Hub.listen('auth', async (data) => {
+      console.log(`data.payload.event=${data.payload.event}`);
+      switch (data.payload.event) {
+        case 'signIn':
+          await forceTokenRefresh();
+          await Auth.currentAuthenticatedUser()
+            .then(
+              (user) => {
+                setSnackBarStatus({
+                  isOpen: true,
+                  hasError: false,
+                  message: user.attributes.email,
+                });
+              },
+            );
+          break;
+        case 'signIn_failure':
+          setSnackBarStatus({
+            isOpen: true,
+            hasError: true,
+          });
+          break;
 
-      default:
-        break;
-    }
-  });
+        default:
+          break;
+      }
+    });
+  }, []);
 
   const closeModal = () => {
     dispatch({
