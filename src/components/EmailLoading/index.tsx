@@ -31,8 +31,7 @@ const EmailLoading: FC<EmailLoadingProps> = function (
     error }) {
 
   const [code, setCode] = useState('');
-  const linkEnv = process.env.REACT_APP_LINK ? false : true
-
+  const linkEnv = process.env.REACT_APP_LINK !== 'false'
 
   return (
     <>

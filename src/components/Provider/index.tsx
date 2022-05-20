@@ -42,22 +42,11 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
   }), [state]);
 
   const checkUserLoggedIn = async (dispatch: any) => {
-    console.log('checkUserLoggedIn');
     let user = {};
-    // await forceTokenRefresh();
     await Auth.currentAuthenticatedUser()
       .then((data) => {
         user = data;
-        setSnackBarStatus({
-          isOpen: true,
-          hasError: false,
-          message: data.attributes.email,
-        });
       }).catch(() => {
-        // setSnackBarStatus({
-        //   isOpen: true,
-        //   hasError: true,
-        // });
         dispatch({ type: Types.handleSessionLoading, payload: false })
       });
     return user;
@@ -146,7 +135,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
 
   useEffect(() => {
     Hub.listen('auth', async (data) => {
-      console.log(`data.payload.event=${data.payload.event}`);
+      // console.log(`data.payload.event=${data.payload.event}`);
       switch (data.payload.event) {
         case 'signIn':
           await forceTokenRefresh();
@@ -191,6 +180,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       if (Object.entries(user).length !== 0) {
         dispatch({ type: Types.handleSessionLoading, payload: false });
+        dispatch({ type: Types.handleOpenModal, payload: false });
       }
       return dispatch({
         type: Types.handleSignin,
