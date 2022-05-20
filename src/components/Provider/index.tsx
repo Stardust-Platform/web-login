@@ -20,14 +20,6 @@ import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
 
-const checkUserLoggedIn = async (dispatch: any) => {
-  let user = {};
-  await Auth.currentAuthenticatedUser()
-    .then((data) => {
-      user = data;
-    }).catch(() => dispatch({ type: Types.handleSessionLoading, payload: false }));
-  return user;
-};
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
@@ -48,6 +40,17 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     state,
     dispatch,
   }), [state]);
+
+  const checkUserLoggedIn = async (dispatch: any) => {
+    let user = {};
+    await Auth.currentAuthenticatedUser()
+      .then((data) => {
+        user = data;
+      }).catch(() => {
+        dispatch({ type: Types.handleSessionLoading, payload: false })
+      });
+    return user;
+  };
 
   const finishSignin = async (email: string, challenge: string) => {
     try {
@@ -83,18 +86,18 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     const params = new URLSearchParams(window?.location?.search);
     const challenge = params.get('challenge');
     const email = params.get('email');
+    const googleCode = params.get('code');
     if (!email && challenge) {
       const [Email, Challenge] = challenge.split(',');
       finishSignin(Email, Challenge);
+    } else if (googleCode) {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: true });
     } else if (email && challenge) {
       dispatch({ type: Types.handleMagicLinkLoading, payload: true });
       dispatch({ type: Types.handleOpenModal, payload: true });
       finishSignin(email, challenge);
-    }
-    if (state.isResendClicked) {
-      setTimeout(() => {
-        dispatch({ type: Types.handleResendClicked, payload: false });
-      }, 10000);
+    } else {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: false });
     }
   }, [state.isResendClicked]);
 
@@ -130,32 +133,35 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     }
   };
 
-  Hub.listen('auth', async (data) => {
-    switch (data.payload.event) {
-      case 'signIn':
-        await forceTokenRefresh();
-        await Auth.currentAuthenticatedUser()
-          .then(
-            (user) => {
-              setSnackBarStatus({
-                isOpen: true,
-                hasError: false,
-                message: user.attributes.email,
-              });
-            },
-          );
-        break;
-      case 'signIn_failure':
-        setSnackBarStatus({
-          isOpen: true,
-          hasError: true,
-        });
-        break;
+  useEffect(() => {
+    Hub.listen('auth', async (data) => {
+      // console.log(`data.payload.event=${data.payload.event}`);
+      switch (data.payload.event) {
+        case 'signIn':
+          await forceTokenRefresh();
+          await Auth.currentAuthenticatedUser()
+            .then(
+              (user) => {
+                setSnackBarStatus({
+                  isOpen: true,
+                  hasError: false,
+                  message: user.attributes.email,
+                });
+              },
+            );
+          break;
+        case 'signIn_failure':
+          setSnackBarStatus({
+            isOpen: true,
+            hasError: true,
+          });
+          break;
 
-      default:
-        break;
-    }
-  });
+        default:
+          break;
+      }
+    });
+  }, []);
 
   const closeModal = () => {
     dispatch({
@@ -174,6 +180,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       const payload = Object.entries(user).length !== 0 ? user : undefined;
       if (Object.entries(user).length !== 0) {
         dispatch({ type: Types.handleSessionLoading, payload: false });
+        dispatch({ type: Types.handleOpenModal, payload: false });
       }
       return dispatch({
         type: Types.handleSignin,
@@ -204,7 +211,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       />
       {state.isOpen && (
         // eslint-disable-next-line max-len
-        <SigninScreen authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
+        <SigninScreen setSnackBar={() => setSnackBarStatus} authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
     </>
   );
 };

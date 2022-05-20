@@ -10,6 +10,31 @@ color: #2A2A2A;
 margin-bottom: 0.5rem;
 `;
 
+export const CodeContainer = styled.div`
+margin-top: 10px;
+`
+
+export const ConfirmButton = styled.button`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0.625rem 0.75rem;
+  background: #5F2FFF;
+  border-radius: 0.625rem;
+  border: none;
+  color: #fff;
+  font-family: "DM Sans", sans-serif;
+  transition: all 0.3s;
+  font-weight: bold;
+  font-size:1.125rem;
+  line-height: 1.75rem;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-bottom: 10px;
+`;
+
 export const EmailActionText = styled.p`
 font-family: 'DM Sans';
 font-size: 1rem;
@@ -70,6 +95,11 @@ line-height: 18px;
 text-align: center;
 color: #AAAAAA;
 `;
+
+export const ChangeEmail = styled.p`
+color: #5F2FFF;
+cursor: pointer;
+`
 
 export const ResendEmailLink = styled.span`
 color: #5F2FFF;

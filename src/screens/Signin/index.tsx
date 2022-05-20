@@ -33,11 +33,13 @@ import {
 // Interfaces
 import { EmailError, SigninProps } from './types';
 // eslint-disable-next-line import/no-cycle
-import { Types } from '../../components/Provider/types';
+import {Types, User} from '../../components/Provider/types';
 import { LIB_VERSION } from '../../version';
+import {Auth} from "aws-amplify";
+import axios from "axios";
 
 // eslint-disable-next-line func-names
-const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
+const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, setSnackBar }) {
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
   const { dispatch, state } = authContext;
@@ -66,16 +68,64 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
     await SigninSignupWithEmail(authContext);
   };
 
-  const loginWithMagic = async () => {
-    if (state.isResendClicked === true) {
-      return;
+  /*When REACT_APP_LINK is false
+  users will receive an email with their code
+  so they can login.
+
+  This function calls the verify-code endpoint to make sure
+  the code is correct
+   */
+
+  const verifyCode = async (code: string) => {
+    return await axios.post('https://marketplace-api.stardust.gg/v1/player/login-verify-code', {
+      email: email,
+      code: code,
+      gameId: process.env.REACT_APP_GAME_ID
+    }).catch((e) => {
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+      setEmailError({
+        hasError: true,
+        message: e.response.data.errorDetail
+      })
+    });
+  }
+
+  /*Sign in function with the code that the user inputs.
+    "await verifyCode" check the code before completing
+    the login process
+   */
+
+  const finishSignInWithCode = async (code: string) => {
+    try {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: true });
+      await verifyCode(code);
+      Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
+      const user = await Auth.signIn(email);
+      await Auth.sendCustomChallengeAnswer(user, code);
+      await Auth.currentSession();
+      const payload = Object.entries(user).length !== 0 ? user : undefined;
+      dispatch({ type: Types.handleSignin, payload: payload as User });
+      dispatch({ type: Types.handleOpenModal, payload: false });
+      dispatch({ type: Types.handleSessionLoading, payload: false });
+    } catch (e: any) {
+      dispatch({ type: Types.handleMagicLinkLoading, payload: false });
+      if (setSnackBar) {
+        setSnackBar({
+          isOpen: true,
+          hasError: true,
+          message: 'An error has occurred while logging in...',
+        });
+      }
     }
+  }
+
+  const resendHandler = async () => {
     dispatch({ type: Types.handleResendClicked, payload: true });
-    dispatch({ type: Types.handleSessionLoading, payload: true });
+    setTimeout(() => {
+      dispatch({ type: Types.handleResendClicked, payload: false });
+    }, 10000);
     await loginWithMagicLink()
-      .catch(() => {
-      });
-  };
+  }
 
   return (
     <>
@@ -84,7 +134,10 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
           <HeaderContainer>
             { isEmailLoading
               && (
-              <BackArrowIconContainer onClick={() => { setIsEmailLoading(false); }}>
+              <BackArrowIconContainer onClick={() => {
+                setIsEmailLoading(false);
+                cleanErrors();
+              }}>
                 <Icon icon={IconsEnum.BackArrow} />
               </BackArrowIconContainer>
               )}
@@ -111,8 +164,19 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext }) {
 
           {isEmailLoading && !state.isMagicLinkLoading
             && (
-            // eslint-disable-next-line max-len
-              <EmailLoading isResendClicked={state.isResendClicked} email={email} resendEmail={loginWithMagic} />
+              <EmailLoading
+                setIsEmailLoading={setIsEmailLoading}
+                error={emailError}
+                finishSignInWithCode={(code) => {
+                  finishSignInWithCode(code)
+                }}
+                setEmailError={() => {
+                  setEmailError({hasError: false, message: ''})
+                }}
+                isResendClicked= {state.isResendClicked}
+                email={email}
+                resendEmail={resendHandler}
+              />
             )}
 
           {!isEmailLoading && !state.isMagicLinkLoading

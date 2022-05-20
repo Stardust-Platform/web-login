@@ -1,4 +1,4 @@
-import Amplify, { Hub, Auth } from 'aws-amplify';
+import { Hub, Auth, Amplify } from 'aws-amplify';
 import { CognitoUserInterface } from '@aws-amplify/ui-components';
 // Config
 import { CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';

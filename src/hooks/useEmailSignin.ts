@@ -39,6 +39,7 @@ const useEmailSignin = (
         email,
         redirect: magicLinkRedirectUrl ?? window?.location?.origin,
         version: LIB_VERSION,
+        link: process.env.REACT_APP_LINK ? false : true
       });
       cleanErrors();
     } catch (err: any) {
