@@ -44,6 +44,7 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, set
   const [email, setEmail] = useState('');
   const { dispatch, state } = authContext;
   const [isEmailLoading, setIsEmailLoading] = useState(false);
+  const socialEnv = !process.env.REACT_APP_SOCIAL_LOGIN ? true : false;
   const [emailError, setEmailError] = useState<EmailError>({
     hasError: false, message: '',
   });
@@ -207,9 +208,9 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, set
               Continue
             </ContinueButton>
 
-            <OptionToSocialText>or Sign In with</OptionToSocialText>
+            {socialEnv ? <OptionToSocialText>or Sign In with</OptionToSocialText> : ''}
 
-            <SocialMediaButtons />
+            {socialEnv ? <SocialMediaButtons /> : ''}
 
             <SeparatorLine />
 
