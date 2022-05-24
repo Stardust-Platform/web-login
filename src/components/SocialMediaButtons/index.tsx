@@ -7,12 +7,22 @@ import Icon, { IconsEnum } from '../Icons';
 // Styles
 import { SocialMediaButton, IconContainer, Disable } from './styles';
 
+interface props {
+  loginOptionsEnv: string | undefined;
+}
+
 // eslint-disable-next-line func-names
-const SocialMediaButtons = function () {
+const SocialMediaButtons = function ({loginOptionsEnv}: props) {
+
+
+  const loginOptions = (socialName: string) => {
+    return loginOptionsEnv?.includes(socialName) ? socialName : null;
+  }
+
   return (
     <>
 
-      <SocialMediaButton
+      {loginOptions('google') && <SocialMediaButton
         type="button"
         onClick={() => Auth.federatedSignIn({
           provider: CognitoHostedUIIdentityProvider.Google,
@@ -22,9 +32,9 @@ const SocialMediaButtons = function () {
           <Icon icon={IconsEnum.Google} />
         </IconContainer>
         Continue with Google
-      </SocialMediaButton>
+      </SocialMediaButton>}
 
-      <SocialMediaButton
+      {loginOptions('discord') && <SocialMediaButton
         type="button"
         onClick={() => Auth.federatedSignIn({
           customProvider: 'Discord',
@@ -34,9 +44,9 @@ const SocialMediaButtons = function () {
           <Icon icon={IconsEnum.Discord} />
         </IconContainer>
         Continue with Discord
-      </SocialMediaButton>
+      </SocialMediaButton>}
 
-      <Disable>
+      {loginOptions('facebook') && <Disable>
         <SocialMediaButton
           type="button"
           onClick={() => Auth.federatedSignIn({
@@ -48,9 +58,9 @@ const SocialMediaButtons = function () {
           </IconContainer>
           Continue with Facebook
         </SocialMediaButton>
-      </Disable>
+      </Disable>}
 
-      <Disable>
+      {loginOptions('apple') && <Disable>
         <SocialMediaButton
           type="button"
           onClick={() => Auth.federatedSignIn({
@@ -62,7 +72,7 @@ const SocialMediaButtons = function () {
           </IconContainer>
           Continue with Apple
         </SocialMediaButton>
-      </Disable>
+      </Disable>}
 
     </>
   );
