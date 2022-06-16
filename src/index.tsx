@@ -43,7 +43,7 @@ const overwriteEnvironment = (awsExports: any, loginUrl: string) => {
     ...awsExports,
     Auth: { oauth: { responseType: 'code' } },
     oauth: {
-      ...awsconfig.oauth,
+      ...awsExports.oauth,
       responseType: 'code',
       redirectSignIn: origin,
       redirectSignOut: origin,

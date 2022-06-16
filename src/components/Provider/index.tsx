@@ -41,6 +41,9 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     dispatch,
   }), [state]);
 
+  const loginOptionsEnv = process.env.REACT_APP_LOGIN_OPTIONS ? JSON.parse(process.env.REACT_APP_LOGIN_OPTIONS || '[]')
+    : ["email", "facebook", "discord", "google", "apple"];
+
   const checkUserLoggedIn = async (dispatch: any) => {
     let user = {};
     await Auth.currentAuthenticatedUser()
@@ -211,7 +214,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       />
       {state.isOpen && (
         // eslint-disable-next-line max-len
-        <SigninScreen setSnackBar={() => setSnackBarStatus} authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
+        <SigninScreen loginOptionsEnv={loginOptionsEnv} setSnackBar={() => setSnackBarStatus} authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
     </>
   );
 };
