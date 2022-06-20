@@ -1,0 +1,25 @@
+name: Update image file paths with github images and sync with Readme
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      #Token used is a token associated with Joe Malecki; if he's no longer with the company than this may fail
+      - name: Copy updated Readme to Documentation Repo
+        uses: andstor/copycat-action@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          src_path: ./README.md
+          src_branch: main
+          dst_path: ./guides/web_login_guide.md
+          dst_repo_name: Documentation
+          dst_owner: Stardust-Platform
+          dst_branch: dev-market

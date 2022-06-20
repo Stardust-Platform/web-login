@@ -1,3 +1,18 @@
+---
+
+title: Web Login Widget Guide
+excerpt: Basics of how to setup the Stardust Login Widget for your Web Game
+category: LOGIN_WIDGET_ID
+slug: web-login-widget
+order: 3
+
+---
+<!--
+
+The above section is not user read text! It's configuration information when syncing with our customer facing documentation. Find out more here: https://docs.readme.com/docs/rdme
+
+-->
+
 Stardust Web Login Widget
 =========================
 
@@ -154,7 +169,7 @@ For the image provided in the LogoUrl this are the recommended dimensions:
 | Width  | 160    | 160    | 160    | 132    | 160    | 48     | 36     |
 | Height | 24     | 27     | 31     | 48     | 48     | 48     | 48     |
 
-![image](https://user-images.githubusercontent.com/47512198/134942504-bc819a27-a229-4ef0-9ddd-b3991210bab2.png)
+![image](img/logo-size.png)
 
 ### Hook
 
