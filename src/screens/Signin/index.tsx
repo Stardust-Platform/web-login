@@ -39,7 +39,7 @@ import {Auth} from "aws-amplify";
 import axios from "axios";
 
 // eslint-disable-next-line func-names
-const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, setSnackBar }) {
+const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, setSnackBar, loginOptionsEnv }) {
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
   const { dispatch, state } = authContext;
@@ -67,6 +67,8 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, set
     dispatch({ type: Types.handleSessionLoading, payload: true });
     await SigninSignupWithEmail(authContext);
   };
+
+  const emailLoginOption = !process.env.REACT_APP_LOGIN_OPTIONS ? true : loginOptionsEnv?.includes('email');
 
   /*When REACT_APP_LINK is false
   users will receive an email with their code
@@ -182,8 +184,8 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, set
           {!isEmailLoading && !state.isMagicLinkLoading
           && (
           <>
-            <Text>Enter an email to login</Text>
-            <EmailContainer hasError={emailError.hasError}>
+            <Text>{emailLoginOption ? 'Enter an email to login' : 'Welcome To Login'}</Text>
+            {emailLoginOption && <EmailContainer hasError={emailError.hasError}>
               <div>
                 <Icon icon={IconsEnum.Email} />
               </div>
@@ -198,18 +200,18 @@ const Signin: FC<SigninProps> = function ({ closeModal, custom, authContext, set
                   }
                 }}
               />
-            </EmailContainer>
+            </EmailContainer>}
 
             { emailError && emailError.message && emailError.message.length > 0
             && <ErrorMessage>{emailError.message}</ErrorMessage>}
 
-            <ContinueButton onClick={onSubmit} type="submit">
+            {emailLoginOption ? <ContinueButton onClick={onSubmit} type="submit">
               Continue
-            </ContinueButton>
+            </ContinueButton> : ''}
 
-            <OptionToSocialText>or Sign In with</OptionToSocialText>
+            {loginOptionsEnv?.length === 1 && loginOptionsEnv.includes('email') ? '' : emailLoginOption && <OptionToSocialText>or Sign In with</OptionToSocialText>}
 
-            <SocialMediaButtons />
+            <SocialMediaButtons loginOptionsEnv={loginOptionsEnv} />
 
             <SeparatorLine />
 
