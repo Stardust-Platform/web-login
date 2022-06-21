@@ -76,10 +76,10 @@ export const EmailContainer = styled.div<EmailContainerProps>`
   border: ${(props) => (props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0')};
   box-sizing: border-box;
   border-radius: 0.5rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
   display: flex;
+  padding: 0.625rem 1rem;
   align-items: center;
-  padding: 1rem;
 `;
 
 export const ErrorMessage = styled.div`
