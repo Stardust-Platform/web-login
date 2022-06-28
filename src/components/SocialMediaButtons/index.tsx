@@ -5,7 +5,7 @@ import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 // Components
 import Icon, { IconsEnum } from '../Icons';
 // Styles
-import { SocialMediaButton, IconContainer, Disable } from './styles';
+import { SocialMediaButton, IconContainer} from './styles';
 
 interface props {
   loginOptionsEnv: string | undefined;
@@ -46,33 +46,33 @@ const SocialMediaButtons = function ({loginOptionsEnv}: props) {
         Continue with Discord
       </SocialMediaButton>}
 
-      {loginOptions('facebook') && <Disable>
-        <SocialMediaButton
-          type="button"
-          onClick={() => Auth.federatedSignIn({
-            provider: CognitoHostedUIIdentityProvider.Facebook,
-          })}
-        >
-          <IconContainer>
-            <Icon icon={IconsEnum.Facebook} />
-          </IconContainer>
-          Continue with Facebook
-        </SocialMediaButton>
-      </Disable>}
+      {/*{loginOptions('facebook') && <Disable>*/}
+      {/*  <SocialMediaButton*/}
+      {/*    type="button"*/}
+      {/*    onClick={() => Auth.federatedSignIn({*/}
+      {/*      provider: CognitoHostedUIIdentityProvider.Facebook,*/}
+      {/*    })}*/}
+      {/*  >*/}
+      {/*    <IconContainer>*/}
+      {/*      <Icon icon={IconsEnum.Facebook} />*/}
+      {/*    </IconContainer>*/}
+      {/*    Continue with Facebook*/}
+      {/*  </SocialMediaButton>*/}
+      {/*</Disable>}*/}
 
-      {loginOptions('apple') && <Disable>
-        <SocialMediaButton
-          type="button"
-          onClick={() => Auth.federatedSignIn({
-            provider: CognitoHostedUIIdentityProvider.Apple,
-          })}
-        >
-          <IconContainer>
-            <Icon icon={IconsEnum.Apple} />
-          </IconContainer>
-          Continue with Apple
-        </SocialMediaButton>
-      </Disable>}
+      {/*{loginOptions('apple') && <Disable>*/}
+      {/*  <SocialMediaButton*/}
+      {/*    type="button"*/}
+      {/*    onClick={() => Auth.federatedSignIn({*/}
+      {/*      provider: CognitoHostedUIIdentityProvider.Apple,*/}
+      {/*    })}*/}
+      {/*  >*/}
+      {/*    <IconContainer>*/}
+      {/*      <Icon icon={IconsEnum.Apple} />*/}
+      {/*    </IconContainer>*/}
+      {/*    Continue with Apple*/}
+      {/*  </SocialMediaButton>*/}
+      {/*</Disable>}*/}
 
     </>
   );

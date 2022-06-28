@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const SocialMediaButton = styled.button`
   display: flex;
-  justify-content: baseline;
+  justify-content: center;
   align-items: center;
   padding: 0.625rem 1rem;
   margin-bottom: 0.5rem;
