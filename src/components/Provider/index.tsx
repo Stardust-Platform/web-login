@@ -2,7 +2,7 @@
 import React, {
   useReducer, useMemo, useEffect, FC, useState,
 } from 'react';
-import { Auth, Hub } from 'aws-amplify';
+import { Amplify, Auth, Hub } from 'aws-amplify';
 import GoogleFontsCss2Loader from 'react-google-fonts-css2';
 // import axios, { AxiosRequestConfig } from 'axios';
 // Screens
@@ -19,7 +19,8 @@ import {
 import AuthReducer from './reducer';
 // Hooks
 import useAuthContext, { AuthContext } from './hooks';
-
+import awsconfig from '../../aws-exports';
+import { LoginUrl } from '../../loginUrl';
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
@@ -35,6 +36,42 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     hasError: false,
     message: '',
   });
+
+  useEffect(() => {
+    // https://stackoverflow.com/questions/55137170/aws-amplify-google-sigin-with-react-doesnt-automatically-refresh-token-after-1
+    // Override aws config redirect with current origin
+    let config = {
+      ...awsconfig,
+      Auth: { oauth: { responseType: 'code' } },
+      oauth: {
+        ...awsconfig.oauth,
+        responseType: 'code',
+        redirectSignIn: origin,
+        redirectSignOut: origin,
+      },
+    };
+
+    if (props.awsOverwrite) {
+      config = {
+        ...props.awsOverwrite,
+        Auth: { oauth: { responseType: 'code' } },
+        oauth: {
+          ...props.awsOverwrite.oauth,
+          responseType: 'code',
+          redirectSignIn: origin,
+          redirectSignOut: origin,
+        },
+      }
+    }
+
+    Amplify.configure(config);
+  }, [props.awsOverwrite]);
+
+  useEffect(() => {
+    if (props.loginUrl) {
+      LoginUrl.update(props.loginUrl);
+    }
+  }, [props.loginUrl])
 
   const value = useMemo(() => ({
     state,
