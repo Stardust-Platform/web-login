@@ -10,20 +10,21 @@ import {
 } from "react-router-dom";
 import webLoginDevAmplifyConfig from './config/web-login-amplify-config.dev';
 
-let loginUrl: typeof process.env.REACT_APP_WEB_LOGIN_URL;
-let awsOverwrite: typeof webLoginDevAmplifyConfig;
+const devProps: {
+  loginUrl?: typeof process.env.REACT_APP_WEB_LOGIN_URL,
+  awsOverwrite?: typeof webLoginDevAmplifyConfig
+} = {}
 
 if (process.env.REACT_APP_TARGET_ENVIRONMENT === 'dev') {
-  loginUrl = process.env.REACT_APP_WEB_LOGIN_URL;
-  awsOverwrite = webLoginDevAmplifyConfig;
+  devProps.loginUrl = process.env.REACT_APP_WEB_LOGIN_URL;
+  devProps.awsOverwrite = webLoginDevAmplifyConfig;
 }
 
 const App: FC = () => (
   <AuthProvider
     isOpen
     custom={{ privacyPolicyUrl: 'localhost:3000' }}
-    awsOverwrite={awsOverwrite}
-    loginUrl={loginUrl}
+    {...devProps}
   >
     <BrowserRouter>
       <Routes>
