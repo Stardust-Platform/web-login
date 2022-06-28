@@ -6,10 +6,6 @@ import { CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';
 import { AuthProvider, useAuthContext, ProviderProps } from './components/Provider';
 
 
-let origin = 'localhost:3000';
-
-if (typeof window !== 'undefined') origin = window?.location?.origin;
-
 const currentSession = async () => Auth.currentSession();
 
 const currentUserInfo = async () => Auth.currentUserInfo();

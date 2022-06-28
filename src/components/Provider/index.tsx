@@ -24,6 +24,10 @@ import { LoginUrl } from '../../loginUrl';
 
 const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
+let origin = 'localhost:3000';
+
+if (typeof window !== 'undefined') origin = window?.location?.origin;
+
 // eslint-disable-next-line func-names
 export const AuthProvider: FC<ProviderProps> = function (props) {
   const {
