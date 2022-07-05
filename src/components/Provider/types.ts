@@ -4,6 +4,7 @@ import { CognitoUserInterface } from '@aws-amplify/ui-components';
 // Components
 // eslint-disable-next-line import/no-cycle
 import { SigninProps } from '../../screens/Signin';
+import awsconfig from '../../aws-exports';
 
 export enum Types {
   handleOpenModal = 'HANDLE_OPEN_MODAL',
@@ -75,6 +76,8 @@ export type StateContext = State & {
 
 export type ProviderProps = SigninProps & {
   isOpen?: boolean;
+  awsOverwrite?: typeof awsconfig;
+  loginUrl?: string;
 };
 
 export type SnackBarStatus = {
