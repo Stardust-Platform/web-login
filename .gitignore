@@ -29,6 +29,7 @@ example/package-lock.json
 
 yarn-error.log
 .idea/
+.vscode/
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

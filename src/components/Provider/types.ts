@@ -61,6 +61,7 @@ export type State = {
   isSessionLoading: boolean;
   isMagicLinkLoading: boolean;
   isResendClicked: boolean;
+  gameId: string;
 };
 
 export type Context = {

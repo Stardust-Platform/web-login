@@ -94,7 +94,7 @@ const Signin: FC<SigninProps> = function ({
       .post("https://marketplace-api.stardust.gg/v1/player/login-verify-code", {
         email: email,
         code: code,
-        gameId: process.env.REACT_APP_GAME_ID,
+        gameId: state.gameId,
       })
       .catch((e) => {
         dispatch({ type: Types.handleSessionLoading, payload: false });
@@ -115,7 +115,9 @@ const Signin: FC<SigninProps> = function ({
       dispatch({ type: Types.handleMagicLinkLoading, payload: true });
       await verifyCode(code);
       Auth.configure({
-        clientMetadata: { "custom:gameId": process.env.REACT_APP_GAME_ID },
+        clientMetadata: {
+          "custom:gameId": state.gameId,
+        },
       });
       const user = await Auth.signIn(email);
       await Auth.sendCustomChallengeAnswer(user, code);
