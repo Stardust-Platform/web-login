@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const EmailVerificationText = styled.p`
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.313rem;
@@ -25,7 +25,7 @@ export const ConfirmButton = styled.button`
   border-radius: 0.625rem;
   border: none;
   color: #fff;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   transition: all 0.3s;
   font-weight: bold;
   font-size: 1.125rem;
@@ -36,7 +36,7 @@ export const ConfirmButton = styled.button`
 `;
 
 export const EmailActionText = styled.p`
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-size: 1rem;
   line-height: 1.313rem;
   text-align: center;
@@ -88,7 +88,7 @@ export const ResendEmailContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-weight: bold;
   font-size: 14px;
   line-height: 18px;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Notification = styled.div`
   position: absolute;
@@ -85,7 +85,7 @@ export const TextContainer = styled.div`
 `;
 
 export const Text = styled.div`
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-weight: bold;
   font-size: 14px;
   line-height: 24px;
@@ -99,7 +99,7 @@ export const CloseIconContainer = styled.div`
 `;
 
 export const NotificationMessage = styled.div`
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-size: 14px;
   line-height: 18px;
   text-align: center;

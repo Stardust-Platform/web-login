@@ -1,18 +1,18 @@
 // Libs
-import { Dispatch } from "react";
-import { CognitoUserInterface } from "@aws-amplify/ui-components";
+import { Dispatch } from 'react';
+import { CognitoUserInterface } from '@aws-amplify/ui-components';
 // Components
 // eslint-disable-next-line import/no-cycle
-import { SigninProps } from "../../screens/Signin";
-import awsconfig from "../../aws-exports";
+import { SigninProps } from '../../screens/Signin';
+import awsconfig from '../../aws-exports';
 
 export enum Types {
-  handleOpenModal = "HANDLE_OPEN_MODAL",
-  handleSignin = "HANDLE_SIGNIN",
-  handleSignOut = "HANDLE_SIGNOUT",
-  handleSessionLoading = "HANDLE_SESSION_LOADING",
-  handleResendClicked = "HANDLE_RESEND_CLICKED",
-  handleMagicLinkLoading = "HANDLE_MAGIC_LINK_LOADING",
+  handleOpenModal = 'HANDLE_OPEN_MODAL',
+  handleSignin = 'HANDLE_SIGNIN',
+  handleSignOut = 'HANDLE_SIGNOUT',
+  handleSessionLoading = 'HANDLE_SESSION_LOADING',
+  handleResendClicked = 'HANDLE_RESEND_CLICKED',
+  handleMagicLinkLoading = 'HANDLE_MAGIC_LINK_LOADING',
 }
 
 export type ActionIsSessionLoading = {

@@ -1,4 +1,4 @@
-import { State } from "./types";
+import { State } from './types';
 
 // eslint-disable-next-line import/prefer-default-export
 export const initialState: State = {
@@ -7,5 +7,7 @@ export const initialState: State = {
   isSessionLoading: true,
   isMagicLinkLoading: false,
   isResendClicked: false,
-  gameId: localStorage.getItem("StardustWebSdk:gameId") || process.env.REACT_APP_GAME_ID as string,
+  gameId:
+    localStorage.getItem('StardustWebSdk:gameId') ||
+    (process.env.REACT_APP_GAME_ID as string),
 };

@@ -1,13 +1,13 @@
-import { Hub, Auth } from "aws-amplify";
-import { CognitoUserInterface } from "@aws-amplify/ui-components";
+import { Hub, Auth } from 'aws-amplify';
+import { CognitoUserInterface } from '@aws-amplify/ui-components';
 // Config
-import { CurrentUserOpts } from "@aws-amplify/auth/lib-esm/types";
+import { CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';
 // Provider
 import {
   AuthProvider,
   useAuthContext,
   ProviderProps,
-} from "./components/Provider";
+} from './components/Provider';
 
 const currentSession = async () => Auth.currentSession();
 
@@ -22,7 +22,7 @@ const currentAuthenticatedUser = async (params?: CurrentUserOpts | undefined) =>
  */
 const overwriteEnvironment = () =>
   console.warn(
-    "overwriteEnvironment is deprecated: use AuthProvider awsConfig and loginUrl props instead."
+    'overwriteEnvironment is deprecated: use AuthProvider awsConfig and loginUrl props instead.'
   );
 
 export {

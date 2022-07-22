@@ -89,10 +89,7 @@
     }
   ],
   "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": true,
-    "singleQuote": false
+    "singleQuote": true
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"

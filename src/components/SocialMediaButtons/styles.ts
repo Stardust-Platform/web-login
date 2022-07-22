@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SocialMediaButton = styled.button`
   display: flex;
@@ -17,7 +17,7 @@ export const SocialMediaButton = styled.button`
   line-height: 1.313rem;
   letter-spacing: -0.015em;
   color: #4a4a4a;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
 
   &:hover {
     cursor: pointer;

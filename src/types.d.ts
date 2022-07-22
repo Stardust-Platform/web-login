@@ -1,1 +1,1 @@
-declare module "react-google-fonts-css2";
+declare module 'react-google-fonts-css2';

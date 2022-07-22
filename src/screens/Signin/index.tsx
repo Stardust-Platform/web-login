@@ -1,14 +1,14 @@
 // libs
-import React, { FC, memo, useState } from "react";
+import React, { FC, memo, useState } from 'react';
 // Components
-import EmailLoading from "../../components/EmailLoading";
-import SocialMediaButtons from "../../components/SocialMediaButtons";
-import Icon, { IconsEnum } from "../../components/Icons";
+import EmailLoading from '../../components/EmailLoading';
+import SocialMediaButtons from '../../components/SocialMediaButtons';
+import Icon, { IconsEnum } from '../../components/Icons';
 // Hooks
 // eslint-disable-next-line import/no-cycle
-import useEmailSignin from "../../hooks/useEmailSignin";
+import useEmailSignin from '../../hooks/useEmailSignin';
 // Styles
-import { LoaderContainer } from "../../components/EmailLoading/styles";
+import { LoaderContainer } from '../../components/EmailLoading/styles';
 import {
   BackArrowIconContainer,
   Backdrop,
@@ -27,14 +27,14 @@ import {
   StrongUnderlineText,
   TermsText,
   Text,
-} from "./styles";
+} from './styles';
 // Interfaces
-import { EmailError, SigninProps } from "./types";
+import { EmailError, SigninProps } from './types';
 // eslint-disable-next-line import/no-cycle
-import { Types, User } from "../../components/Provider/types";
-import { LIB_VERSION } from "../../version";
-import { Auth } from "aws-amplify";
-import axios from "axios";
+import { Types, User } from '../../components/Provider/types';
+import { LIB_VERSION } from '../../version';
+import { Auth } from 'aws-amplify';
+import axios from 'axios';
 
 // eslint-disable-next-line func-names
 const Signin: FC<SigninProps> = function ({
@@ -45,12 +45,12 @@ const Signin: FC<SigninProps> = function ({
   loginOptionsEnv,
 }) {
   const [isSignup, setIsSignup] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const { dispatch, state } = authContext;
   const [isEmailLoading, setIsEmailLoading] = useState(false);
   const [emailError, setEmailError] = useState<EmailError>({
     hasError: false,
-    message: "",
+    message: '',
   });
   const {
     logoUrl,
@@ -79,7 +79,7 @@ const Signin: FC<SigninProps> = function ({
 
   const emailLoginOption = !process.env.REACT_APP_LOGIN_OPTIONS
     ? true
-    : loginOptionsEnv?.includes("email");
+    : loginOptionsEnv?.includes('email');
 
   /*When REACT_APP_LINK is false
   users will receive an email with their code
@@ -91,7 +91,7 @@ const Signin: FC<SigninProps> = function ({
 
   const verifyCode = async (code: string) => {
     return await axios
-      .post("https://marketplace-api.stardust.gg/v1/player/login-verify-code", {
+      .post('https://marketplace-api.stardust.gg/v1/player/login-verify-code', {
         email: email,
         code: code,
         gameId: state.gameId,
@@ -116,7 +116,7 @@ const Signin: FC<SigninProps> = function ({
       await verifyCode(code);
       Auth.configure({
         clientMetadata: {
-          "custom:gameId": state.gameId,
+          'custom:gameId': state.gameId,
         },
       });
       const user = await Auth.signIn(email);
@@ -132,7 +132,7 @@ const Signin: FC<SigninProps> = function ({
         setSnackBar({
           isOpen: true,
           hasError: true,
-          message: "An error has occurred while logging in...",
+          message: 'An error has occurred while logging in...',
         });
       }
     }
@@ -148,7 +148,7 @@ const Signin: FC<SigninProps> = function ({
 
   return (
     <>
-      <Container className={containerClassName ?? ""}>
+      <Container className={containerClassName ?? ''}>
         <Form onSubmit={onSubmit}>
           <HeaderContainer>
             {isEmailLoading && (
@@ -189,7 +189,7 @@ const Signin: FC<SigninProps> = function ({
                 finishSignInWithCode(code);
               }}
               setEmailError={() => {
-                setEmailError({ hasError: false, message: "" });
+                setEmailError({ hasError: false, message: '' });
               }}
               isResendClicked={state.isResendClicked}
               email={email}
@@ -201,8 +201,8 @@ const Signin: FC<SigninProps> = function ({
             <>
               <Text>
                 {emailLoginOption
-                  ? "Enter an email to login"
-                  : "Welcome To Login"}
+                  ? 'Enter an email to login'
+                  : 'Welcome To Login'}
               </Text>
               {emailLoginOption && (
                 <EmailContainer hasError={emailError.hasError}>
@@ -234,12 +234,12 @@ const Signin: FC<SigninProps> = function ({
                   Continue
                 </ContinueButton>
               ) : (
-                ""
+                ''
               )}
 
               {loginOptionsEnv?.length === 1 &&
-              loginOptionsEnv.includes("email")
-                ? ""
+              loginOptionsEnv.includes('email')
+                ? ''
                 : emailLoginOption && (
                     <OptionToSocialText>or Sign In with</OptionToSocialText>
                   )}
@@ -252,16 +252,16 @@ const Signin: FC<SigninProps> = function ({
                 Version: {LIB_VERSION}
                 <br />
                 <br /> When you sign up, you’re accepting our
-                <br />{" "}
+                <br />{' '}
                 <StrongUnderlineText
-                  href={termsServiceUrl ?? ""}
+                  href={termsServiceUrl ?? ''}
                   {...termsServiceProps}
                 >
                   Terms of Service
-                </StrongUnderlineText>{" "}
-                and{" "}
+                </StrongUnderlineText>{' '}
+                and{' '}
                 <StrongUnderlineText
-                  href={privacyPolicyUrl ?? ""}
+                  href={privacyPolicyUrl ?? ''}
                   {...privacyPolicyProps}
                 >
                   Privacy Policy

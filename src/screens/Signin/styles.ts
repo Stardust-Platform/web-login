@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { EmailContainerProps } from "./types";
+import styled from 'styled-components';
+import { EmailContainerProps } from './types';
 
 export const Container = styled.div`
   position: fixed;
@@ -65,7 +65,7 @@ export const Text = styled.h2`
   font-size: 1rem;
   margin-top: 0;
   color: #6a6a6a;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   margin-bottom: 0.5rem;
 `;
 
@@ -74,7 +74,7 @@ export const EmailContainer = styled.div<EmailContainerProps>`
   background: #ffffff;
   opacity: 0.99;
   border: ${(props) =>
-    props.hasError ? "2px solid #FF5473" : "1px solid #e0e0e0"};
+    props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0'};
   box-sizing: border-box;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
@@ -85,7 +85,7 @@ export const EmailContainer = styled.div<EmailContainerProps>`
 
 export const ErrorMessage = styled.div`
   align-self: start;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-weight: bold;
   font-size: 14px;
   text-align: center;
@@ -99,7 +99,7 @@ export const TextContainer = styled.div<EmailContainerProps>`
   background: #ffffff;
   opacity: 0.99;
   border: ${(props) =>
-    props.hasError ? "2px solid #FF5473" : "1px solid #e0e0e0"};
+    props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0'};
   box-sizing: border-box;
   border-radius: 0.5rem;
   margin-bottom: 0.25rem;
@@ -112,7 +112,7 @@ export const TextInput = styled.input`
   width: 100%;
   margin-left: 0.75rem;
   color: #2a2a2a;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.313rem;
@@ -132,7 +132,7 @@ export const EmailInput = styled.input`
   width: 100%;
   margin-left: 0.75rem;
   color: #2a2a2a;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.313rem;
@@ -159,7 +159,7 @@ export const ContinueButton = styled.button`
   border-radius: 0.625rem;
   border: none;
   color: #fff;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: bold;
   font-size: 1.125rem;
   line-height: 1.75rem;
@@ -168,14 +168,14 @@ export const ContinueButton = styled.button`
 `;
 
 export const SwitchModeText = styled.p`
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
   line-height: 1.313rem;
   color: #000000;
   margin-top: 0;
 
   button {
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
     line-height: 1.313rem;
     color: #000000;
@@ -190,7 +190,7 @@ export const SwitchModeText = styled.p`
 export const OptionToSocialText = styled.p`
   margin-top: 0;
   margin-bottom: 1rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.875rem;
   line-height: 1.125rem;
   text-align: center;
@@ -200,7 +200,7 @@ export const OptionToSocialText = styled.p`
 
   ::before {
     display: inline-block;
-    content: "";
+    content: '';
     border-top: 0.063rem solid #eaeaea;
     width: 5rem;
     margin-right: 0.625rem;
@@ -209,7 +209,7 @@ export const OptionToSocialText = styled.p`
 
   ::after {
     display: inline-block;
-    content: "";
+    content: '';
     border-top: 0.063rem solid #eaeaea;
     width: 5rem;
     margin-left: 0.625rem;
@@ -229,7 +229,7 @@ export const TermsText = styled.p`
   line-height: 1rem;
   text-align: center;
   color: #6a6a6a;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
 `;
 
 export const StrongUnderlineText = styled.a`

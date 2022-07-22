@@ -1,9 +1,9 @@
 // . Libs
-import { createContext, useContext } from "react";
-import { Auth } from "aws-amplify";
+import { createContext, useContext } from 'react';
+import { Auth } from 'aws-amplify';
 // Interfaces
 // eslint-disable-next-line import/no-cycle
-import { StateContext, Context, Types } from "./types";
+import { StateContext, Context, Types } from './types';
 
 export const AuthContext = createContext<Context | undefined>(undefined);
 
@@ -23,7 +23,7 @@ const useAuthContext = (): StateContext => {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error("useAuthContext must be used inside a AuthProvider");
+    throw new Error('useAuthContext must be used inside a AuthProvider');
   }
 
   const { state, dispatch } = context;
@@ -35,7 +35,7 @@ const useAuthContext = (): StateContext => {
   const handleSignOut = () => {
     dispatch({ type: Types.handleSessionLoading, payload: true });
     signOut(() => dispatch({ type: Types.handleSignOut })).then(() => {
-      if (typeof window !== "undefined") {
+      if (typeof window !== 'undefined') {
         window.location.reload();
       }
       dispatch({ type: Types.handleSessionLoading, payload: false });
