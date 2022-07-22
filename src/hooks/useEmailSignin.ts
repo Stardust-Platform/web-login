@@ -7,7 +7,7 @@ import { LoginUrl } from "../loginUrl";
 // Interfaces
 import { EmailError } from "../screens/Signin/types";
 // eslint-disable-next-line import/no-cycle
-import { Types } from "../components/Provider/types";
+import { Context, Types } from "../components/Provider/types";
 
 // eslint-disable-next-line prefer-regex-literals
 const emailRegex = new RegExp(
@@ -58,7 +58,7 @@ const useEmailSignin = ({
     }
   };
 
-  const SignupWithEmail = async () => {
+  const SignupWithEmail = async (gameId: string) => {
     const array = new Uint32Array(5);
     crypto.getRandomValues(array);
     try {
@@ -67,7 +67,7 @@ const useEmailSignin = ({
         password: array.join("-"),
         attributes: {
           email,
-          "custom:gameId": process.env.REACT_APP_GAME_ID, // required to be a string representation of a number in this api
+          "custom:gameId": gameId, // required to be a string representation of a number in this api
         },
       });
       cleanErrors();
@@ -80,8 +80,8 @@ const useEmailSignin = ({
     }
   };
 
-  const SigninSignupWithEmail = async (authContext: any) => {
-    const { dispatch } = authContext;
+  const SigninSignupWithEmail = async (authContext: Context) => {
+    const { dispatch, state } = authContext;
     if (email.length === 0 || !emailRegex.test(email)) {
       setEmailError({
         hasError: true,
@@ -90,13 +90,10 @@ const useEmailSignin = ({
       dispatch({ type: Types.handleSessionLoading, payload: false });
       return;
     }
-    if (
-      !process.env.REACT_APP_GAME_ID ||
-      Number(process.env.REACT_APP_GAME_ID) < 1
-    ) {
+    if (!state.gameId) {
       setEmailError({
         hasError: true,
-        message: "REACT_APP_GAME_ID must be a value > 0",
+        message: "gameId must be a value > 0",
       });
       return;
     }
@@ -106,7 +103,7 @@ const useEmailSignin = ({
       await loginWithMagicLink();
     } catch (err: any) {
       if (err.response.status === 403) {
-        await SignupWithEmail();
+        await SignupWithEmail(state.gameId);
         await loginWithMagicLink();
       }
     }

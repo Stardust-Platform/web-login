@@ -99,9 +99,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     try {
       if (typeof challenge === "string") {
         // MUST be here for TriggerPlayerPreTokenGeneration
-        Auth.configure({
-          clientMetadata: { "custom:gameId": process.env.REACT_APP_GAME_ID },
-        });
+        Auth.configure({ clientMetadata: { "custom:gameId": state.gameId } });
         const user = await Auth.signIn(email);
         await Auth.sendCustomChallengeAnswer(user, challenge);
         await Auth.currentSession();
@@ -151,14 +149,14 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     try {
       await Auth.currentAuthenticatedUser();
       Auth.configure({
-        clientMetadata: { "custom:gameId": process.env.REACT_APP_GAME_ID },
+        clientMetadata: { "custom:gameId": state.gameId },
         Auth: { oauth: { responseType: "code" } },
       });
       const cognitoUser = await Auth.currentAuthenticatedUser();
       // THIS IS THE MAGIC THAT ACTUALLY WORKS
       // https://aws.amazon.com/blogs/mobile/aws-amplify-adds-support-for-custom-attributes-in-amazon-cognito-user-pools/
       await Auth.updateUserAttributes(cognitoUser, {
-        "custom:gameId": process.env.REACT_APP_GAME_ID,
+        "custom:gameId": state.gameId,
       });
       const { refreshToken } = cognitoUser.getSignInUserSession();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
