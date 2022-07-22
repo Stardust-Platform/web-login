@@ -1,5 +1,5 @@
 // Libs
-import React, { memo, FC, useEffect } from "react";
+import React, { memo, FC, useEffect } from 'react';
 // Styles
 import {
   Notification,
@@ -7,11 +7,11 @@ import {
   Text,
   CloseIconContainer,
   NotificationMessage,
-} from "./styles";
+} from './styles';
 // Types
-import { NotificationsProps } from "./types";
+import { NotificationsProps } from './types';
 // Components
-import Icon, { IconsEnum } from "../Icons";
+import Icon, { IconsEnum } from '../Icons';
 
 // eslint-disable-next-line func-names
 const Notifications: FC<NotificationsProps> = function (props) {

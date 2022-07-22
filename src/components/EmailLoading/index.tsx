@@ -1,7 +1,7 @@
 // Libs
-import React, { FC, useState } from "react";
+import React, { FC, useState } from 'react';
 // Types
-import { EmailLoadingProps } from "./types";
+import { EmailLoadingProps } from './types';
 // Styles
 import {
   EmailVerificationText,
@@ -12,14 +12,14 @@ import {
   ChangeEmail,
   CodeContainer,
   ConfirmButton,
-} from "./styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
+} from './styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 import {
   TextInput,
   TextContainer,
   ErrorMessage,
-} from "../../screens/Signin/styles";
+} from '../../screens/Signin/styles';
 
 // eslint-disable-next-line func-names
 const EmailLoading: FC<EmailLoadingProps> = function ({
@@ -31,8 +31,8 @@ const EmailLoading: FC<EmailLoadingProps> = function ({
   setEmailError,
   error,
 }) {
-  const [code, setCode] = useState("");
-  const linkEnv = process.env.REACT_APP_LINK !== "false";
+  const [code, setCode] = useState('');
+  const linkEnv = process.env.REACT_APP_LINK !== 'false';
 
   return (
     <>
@@ -43,14 +43,14 @@ const EmailLoading: FC<EmailLoadingProps> = function ({
           </EmailActionText>
           <TextContainer hasError={error.hasError}>
             <div>
-              <FontAwesomeIcon style={{ color: "#CACACA" }} icon={faLock} />
+              <FontAwesomeIcon style={{ color: '#CACACA' }} icon={faLock} />
             </div>
             <TextInput
               value={code}
               required={true}
               onChange={(e) => {
                 setCode(e.target.value);
-                setEmailError({ hasError: false, message: "" });
+                setEmailError({ hasError: false, message: '' });
               }}
               min={6}
               maxLength={6}
@@ -61,7 +61,7 @@ const EmailLoading: FC<EmailLoadingProps> = function ({
           <ConfirmButton
             style={{
               opacity: code.length !== 6 ? 0.5 : 1,
-              cursor: code.length !== 6 ? "not-allowed" : "pointer",
+              cursor: code.length !== 6 ? 'not-allowed' : 'pointer',
             }}
             disabled={code.length !== 6}
             onClick={() => {
@@ -74,13 +74,13 @@ const EmailLoading: FC<EmailLoadingProps> = function ({
             <ChangeEmail
               onClick={() => {
                 setIsEmailLoading(false);
-                setEmailError({ hasError: false, message: "" });
+                setEmailError({ hasError: false, message: '' });
               }}
             >
               Change email
             </ChangeEmail>
             <ResendEmailLink onClick={resendEmail}>
-              {isResendClicked ? "Email Sent" : "Resend code"}
+              {isResendClicked ? 'Email Sent' : 'Resend code'}
             </ResendEmailLink>
           </ResendEmailContainer>
         </CodeContainer>
@@ -88,7 +88,7 @@ const EmailLoading: FC<EmailLoadingProps> = function ({
         <>
           <EmailVerificationText>
             We sent an email to
-            <br /> {email}{" "}
+            <br /> {email}{' '}
           </EmailVerificationText>
           <EmailActionText>
             Click the link in the email to
@@ -103,7 +103,7 @@ const EmailLoading: FC<EmailLoadingProps> = function ({
           <ResendEmailContainer>
             <div>Can&apos;t find the email?</div>
             <ResendEmailLink onClick={resendEmail}>
-              {isResendClicked ? "Email Sent" : "Resend Email"}
+              {isResendClicked ? 'Email Sent' : 'Resend Email'}
             </ResendEmailLink>
           </ResendEmailContainer>
         </>

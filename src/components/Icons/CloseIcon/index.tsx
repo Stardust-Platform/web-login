@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const CloseIconSvg = (
   <svg width={14} height={15} fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,13 +1,13 @@
 // libs
-import axios from "axios";
-import { Auth } from "aws-amplify";
-import { LIB_VERSION } from "../version";
+import axios from 'axios';
+import { Auth } from 'aws-amplify';
+import { LIB_VERSION } from '../version';
 // loginUrl
-import { LoginUrl } from "../loginUrl";
+import { LoginUrl } from '../loginUrl';
 // Interfaces
-import { EmailError } from "../screens/Signin/types";
+import { EmailError } from '../screens/Signin/types';
 // eslint-disable-next-line import/no-cycle
-import { Context, Types } from "../components/Provider/types";
+import { Context, Types } from '../components/Provider/types';
 
 // eslint-disable-next-line prefer-regex-literals
 const emailRegex = new RegExp(
@@ -32,7 +32,7 @@ const useEmailSignin = ({
   const cleanErrors = () => {
     setEmailError({
       hasError: false,
-      message: "",
+      message: '',
     });
   };
 
@@ -64,10 +64,10 @@ const useEmailSignin = ({
     try {
       await Auth.signUp({
         username: email,
-        password: array.join("-"),
+        password: array.join('-'),
         attributes: {
           email,
-          "custom:gameId": gameId, // required to be a string representation of a number in this api
+          'custom:gameId': gameId, // required to be a string representation of a number in this api
         },
       });
       cleanErrors();
@@ -85,7 +85,7 @@ const useEmailSignin = ({
     if (email.length === 0 || !emailRegex.test(email)) {
       setEmailError({
         hasError: true,
-        message: "Enter a valid email.",
+        message: 'Enter a valid email.',
       });
       dispatch({ type: Types.handleSessionLoading, payload: false });
       return;
@@ -93,11 +93,11 @@ const useEmailSignin = ({
     if (!state.gameId) {
       setEmailError({
         hasError: true,
-        message: "gameId must be a value > 0",
+        message: 'gameId must be a value > 0',
       });
       return;
     }
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return;
 
     try {
       await loginWithMagicLink();

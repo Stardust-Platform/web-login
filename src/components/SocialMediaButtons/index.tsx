@@ -1,11 +1,11 @@
 // libs
-import React from "react";
-import { Auth } from "aws-amplify";
-import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
+import React from 'react';
+import { Auth } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 // Components
-import Icon, { IconsEnum } from "../Icons";
+import Icon, { IconsEnum } from '../Icons';
 // Styles
-import { SocialMediaButton, IconContainer } from "./styles";
+import { SocialMediaButton, IconContainer } from './styles';
 
 interface props {
   loginOptionsEnv: string | undefined;
@@ -19,7 +19,7 @@ const SocialMediaButtons = function ({ loginOptionsEnv }: props) {
 
   return (
     <>
-      {loginOptions("google") && (
+      {loginOptions('google') && (
         <SocialMediaButton
           type="button"
           onClick={() =>
@@ -35,12 +35,12 @@ const SocialMediaButtons = function ({ loginOptionsEnv }: props) {
         </SocialMediaButton>
       )}
 
-      {loginOptions("discord") && (
+      {loginOptions('discord') && (
         <SocialMediaButton
           type="button"
           onClick={() =>
             Auth.federatedSignIn({
-              customProvider: "Discord",
+              customProvider: 'Discord',
             })
           }
         >
