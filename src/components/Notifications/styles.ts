@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Notification = styled.div`
   position: absolute;
   min-height: 3rem;
   right: 55px;
   top: 24px;
-  background: #FAFAFA;
+  background: #fafafa;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.25);
   border-radius: 24px;
   display: flex;
@@ -14,7 +14,6 @@ export const Notification = styled.div`
   align-items: center;
   padding: 16px;
   z-index: 10000;
-
 
   /* -webkit-animation: notify 3s ease-in-out infinite;
   animation: notify 3s ease-in-out infinite; */
@@ -86,7 +85,7 @@ export const TextContainer = styled.div`
 `;
 
 export const Text = styled.div`
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   font-weight: bold;
   font-size: 14px;
   line-height: 24px;
@@ -100,9 +99,9 @@ export const CloseIconContainer = styled.div`
 `;
 
 export const NotificationMessage = styled.div`
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   font-size: 14px;
   line-height: 18px;
   text-align: center;
-  color: #6A6A6A;
+  color: #6a6a6a;
 `;

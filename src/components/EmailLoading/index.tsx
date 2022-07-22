@@ -1,7 +1,7 @@
 // Libs
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from "react";
 // Types
-import { EmailLoadingProps } from './types';
+import { EmailLoadingProps } from "./types";
 // Styles
 import {
   EmailVerificationText,
@@ -11,88 +11,88 @@ import {
   ResendEmailLink,
   ChangeEmail,
   CodeContainer,
-  ConfirmButton
-} from './styles';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faLock} from "@fortawesome/free-solid-svg-icons";
+  ConfirmButton,
+} from "./styles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLock } from "@fortawesome/free-solid-svg-icons";
 import {
   TextInput,
-  TextContainer, ErrorMessage,
+  TextContainer,
+  ErrorMessage,
 } from "../../screens/Signin/styles";
 
 // eslint-disable-next-line func-names
-const EmailLoading: FC<EmailLoadingProps> = function (
-  { email,
-    resendEmail,
-    isResendClicked,
-    setIsEmailLoading,
-    finishSignInWithCode,
-    setEmailError,
-    error }) {
-
-  const [code, setCode] = useState('');
-  const linkEnv = process.env.REACT_APP_LINK !== 'false'
+const EmailLoading: FC<EmailLoadingProps> = function ({
+  email,
+  resendEmail,
+  isResendClicked,
+  setIsEmailLoading,
+  finishSignInWithCode,
+  setEmailError,
+  error,
+}) {
+  const [code, setCode] = useState("");
+  const linkEnv = process.env.REACT_APP_LINK !== "false";
 
   return (
     <>
-      {!linkEnv ?
+      {!linkEnv ? (
         <CodeContainer>
           <EmailActionText>
-            Please check your email for a 6
-            digit code and enter it below
+            Please check your email for a 6 digit code and enter it below
           </EmailActionText>
           <TextContainer hasError={error.hasError}>
             <div>
-              <FontAwesomeIcon style={{color: '#CACACA'}} icon={faLock}/>
+              <FontAwesomeIcon style={{ color: "#CACACA" }} icon={faLock} />
             </div>
             <TextInput
               value={code}
               required={true}
               onChange={(e) => {
-                setCode(e.target.value)
-                setEmailError({hasError: false, message: ''})
+                setCode(e.target.value);
+                setEmailError({ hasError: false, message: "" });
               }}
               min={6}
               maxLength={6}
-              placeholder="Enter code"/>
+              placeholder="Enter code"
+            />
           </TextContainer>
           <ErrorMessage>{error.message}</ErrorMessage>
           <ConfirmButton
             style={{
               opacity: code.length !== 6 ? 0.5 : 1,
-              cursor: code.length !== 6 ? 'not-allowed' : 'pointer',
+              cursor: code.length !== 6 ? "not-allowed" : "pointer",
             }}
-            disabled={code.length !== 6} onClick={() => {
-            finishSignInWithCode(code)
-          }}>
+            disabled={code.length !== 6}
+            onClick={() => {
+              finishSignInWithCode(code);
+            }}
+          >
             Confirm
           </ConfirmButton>
           <ResendEmailContainer>
-            <ChangeEmail onClick={() => {
-              setIsEmailLoading(false)
-              setEmailError({hasError: false, message: ''})
-            }}>
+            <ChangeEmail
+              onClick={() => {
+                setIsEmailLoading(false);
+                setEmailError({ hasError: false, message: "" });
+              }}
+            >
               Change email
             </ChangeEmail>
             <ResendEmailLink onClick={resendEmail}>
-              {isResendClicked ? 'Email Sent' : 'Resend code'}
+              {isResendClicked ? "Email Sent" : "Resend code"}
             </ResendEmailLink>
           </ResendEmailContainer>
         </CodeContainer>
-        :
+      ) : (
         <>
           <EmailVerificationText>
             We sent an email to
-            <br />
-            {' '}
-            {email}
-            {' '}
+            <br /> {email}{" "}
           </EmailVerificationText>
           <EmailActionText>
             Click the link in the email to
-            <br />
-            {' '}
-            continue.
+            <br /> continue.
           </EmailActionText>
           <LoaderContainer>
             <div />
@@ -103,11 +103,11 @@ const EmailLoading: FC<EmailLoadingProps> = function (
           <ResendEmailContainer>
             <div>Can&apos;t find the email?</div>
             <ResendEmailLink onClick={resendEmail}>
-              {isResendClicked ? 'Email Sent' : 'Resend Email'}
+              {isResendClicked ? "Email Sent" : "Resend Email"}
             </ResendEmailLink>
           </ResendEmailContainer>
         </>
-      }
+      )}
     </>
   );
 };
