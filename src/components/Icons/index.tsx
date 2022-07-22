@@ -1,16 +1,14 @@
 // Libs
-import { FC, memo } from 'react';
+import { FC, memo } from "react";
 // Types
-import { IconProps, IconsEnum } from './types';
+import { IconProps, IconsEnum } from "./types";
 // Svgs
-import {
-  DiscordSvg, FacebookSvg, GoogleSvg, AppleSvg,
-} from './SocialIcon';
-import CloseIconSvg from './CloseIcon';
-import EmailIconSvg from './EmailIcon';
-import SuccessIconSvg from './SuccessIcon';
-import ErrorIconSvg from './ErrorIcon';
-import BackArrowIcon from './BackArrowIcon';
+import { DiscordSvg, FacebookSvg, GoogleSvg, AppleSvg } from "./SocialIcon";
+import CloseIconSvg from "./CloseIcon";
+import EmailIconSvg from "./EmailIcon";
+import SuccessIconSvg from "./SuccessIcon";
+import ErrorIconSvg from "./ErrorIcon";
+import BackArrowIcon from "./BackArrowIcon";
 
 // eslint-disable-next-line func-names
 const Icon: FC<IconProps> = function ({ icon }) {

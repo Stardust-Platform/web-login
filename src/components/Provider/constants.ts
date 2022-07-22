@@ -1,4 +1,4 @@
-import { State } from './types';
+import { State } from "./types";
 
 // eslint-disable-next-line import/prefer-default-export
 export const initialState: State = {
