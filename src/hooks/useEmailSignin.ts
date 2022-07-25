@@ -7,10 +7,12 @@ import { LoginUrl } from '../loginUrl';
 // Interfaces
 import { EmailError } from '../screens/Signin/types';
 // eslint-disable-next-line import/no-cycle
-import { Types } from '../components/Provider/types';
+import { Context, Types } from '../components/Provider/types';
 
 // eslint-disable-next-line prefer-regex-literals
-const emailRegex = new RegExp(/^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+const emailRegex = new RegExp(
+  /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+);
 
 type UseEmailSigninProps = {
   email: string;
@@ -21,14 +23,16 @@ type UseEmailSigninProps = {
   magicLinkRedirectUrl?: string;
 };
 
-const useEmailSignin = (
-  {
-    email, setIsEmailLoading, setEmailError, magicLinkRedirectUrl,
-  }: UseEmailSigninProps,
-) => {
+const useEmailSignin = ({
+  email,
+  setIsEmailLoading,
+  setEmailError,
+  magicLinkRedirectUrl,
+}: UseEmailSigninProps) => {
   const cleanErrors = () => {
     setEmailError({
-      hasError: false, message: '',
+      hasError: false,
+      message: '',
     });
   };
 
@@ -39,21 +43,22 @@ const useEmailSignin = (
         email,
         redirect: magicLinkRedirectUrl ?? window?.location?.origin,
         version: LIB_VERSION,
-        link: process.env.REACT_APP_LINK ? false : true
+        link: process.env.REACT_APP_LINK ? false : true,
       });
       cleanErrors();
     } catch (err: any) {
       if (err.response.status === 400) {
         setIsEmailLoading(false);
         setEmailError({
-          hasError: false, message: err.message,
+          hasError: false,
+          message: err.message,
         });
       }
       throw err;
     }
   };
 
-  const SignupWithEmail = async () => {
+  const SignupWithEmail = async (gameId: string) => {
     const array = new Uint32Array(5);
     crypto.getRandomValues(array);
     try {
@@ -62,30 +67,33 @@ const useEmailSignin = (
         password: array.join('-'),
         attributes: {
           email,
-          'custom:gameId': process.env.REACT_APP_GAME_ID, // required to be a string representation of a number in this api
+          'custom:gameId': gameId, // required to be a string representation of a number in this api
         },
       });
       cleanErrors();
       setIsEmailLoading(true);
     } catch (err: any) {
       setEmailError({
-        hasError: true, message: err.message,
+        hasError: true,
+        message: err.message,
       });
     }
   };
 
-  const SigninSignupWithEmail = async (authContext: any) => {
-    const { dispatch } = authContext;
-    if (email.length === 0 || !(emailRegex.test(email))) {
+  const SigninSignupWithEmail = async (authContext: Context) => {
+    const { dispatch, state } = authContext;
+    if (email.length === 0 || !emailRegex.test(email)) {
       setEmailError({
-        hasError: true, message: 'Enter a valid email.',
+        hasError: true,
+        message: 'Enter a valid email.',
       });
       dispatch({ type: Types.handleSessionLoading, payload: false });
       return;
     }
-    if (!process.env.REACT_APP_GAME_ID || Number(process.env.REACT_APP_GAME_ID) < 1) {
+    if (!state.gameId) {
       setEmailError({
-        hasError: true, message: 'REACT_APP_GAME_ID must be a value > 0',
+        hasError: true,
+        message: 'gameId must be a value > 0',
       });
       return;
     }
@@ -95,7 +103,7 @@ const useEmailSignin = (
       await loginWithMagicLink();
     } catch (err: any) {
       if (err.response.status === 403) {
-        await SignupWithEmail();
+        await SignupWithEmail(state.gameId);
         await loginWithMagicLink();
       }
     }

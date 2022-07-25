@@ -64,8 +64,8 @@ export const Text = styled.h2`
   font-weight: bold;
   font-size: 1rem;
   margin-top: 0;
-  color: #6A6A6A;
-  font-family: "DM Sans", sans-serif;
+  color: #6a6a6a;
+  font-family: 'DM Sans', sans-serif;
   margin-bottom: 0.5rem;
 `;
 
@@ -73,7 +73,8 @@ export const EmailContainer = styled.div<EmailContainerProps>`
   width: 100%;
   background: #ffffff;
   opacity: 0.99;
-  border: ${(props) => (props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0')};
+  border: ${(props) =>
+    props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0'};
   box-sizing: border-box;
   border-radius: 0.5rem;
   margin-bottom: 0.5rem;
@@ -89,7 +90,7 @@ export const ErrorMessage = styled.div`
   font-size: 14px;
   text-align: center;
   line-height: 18px;
-  color: #FF5473;
+  color: #ff5473;
   margin: 0.3rem 0 0.5rem 0;
 `;
 
@@ -97,7 +98,8 @@ export const TextContainer = styled.div<EmailContainerProps>`
   width: 100%;
   background: #ffffff;
   opacity: 0.99;
-  border: ${(props) => (props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0')};
+  border: ${(props) =>
+    props.hasError ? '2px solid #FF5473' : '1px solid #e0e0e0'};
   box-sizing: border-box;
   border-radius: 0.5rem;
   margin-bottom: 0.25rem;
@@ -109,35 +111,35 @@ export const TextContainer = styled.div<EmailContainerProps>`
 export const TextInput = styled.input`
   width: 100%;
   margin-left: 0.75rem;
-  color: #2A2A2A;
-  font-family: "DM Sans", sans-serif;
+  color: #2a2a2a;
+  font-family: 'DM Sans', sans-serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.313rem;
   border: none;
 
   ::placeholder {
-    color: #CACACA;
+    color: #cacaca;
   }
 
   :focus {
     border: none;
     outline: none;
   }
-`
+`;
 
 export const EmailInput = styled.input`
   width: 100%;
   margin-left: 0.75rem;
-  color: #2A2A2A;
-  font-family: "DM Sans", sans-serif;
+  color: #2a2a2a;
+  font-family: 'DM Sans', sans-serif;
   font-weight: bold;
   font-size: 1rem;
   line-height: 1.313rem;
   border: none;
 
   ::placeholder {
-    color: #CACACA;
+    color: #cacaca;
   }
 
   :focus {
@@ -153,27 +155,27 @@ export const ContinueButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0.625rem 0.75rem;
-  background: #5F2FFF;
+  background: #5f2fff;
   border-radius: 0.625rem;
   border: none;
   color: #fff;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: bold;
-  font-size:1.125rem;
+  font-size: 1.125rem;
   line-height: 1.75rem;
   cursor: pointer;
   margin-bottom: 1rem;
 `;
 
 export const SwitchModeText = styled.p`
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
   line-height: 1.313rem;
   color: #000000;
   margin-top: 0;
 
   button {
-    font-family: "DM Sans", sans-serif;
+    font-family: 'DM Sans', sans-serif;
     font-size: 1rem;
     line-height: 1.313rem;
     color: #000000;
@@ -188,17 +190,17 @@ export const SwitchModeText = styled.p`
 export const OptionToSocialText = styled.p`
   margin-top: 0;
   margin-bottom: 1rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.875rem;
-  line-height:1.125rem;
+  line-height: 1.125rem;
   text-align: center;
-  color: #AAAAAA;
+  color: #aaaaaa;
   display: flex;
   align-items: center;
 
   ::before {
     display: inline-block;
-    content: "";
+    content: '';
     border-top: 0.063rem solid #eaeaea;
     width: 5rem;
     margin-right: 0.625rem;
@@ -207,7 +209,7 @@ export const OptionToSocialText = styled.p`
 
   ::after {
     display: inline-block;
-    content: "";
+    content: '';
     border-top: 0.063rem solid #eaeaea;
     width: 5rem;
     margin-left: 0.625rem;
@@ -227,7 +229,7 @@ export const TermsText = styled.p`
   line-height: 1rem;
   text-align: center;
   color: #6a6a6a;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
 `;
 
 export const StrongUnderlineText = styled.a`

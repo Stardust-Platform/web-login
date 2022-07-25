@@ -15,7 +15,7 @@ const signOut = async (dispatchCallback: () => void) => {
   await Auth.signOut({ global: true }).then(
     () => dispatchCallback(),
     // eslint-disable-next-line no-console
-    (error) => console.error(error),
+    (error) => console.error(error)
   );
 };
 
@@ -43,7 +43,10 @@ const useAuthContext = (): StateContext => {
   };
 
   return {
-    ...state, handleOpenModal, handleSignOut, dispatch,
+    ...state,
+    handleOpenModal,
+    handleSignOut,
+    dispatch,
   };
 };
 

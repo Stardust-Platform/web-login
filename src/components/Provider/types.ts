@@ -16,18 +16,18 @@ export enum Types {
 }
 
 export type ActionIsSessionLoading = {
-  type: Types.handleSessionLoading,
-  payload: boolean
+  type: Types.handleSessionLoading;
+  payload: boolean;
 };
 
 export type ActionIsMagicLinkLoading = {
-  type: Types.handleMagicLinkLoading,
-  payload: boolean
+  type: Types.handleMagicLinkLoading;
+  payload: boolean;
 };
 
 export type ActionIsResendClicked = {
-  type: Types.handleResendClicked,
-  payload: boolean
+  type: Types.handleResendClicked;
+  payload: boolean;
 };
 
 export type ActionIsOpen = {
@@ -46,12 +46,12 @@ export type ActionSignOut = {
 };
 
 export type Action =
-  ActionIsOpen |
-  ActionSignin |
-  ActionSignOut |
-  ActionIsSessionLoading |
-  ActionIsMagicLinkLoading |
-  ActionIsResendClicked;
+  | ActionIsOpen
+  | ActionSignin
+  | ActionSignOut
+  | ActionIsSessionLoading
+  | ActionIsMagicLinkLoading
+  | ActionIsResendClicked;
 
 export type User = CognitoUserInterface | undefined;
 
@@ -61,6 +61,7 @@ export type State = {
   isSessionLoading: boolean;
   isMagicLinkLoading: boolean;
   isResendClicked: boolean;
+  gameId: string;
 };
 
 export type Context = {

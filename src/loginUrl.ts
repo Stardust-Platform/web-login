@@ -5,4 +5,3 @@ export const LoginUrl = {
     this.url = url;
   },
 };
-

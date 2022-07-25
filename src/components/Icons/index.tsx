@@ -3,9 +3,7 @@ import { FC, memo } from 'react';
 // Types
 import { IconProps, IconsEnum } from './types';
 // Svgs
-import {
-  DiscordSvg, FacebookSvg, GoogleSvg, AppleSvg,
-} from './SocialIcon';
+import { DiscordSvg, FacebookSvg, GoogleSvg, AppleSvg } from './SocialIcon';
 import CloseIconSvg from './CloseIcon';
 import EmailIconSvg from './EmailIcon';
 import SuccessIconSvg from './SuccessIcon';

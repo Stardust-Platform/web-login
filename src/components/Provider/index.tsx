@@ -1,7 +1,5 @@
 // . Libs
-import React, {
-  useReducer, useMemo, useEffect, FC, useState,
-} from 'react';
+import React, { useReducer, useMemo, useEffect, FC, useState } from 'react';
 import { Amplify, Auth, Hub } from 'aws-amplify';
 import GoogleFontsCss2Loader from 'react-google-fonts-css2';
 // import axios, { AxiosRequestConfig } from 'axios';
@@ -12,9 +10,7 @@ import Notifications from '../Notifications';
 // Consts
 import { initialState } from './constants';
 // Interfaces
-import {
-  Types, ProviderProps, User, SnackBarStatus,
-} from './types';
+import { Types, ProviderProps, User, SnackBarStatus } from './types';
 // Reducers
 import AuthReducer from './reducer';
 // Hooks
@@ -22,7 +18,8 @@ import useAuthContext, { AuthContext } from './hooks';
 import awsconfig from '../../aws-exports';
 import { LoginUrl } from '../../loginUrl';
 
-const STARDUST_LOGO = 'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
+const STARDUST_LOGO =
+  'https://sd-game-assets.s3.amazonaws.com/_Stardust_Dark_Branding.svg';
 
 let origin = 'localhost:3000';
 
@@ -30,10 +27,7 @@ if (typeof window !== 'undefined') origin = window?.location?.origin;
 
 // eslint-disable-next-line func-names
 export const AuthProvider: FC<ProviderProps> = function (props) {
-  const {
-    isOpen,
-    custom,
-  } = props;
+  const { isOpen, custom } = props;
   const [state, dispatch] = useReducer(AuthReducer, initialState);
   const [snackBarStatus, setSnackBarStatus] = useState<SnackBarStatus>({
     isOpen: false,
@@ -65,7 +59,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
           redirectSignIn: origin,
           redirectSignOut: origin,
         },
-      }
+      };
     }
 
     Amplify.configure(config);
@@ -75,23 +69,28 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     if (props.loginUrl) {
       LoginUrl.update(props.loginUrl);
     }
-  }, [props.loginUrl])
+  }, [props.loginUrl]);
 
-  const value = useMemo(() => ({
-    state,
-    dispatch,
-  }), [state]);
+  const value = useMemo(
+    () => ({
+      state,
+      dispatch,
+    }),
+    [state]
+  );
 
-  const loginOptionsEnv = process.env.REACT_APP_LOGIN_OPTIONS ? JSON.parse(process.env.REACT_APP_LOGIN_OPTIONS || '[]')
-    : ["email", "facebook", "discord", "google", "apple"];
+  const loginOptionsEnv = process.env.REACT_APP_LOGIN_OPTIONS
+    ? JSON.parse(process.env.REACT_APP_LOGIN_OPTIONS || '[]')
+    : ['email', 'facebook', 'discord', 'google', 'apple'];
 
   const checkUserLoggedIn = async (dispatch: any) => {
     let user = {};
     await Auth.currentAuthenticatedUser()
       .then((data) => {
         user = data;
-      }).catch(() => {
-        dispatch({ type: Types.handleSessionLoading, payload: false })
+      })
+      .catch(() => {
+        dispatch({ type: Types.handleSessionLoading, payload: false });
       });
     return user;
   };
@@ -100,7 +99,7 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
     try {
       if (typeof challenge === 'string') {
         // MUST be here for TriggerPlayerPreTokenGeneration
-        Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID } });
+        Auth.configure({ clientMetadata: { 'custom:gameId': state.gameId } });
         const user = await Auth.signIn(email);
         await Auth.sendCustomChallengeAnswer(user, challenge);
         await Auth.currentSession();
@@ -110,7 +109,8 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
         setSnackBarStatus({
           isOpen: true,
           hasError: true,
-          message: 'Challenge response cannot be empty, value after email in link',
+          message:
+            'Challenge response cannot be empty, value after email in link',
         });
       }
       dispatch({ type: Types.handleSessionLoading, payload: false });
@@ -148,12 +148,15 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
   const forceTokenRefresh = async () => {
     try {
       await Auth.currentAuthenticatedUser();
-      Auth.configure({ clientMetadata: { 'custom:gameId': process.env.REACT_APP_GAME_ID }, Auth: { oauth: { responseType: 'code' } } });
+      Auth.configure({
+        clientMetadata: { 'custom:gameId': state.gameId },
+        Auth: { oauth: { responseType: 'code' } },
+      });
       const cognitoUser = await Auth.currentAuthenticatedUser();
       // THIS IS THE MAGIC THAT ACTUALLY WORKS
       // https://aws.amazon.com/blogs/mobile/aws-amplify-adds-support-for-custom-attributes-in-amazon-cognito-user-pools/
       await Auth.updateUserAttributes(cognitoUser, {
-        'custom:gameId': process.env.REACT_APP_GAME_ID,
+        'custom:gameId': state.gameId,
       });
       const { refreshToken } = cognitoUser.getSignInUserSession();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -183,16 +186,13 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       switch (data.payload.event) {
         case 'signIn':
           await forceTokenRefresh();
-          await Auth.currentAuthenticatedUser()
-            .then(
-              (user) => {
-                setSnackBarStatus({
-                  isOpen: true,
-                  hasError: false,
-                  message: user.attributes.email,
-                });
-              },
-            );
+          await Auth.currentAuthenticatedUser().then((user) => {
+            setSnackBarStatus({
+              isOpen: true,
+              hasError: false,
+              message: user.attributes.email,
+            });
+          });
           break;
         case 'signIn_failure':
           setSnackBarStatus({
@@ -217,7 +217,10 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
   useEffect(() => {
     (async () => {
       const params = new URLSearchParams(window?.location?.search);
-      if (params.get('challenge') || (params.get('email') && params.get('challenge'))) {
+      if (
+        params.get('challenge') ||
+        (params.get('email') && params.get('challenge'))
+      ) {
         dispatch({ type: Types.handleSessionLoading, payload: true });
       }
       const user = await checkUserLoggedIn(dispatch);
@@ -246,16 +249,25 @@ export const AuthProvider: FC<ProviderProps> = function (props) {
       <AuthContext.Provider value={value} {...props} />
       <Notifications
         isOpen={snackBarStatus.isOpen}
-        closeNotification={() => setSnackBarStatus({
-          ...snackBarStatus,
-          isOpen: false,
-        })}
+        closeNotification={() =>
+          setSnackBarStatus({
+            ...snackBarStatus,
+            isOpen: false,
+          })
+        }
         hasError={snackBarStatus.hasError}
         message={snackBarStatus.message}
       />
       {state.isOpen && (
         // eslint-disable-next-line max-len
-        <SigninScreen loginOptionsEnv={loginOptionsEnv} setSnackBar={() => setSnackBarStatus} authContext={value} closeModal={closeModal} custom={{ logoUrl: STARDUST_LOGO, ...custom }} />)}
+        <SigninScreen
+          loginOptionsEnv={loginOptionsEnv}
+          setSnackBar={() => setSnackBarStatus}
+          authContext={value}
+          closeModal={closeModal}
+          custom={{ logoUrl: STARDUST_LOGO, ...custom }}
+        />
+      )}
     </>
   );
 };

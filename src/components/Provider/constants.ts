@@ -7,4 +7,7 @@ export const initialState: State = {
   isSessionLoading: true,
   isMagicLinkLoading: false,
   isResendClicked: false,
+  gameId:
+    localStorage.getItem('StardustWebSdk:gameId') ||
+    (process.env.REACT_APP_GAME_ID as string),
 };
